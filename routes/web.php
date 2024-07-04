@@ -76,3 +76,11 @@ Route::get('/admin/pelaporan-belanja-barjas', function () {
 Route::get('/login', function () {
     return view('login');
 });
+
+Route::get('/pegawai/profile', function () {
+    return view('pegawai.profile');
+});
+
+Route::get('/pegawai/bantuan', function () {
+    return view('pegawai.bantuan');
+});

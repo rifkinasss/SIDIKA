@@ -64,7 +64,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" href="#">Bantuan</a>
+            <a class="nav-link text-dark" href="/pegawai/bantuan">Bantuan</a>
           </li>
         </ul>
         <div id="profile" class="profile-large dropstart">
@@ -72,7 +72,7 @@
             <img src="{{ asset('images/miles1x1.jpeg') }}" alt="Profile" class="rounded-0" style="width: 50px; border-radius: 50%;">
           </a>
           <ul class="dropdown-menu dropdown-menu-start rounded-0">
-            <li><a class="dropdown-item" href="#"><i class="bi bi-gear-fill"></i> Settings</a></li>
+            <li><a class="dropdown-item" href="/pegawai/profile"><i class="bi bi-gear-fill"></i> Settings</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
           </ul>
