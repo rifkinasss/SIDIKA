@@ -169,10 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-<<<<<<< HEAD
         AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
-=======
->>>>>>> 5e4032ed4a40664b5d8cfdb1bcee999cd326c77a
     ])->toArray(),
 
     /*

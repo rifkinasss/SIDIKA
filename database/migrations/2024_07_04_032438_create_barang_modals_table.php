@@ -49,7 +49,6 @@ return new class extends Migration
             $table->string('bukti_surat__adendmum');
 
             //Jaminan Pelaksanaan
-<<<<<<< HEAD
             $table->integer('nilai_bank_garansi_pelaksanaan');
             $table->string('bukti_bank_garansi_pelaksanaan');
             $table->integer('nilai_surety_bond_pelaksanaan');
@@ -60,18 +59,6 @@ return new class extends Migration
             $table->string('bukti_bank_garansi_pengadaan');
             $table->integer('nilai_surety_bond_pengadaan');
             $table->string('bukti_surety_bond_pengadaan');
-=======
-            $table->integer('nilai_bank_garansi');
-            $table->string('bukti_bank_garansi');
-            $table->integer('nilai_surety_bond');
-            $table->string('bukti_surety_bond');
-
-            //Jaminan Pengadaan
-            $table->integer('nilai_bank_garansi');
-            $table->string('bukti_bank_garansi');
-            $table->integer('nilai_surety_bond');
-            $table->string('bukti_surety_bond');
->>>>>>> 5e4032ed4a40664b5d8cfdb1bcee999cd326c77a
 
             //Sumber Dana DPA
             $table->integer('dana_APBN');

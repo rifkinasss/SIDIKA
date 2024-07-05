@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('perjalanan_dinas', function (Blueprint $table) {
             $table->id();
             $table->string('nomor_surat')->nullable();
-<<<<<<< HEAD
 
             // Data Diri
             $table->unsignedBigInteger('user_id');
@@ -45,21 +44,6 @@ return new class extends Migration
             $table->string('bukti_surat_tugas', 5120);
 
             // Status
-=======
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('keperluan_perjadin');
-            $table->integer('jumlah_dibayarkan');
-            $table->string('tujuan');
-            $table->date('tgl_berangkat');
-            $table->date('tgl_kembali');
-            $table->integer('jumlah_hari');
-            $table->integer('uang_harian');
-            $table->integer('uang_total');
-            $table->integer('biaya_akomodasi');
-            $table->integer('biaya_lain');
-            $table->integer('jumlah_biaya');
->>>>>>> 5e4032ed4a40664b5d8cfdb1bcee999cd326c77a
             $table->enum('status', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
             $table->timestamps();
             $table->softDeletes();
