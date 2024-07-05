@@ -6,10 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-<<<<<<< HEAD
         "azishapidin/indoregion": "^3.0",
-=======
->>>>>>> 5e4032ed4a40664b5d8cfdb1bcee999cd326c77a
         "barryvdh/laravel-dompdf": "^2.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",

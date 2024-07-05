@@ -40,7 +40,6 @@ class DashboardController extends Controller
 
     public function Perencanaanbarjas()
     {
-<<<<<<< HEAD
         $title = 'Perencanaan Barang Jasa';
         $barjas = BarangJasa::all();
         return view('admin.verifikasi.belanja-barjas.perencanaan', compact('barjas', 'title'));
@@ -56,16 +55,10 @@ class DashboardController extends Controller
         $title = 'Pelaporan Barang Jasa';
         $barjas = BarangJasa::all();
         return view('admin.verifikasi.belanja-barjas.pelaporan', compact('barjas', 'title'));
-=======
-        $title = 'Barang Jasa';
-        $barjas = BarangJasa::all();
-        return view('admin.belanja-barjas', compact('barjas', 'title'));
->>>>>>> 5e4032ed4a40664b5d8cfdb1bcee999cd326c77a
     }
 
     public function Perencanaanbarmol()
     {
-<<<<<<< HEAD
         $title = 'Perencanaan Barang Modal';
         $barmol = BarangModal::all();
         return view('admin.verifikasi.belanja-modal.perencanaan', compact('barmol', 'title'));
@@ -81,10 +74,5 @@ class DashboardController extends Controller
         $title = 'Pelaporan Barang Modal';
         $barmol = BarangModal::all();
         return view('admin.verifikasi.belanja-modal.pelaporan', compact('barmol', 'title'));
-=======
-        $title = 'Barang Modal';
-        $barmol = BarangModal::all();
-        return view('admin.belanja-modal', compact('barmol', 'title'));
->>>>>>> 5e4032ed4a40664b5d8cfdb1bcee999cd326c77a
     }
 }

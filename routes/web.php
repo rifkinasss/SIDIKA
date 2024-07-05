@@ -3,18 +3,12 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-<<<<<<< HEAD
 use App\Http\Middleware\RedirectToLogin;
 use App\Http\Controllers\SuperAdmin\UserController;
 use App\Http\Controllers\Pegawai\PerjalananDinasController;
 use App\Http\Controllers\Pegawai\DashboardController as DashController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashController;
-=======
-use App\Http\Controllers\SuperAdmin\UserController;
-use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashController;
->>>>>>> 5e4032ed4a40664b5d8cfdb1bcee999cd326c77a
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +21,6 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashController;
 |
 */
 
-<<<<<<< HEAD
 Route::middleware([RedirectToLogin::class])->group(function () {
     Route::get('/', function () {
         return redirect('/login');
@@ -66,15 +59,6 @@ Route::middleware('pegawai')->group(function () {
     Route::post('pengajuan-perjalanan-dinas/kota', [PerjalananDinasController::class, 'getkota'])->name('getkota');
 });
 
-
-=======
-Route::get('/', function () {
-    return view('pegawai.index');
-});
-Route::get('/perjadin', function () {
-    return view('pegawai.perjadin.perjadin');
-});
->>>>>>> 5e4032ed4a40664b5d8cfdb1bcee999cd326c77a
 Route::get('/pelaporan-perjadin', function () {
     return view('pegawai.perjadin.pelaporan-perjadin');
 });
@@ -96,36 +80,3 @@ Route::get('/pengerjaan-belanja-barjas', function () {
 Route::get('/pelaporan-belanja-barjas', function () {
     return view('pegawai.belanja-barjas.pelaporan-barjas');
 });
-<<<<<<< HEAD
-=======
-
-// admin
-
-
-Route::get('/admin/perjadin', function () {
-    return view('admin.verifikasi.perjadin.verifikasi-perjalanan-dinas');
-});
-Route::get('/admin/pelaporan-perjadin', function () {
-    return view('admin.verifikasi.perjadin.verifikasi-pelaporan');
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::middleware('superadmin')->group(function () {
-    Route::get('dashboard-superadmin', [SuperAdminDashController::class, 'index'])->name('superadmin');
-    Route::get('dashboard-superadmin/user-management', [UserController::class, 'index'])->name('user-management');
-    Route::get('dashboard-superadmin/user-management/tambah', [UserController::class, 'create']);
-    Route::post('dashboard-superadmin/user-management/tambah', [UserController::class, 'store']);
-    Route::get('dashboard-superadmin/user-management/{id}', [UserController::class, 'edit'])->name('users.edit');
-    Route::post('dashboard-superadmin/user-management/{id}', [UserController::class, 'update'])->name('users.update');
-    Route::delete('dashboard-superadmin/user-management/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-});
-
-
-Route::get('dashboard-admin', [AdminDashController::class, 'index'])->name('admin');
-Route::get('dashboard-admin/pengajuan-perjalanan-dinas', [AdminDashController::class, 'Pengajuan'])->name('admin');
-Route::get('dashboard-admin/pelaporan-perjalanan-dinas', [AdminDashController::class, 'Pelaporan'])->name('admin');
-Route::get('dashboard-admin/perencanaan-belanja-barjas', [AdminDashController::class, 'Perencanaanbarjas'])->name('admin');
-Route::get('dashboard-admin/perencanaan-belanja-modal', [AdminDashController::class, 'Perencanaanbarmol'])->name('admin');
->>>>>>> 5e4032ed4a40664b5d8cfdb1bcee999cd326c77a
