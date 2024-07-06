@@ -1,88 +1,90 @@
 @extends('admin.layouts.app')
 
 @section('content-wrapper')
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item">Belanja Barang Jasa</li>
-              <li class="breadcrumb-item active">Pengerjaan Belanja Barang Jasa</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Tabel Pengerjaan Belanja Modal</h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <table id="example1" class="table table-bordered table-striped">
-              <thead>
-              <tr>
-                <th>No</th>
-                <th>Nomor SPK</th>
-                <th>Nama Lengkap</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-              </thead>
-              <tbody>
-                @for ($i = 1; $i <= 20; $i++)
-                  <tr>
-                    <td>{{ $i }}</td>
-                    <td>
-                      NSPK{{ sprintf('%04d', $i) }}
-                    </td>
-                    <td>Nama Lengkap {{ $i }}</td>
-                    <td class="text-center">
-                      @if ($i % 4 == 1)
-                        <button type="button" class="btn btn-warning btn-sm">Pending</button>  
-                      @elseif ($i % 4 == 2)
-                        <button type="button" class="btn btn-success btn-sm">Approved</button>
-                      @elseif ($i % 4 == 3)
-                        <button type="button" class="btn btn-danger btn-sm">Declined</button>
-                      @else
-                        <button type="button" class="btn btn-secondary btn-sm">Unvalid Status</button>
-                      @endif
-                    </td>
-                    <td>
-                      <a href="#" class="btn btn-primary btn-sm">View</a>
-                      <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                      <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                    </td>
-                  </tr>
-                @endfor
-              </tbody>
-              <tfoot>
-              <tr>
-                <th>No</th>
-                <th>Nomor SPK</th>
-                <th>Nama Lengkap</th>
-                <th>Status</th>
-                <th>Action</th>
-
-              </tr>
-              </tfoot>
-            </table>
-          </div>
-          <!-- /.card-body -->
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Pengerjaan Belanja Barang Jasa</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{{ url('dashboard-admin') }}">Home</a></li>
+                            <li class="breadcrumb-item">Belanja Barang Jasa</li>
+                            <li class="breadcrumb-item active">Pengerjaan Belanja Barang Jasa</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </section>
-
-  </div>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Pengerjaan Belanja Barang Jasa</h3>
+                            </div>
+                            <div class="card-body">
+                                <table id="user" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nomor Surat</th>
+                                            <th>Nama</th>
+                                            <th>Keperluan</th>
+                                            <th>Jumlah Biaya</th>
+                                            <th>Tujuan</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($barjas as $p)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $p->nomor_surat }}</td>
+                                                <td>{{ $p->user->nama }}</td>
+                                                <td>{{ $p->keperluan_perjadin }}</td>
+                                                <td>{{ $p->jumlah_dibayarkan }}</td>
+                                                <td>{{ $p->kota_kab }}</td>
+                                                <td>{{ $p->status }}</td>
+                                                <td>
+                                                    <a href="{{ route('perjadin.edit', ['id' => $p->id]) }}"
+                                                        class="btn btn-warning btn-sm"><i
+                                                            class="bi bi-pencil-square"></i></a>
+                                                    <form action="{{ route('perjadin.destroy', ['id' => $p->id]) }}"
+                                                        method="POST" style="display:inline;"
+                                                        id="deleteForm{{ $p->id }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger deleteUser btn-sm"
+                                                            data-id="{{ $p->id }}">
+                                                            <i class="bi bi-trash"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nomor Surat</th>
+                                            <th>Nama</th>
+                                            <th>Keperluan</th>
+                                            <th>Jumlah Biaya</th>
+                                            <th>Tujuan</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 @endsection

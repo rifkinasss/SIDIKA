@@ -1,12 +1,7 @@
 @extends('pegawai.layouts.app')
 
 @section('content')
-<style>
-  body {
-    background-color: #E6F4F1;
-  }
-</style>
-  <div class="container-fluid py-4 px-4 pb-2 bg-transparent">
+  <div class="container-fluid py-4 px-4 pb-2 bg-light">
     {{-- breadcrumb --}}
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
@@ -17,8 +12,8 @@
     </nav>
   </div>
 
-  <div class="container-fluid bg-transparent">
-    <div class="card bg-light rounded-0">
+  <div class="container-fluid bg-light">
+    <div class="card bg-transparent rounded-0">
       <div class="row pt-4 ps-4">
         <h5>Pelaporan Perjalanan Dinas</h5>
       </div>
