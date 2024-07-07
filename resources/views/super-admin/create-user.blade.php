@@ -178,7 +178,7 @@
                                                     data-target-input="nearest">
                                                     <input type="text" class="form-control datetimepicker-input"
                                                         data-target="#tanggal_lahir" name="tanggal_lahir"
-                                                        placeholder="MM/DD/YYYY" />
+                                                        placeholder="YYYY/MM/DD" />
                                                     <div class="input-group-append" data-target="#tanggal_lahir"
                                                         data-toggle="datetimepicker">
                                                         <div class="input-group-text">
