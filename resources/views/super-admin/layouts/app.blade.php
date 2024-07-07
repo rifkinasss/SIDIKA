@@ -90,7 +90,7 @@
                 'placeholder': '(+628) 99-9999-9999 '
             })
             $('#tanggal_lahir').datetimepicker({
-                format: 'DD/MM/YYYY',
+                format: 'YYYY/MM/DD',
                 locale: 'id',
                 viewMode: 'years',
             });

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->enum('role', ['pegawai', 'admin', 'superadmin']);
-            $table->string('jenisKelamin')->nullable();
+            $table->string('jns_Kelamin')->nullable();
             $table->string('agama')->nullable();
             $table->string('alamat')->nullable();
             $table->string('noHp')->nullable();
@@ -39,9 +39,9 @@ return new class extends Migration
         DB::table('users')->insert([
             'nip' => null,
             'nama' => 'Super Admin',
-            'email' => 'su-admin@urproj.com',
+            'email' => 'su-admin@gmail.com',
             'role' => 'superadmin',
-            'jenisKelamin' => null,
+            'jns_Kelamin' => null,
             'agama' => null,
             'alamat' => null,
             'noHp' => null,
