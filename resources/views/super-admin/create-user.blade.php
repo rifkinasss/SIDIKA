@@ -62,7 +62,7 @@
                                                 <select id="Jenis_Kelamin" class="form-control select2" style="width: 100%;"
                                                     name="jns_kelamin">
                                                     <option value="" disabled selected>Pilih Jenis Kelamin</option>
-                                                    <option value="Laki-laki">Lappki-laki</option>
+                                                    <option value="Laki-laki">Laki-laki</option>
                                                     <option value="Perempuan">Perempuan</option>
                                                 </select>
                                             </div>
