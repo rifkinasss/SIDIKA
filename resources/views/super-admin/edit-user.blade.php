@@ -216,8 +216,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Alamat</label>
-                                        <textarea class="form-control" name="alamat" rows="3" placeholder="Masukkan Alamat"
-                                            value="{{ $user->alamat }}"></textarea>
+                                        <textarea class="form-control" name="alamat" rows="3" placeholder="Masukkan Alamat">{{ $user->alamat }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="Password">Password</label>

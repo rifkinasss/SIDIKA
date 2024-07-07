@@ -19,7 +19,11 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->enum('role', ['pegawai', 'admin', 'superadmin']);
+<<<<<<< HEAD
             $table->string('jns_Kelamin')->nullable();
+=======
+            $table->string('jns_kelamin')->nullable();
+>>>>>>> efba082a5c6c4b3a5227e57fe8294f12a60d9eb2
             $table->string('agama')->nullable();
             $table->string('alamat')->nullable();
             $table->string('noHp')->nullable();
