@@ -6,13 +6,13 @@
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-dark">Home</a></li>
-            <li class="breadcrumb-item">Belanja Modal</li>
-            <li class="breadcrumb-item active" aria-current="page"><span class="text-first"><u>Ketentuan Belanja Modal</u></span></li>
+            <li class="breadcrumb-item">Belanja Barang Jasa</li>
+            <li class="breadcrumb-item active" aria-current="page"><span class="text-first"><u>Ketentuan Belanja Barang Jasa</u></span></li>
         </ol>
     </nav>
     <div class="row">
-      <h1>Ketentuan Belanja Modal</h1>
-      <span>07/07/2024 16:01 WITA</span>
+      <h1>Ketentuan Belanja Barang Jasa</h1>
+      <span>07/07/2024 17:08 WITA</span>
       <div class="col-md-8 mt-2 align-self-start">
         <div class="row">
           <div class="col-1">
@@ -24,9 +24,9 @@
           </div>
         </div>
         <div class="text-center">
-          <img src="{{ asset('assets/img/belanja-modal.jpeg ') }}" class="img-fluid rounded-0 mt-4">
+          <img src="{{ asset('assets/img/belanja-barjas.jpeg ') }}" class="img-fluid rounded-0 mt-4">
         </div>
-        <h6 class="mt-2 text-center"><i>gambar 1. ilustrasi belanja modal</i></h6>
+        <h6 class="mt-2 text-center"><i>gambar 1. ilustrasi belanja barang jasa</i></h6>
         <section class="ms-4 mt-4">
           <div class="accordion" id="accordionPanelsStayOpenExample">
             <!-- Pengertian -->
@@ -38,7 +38,7 @@
               </h2>
               <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
                 <div class="accordion-body">
-                  <p>Belanja Modal adalah pengeluaran anggaran yang digunakan untuk memperoleh aset tetap dan aset lainnya yang memberikan manfaat lebih dari satu periode akuntansi.</p>
+                  <p>Belanja Barang dan Jasa adalah pengeluaran anggaran yang digunakan untuk membeli barang dan jasa yang habis dipakai dalam satu periode anggaran serta tidak menambah aset tetap.</p>
                 </div>
               </div>
             </div>
@@ -61,21 +61,20 @@
               </div>
             </div>
             
-            <!-- Jenis Belanja Modal -->
+            <!-- Jenis Belanja Barang dan Jasa -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="panelsStayOpen-headingThree">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                  Jenis Belanja Modal
+                  Jenis Belanja Barang dan Jasa
                 </button>
               </h2>
               <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
                 <div class="accordion-body">
                   <ol>
-                    <li>Belanja Modal Tanah: Pengeluaran untuk pembelian tanah.</li>
-                    <li>Belanja Modal Peralatan dan Mesin: Pengeluaran untuk pembelian alat dan mesin yang bernilai tinggi.</li>
-                    <li>Belanja Modal Gedung dan Bangunan: Pengeluaran untuk pembangunan gedung dan bangunan baru.</li>
-                    <li>Belanja Modal Jalan, Irigasi, dan Jaringan: Pengeluaran untuk pembangunan infrastruktur.</li>
-                    <li>Belanja Modal Aset Tetap Lainnya: Pengeluaran untuk pembelian aset tetap lainnya yang tidak termasuk dalam kategori di atas.</li>
+                    <li>Belanja Barang: Pengeluaran untuk membeli barang yang habis pakai dalam satu periode anggaran.</li>
+                    <li>Belanja Jasa: Pengeluaran untuk jasa yang digunakan dalam mendukung operasional pemerintahan.</li>
+                    <li>Belanja Pemeliharaan: Pengeluaran untuk pemeliharaan aset yang ada agar tetap berfungsi dengan baik.</li>
+                    <li>Belanja Operasional: Pengeluaran untuk keperluan operasional sehari-hari seperti alat tulis kantor, bahan bakar, dan lain-lain.</li>
                   </ol>
                 </div>
               </div>
@@ -90,32 +89,32 @@
               </h2>
               <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
                 <div class="accordion-body">
-                  <p>Proses penganggaran belanja modal melibatkan beberapa tahapan, yaitu:</p>
+                  <p>Proses penganggaran belanja barang dan jasa melibatkan beberapa tahapan, yaitu:</p>
                   <ol>
-                    <li>Perencanaan: Menyusun rencana kebutuhan dan pengadaan aset.</li>
-                    <li>Penganggaran: Mengalokasikan dana untuk pengadaan aset dalam APBN/APBD.</li>
-                    <li>Pelaksanaan: Melaksanakan pengadaan aset sesuai dengan anggaran yang telah ditetapkan.</li>
-                    <li>Pelaporan: Melaporkan penggunaan dana dan aset yang telah diperoleh.</li>
+                    <li>Perencanaan: Menyusun rencana kebutuhan barang dan jasa.</li>
+                    <li>Penganggaran: Mengalokasikan dana untuk kebutuhan barang dan jasa dalam APBN/APBD.</li>
+                    <li>Pelaksanaan: Melaksanakan pengadaan barang dan jasa sesuai dengan anggaran yang telah ditetapkan.</li>
+                    <li>Pelaporan: Melaporkan penggunaan dana dan barang serta jasa yang telah diperoleh.</li>
                   </ol>
                 </div>
               </div>
             </div>
             
-            <!-- Manfaat Belanja Modal -->
+            <!-- Manfaat Belanja Barang dan Jasa -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="panelsStayOpen-headingFive">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
-                  Manfaat Belanja Modal
+                  Manfaat Belanja Barang dan Jasa
                 </button>
               </h2>
               <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
                 <div class="accordion-body">
-                  <p>Belanja modal memiliki beberapa manfaat, antara lain:</p>
+                  <p>Belanja barang dan jasa memiliki beberapa manfaat, antara lain:</p>
                   <ul>
-                    <li>Meningkatkan kualitas pelayanan publik.</li>
-                    <li>Meningkatkan efisiensi dan efektivitas operasional pemerintah.</li>
-                    <li>Mendukung pembangunan infrastruktur yang berkelanjutan.</li>
-                    <li>Mendorong pertumbuhan ekonomi daerah dan nasional.</li>
+                    <li>Mendukung operasional pemerintahan sehari-hari.</li>
+                    <li>Menjaga aset yang ada agar tetap berfungsi dengan baik.</li>
+                    <li>Meningkatkan efisiensi dan efektivitas pelayanan publik.</li>
+                    <li>Mendukung kegiatan pemerintahan yang berkelanjutan.</li>
                   </ul>
                 </div>
               </div>
@@ -130,10 +129,10 @@
               </h2>
               <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingSix">
                 <div class="accordion-body">
-                  <p>Pemantauan dan evaluasi belanja modal dilakukan untuk memastikan bahwa:</p>
+                  <p>Pemantauan dan evaluasi belanja barang dan jasa dilakukan untuk memastikan bahwa:</p>
                   <ul>
-                    <li>Pengadaan aset dilakukan sesuai dengan peraturan yang berlaku.</li>
-                    <li>Aset yang diperoleh memberikan manfaat sesuai dengan tujuan penganggaran.</li>
+                    <li>Pengadaan barang dan jasa dilakukan sesuai dengan peraturan yang berlaku.</li>
+                    <li>Barang dan jasa yang diperoleh memberikan manfaat sesuai dengan tujuan penganggaran.</li>
                     <li>Tidak terjadi pemborosan atau penyalahgunaan anggaran.</li>
                   </ul>
                   <p>Proses ini melibatkan berbagai pihak, termasuk auditor internal dan eksternal, serta masyarakat sebagai penerima manfaat.</p>
@@ -141,7 +140,7 @@
               </div>
             </div>
           </div>
-                  </section>
+        </section>
 
 
       </div>
@@ -156,7 +155,7 @@
             <ul class="list-group list-group-flush">
               <a href="" class="text-decoration-none">
               <li class="list-group-item bg-transparent">Ketentuan Perjalanan Dinas <div class="float-end"><i class="bi bi-chevron-right"></i></div></li></a>
-              <a href="" class="text-decoration-none"><li class="list-group-item bg-transparent">Ketentuan Belanja Barang Jasa <div class="float-end"><i class="bi bi-chevron-right"></i></div></li></li></a>
+              <a href="" class="text-decoration-none"><li class="list-group-item bg-transparent">Ketentuan Belanja Modal <div class="float-end"><i class="bi bi-chevron-right"></i></div></li></li></a>
               <a href="" class="text-decoration-none"><li class="list-group-item bg-transparent">Bantuan Pengguna <div class="float-end"><i class="bi bi-chevron-right"></i></div></li></li></a>
             </ul>
           </div>
