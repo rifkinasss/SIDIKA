@@ -80,3 +80,8 @@ Route::get('/pengerjaan-belanja-barjas', function () {
 Route::get('/pelaporan-belanja-barjas', function () {
     return view('pegawai.belanja-barjas.pelaporan-barjas');
 });
+Route::get('/ketentuan-perjadin', function () {
+    return view('pegawai.perjadin.ket-perjadin', [
+        'title' => 'Ketentuan Perjalanan Dinas'
+    ]);
+});

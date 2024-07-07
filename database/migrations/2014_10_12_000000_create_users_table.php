@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->enum('role', ['pegawai', 'admin', 'superadmin']);
-            $table->string('jenisKelamin')->nullable();
+            $table->string('jns_kelamin')->nullable();
             $table->string('agama')->nullable();
             $table->string('alamat')->nullable();
             $table->string('noHp')->nullable();
@@ -41,7 +41,7 @@ return new class extends Migration
             'nama' => 'Super Admin',
             'email' => 'su-admin@urproj.com',
             'role' => 'superadmin',
-            'jenisKelamin' => null,
+            'jns_kelamin' => null,
             'agama' => null,
             'alamat' => null,
             'noHp' => null,

@@ -54,7 +54,7 @@ class UserController extends Controller
             'jabatan' => $request->jabatan,
             'unit_kerja' => $request->unit_kerja,
             'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $tanggal_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
             'agama' => $request->agama,
             'golongan' => $request->golongan,
             'alamat' => $request->golongan,
