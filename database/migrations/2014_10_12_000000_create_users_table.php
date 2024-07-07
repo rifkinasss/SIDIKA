@@ -39,7 +39,7 @@ return new class extends Migration
         DB::table('users')->insert([
             'nip' => null,
             'nama' => 'Super Admin',
-            'email' => 'su-admin@urproj.com',
+            'email' => 'su-admin@gmail.com',
             'role' => 'superadmin',
             'jns_kelamin' => null,
             'agama' => null,

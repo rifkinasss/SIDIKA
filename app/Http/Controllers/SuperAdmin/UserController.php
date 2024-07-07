@@ -40,7 +40,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $tanggal_lahir = Carbon::createFromFormat('d/m/Y', $request->tanggal_lahir)->format('d-m-Y');
+        $tanggal_lahir = Carbon::createFromFormat('d/m/Y', $request->tanggal_lahir)->format('Y-m-d');
 
         User::create([
             'nip' => $request->nip,
@@ -57,7 +57,7 @@ class UserController extends Controller
             'tanggal_lahir' => $request->tanggal_lahir,
             'agama' => $request->agama,
             'golongan' => $request->golongan,
-            'alamat' => $request->golongan,
+            'alamat' => $request->alamat,
             'password' => $request->password,
         ]);
 
