@@ -20,6 +20,12 @@ class PerjalananDinasController extends Controller
         return view('pegawai.perjadin.perjadin', compact('title', 'provinces'));
     }
 
+    public function ketentuan()
+    {
+        $title = 'Ketentuan Perjalanan Dinas';
+        return view('pegawai.perjadin.ket-perjadin', compact('title'));
+    }
+
     public function getkota(Request $request)
     {
         $id_provinsi = $request->id_provinsi;
@@ -34,21 +40,37 @@ class PerjalananDinasController extends Controller
     }
     public function pengajuan(Request $request)
     {
+        $request->validate([
+            'bukti_surat_tugas' => 'required|mimes:pdf|max:10204', // Validasi file PDF maksimal 2MB
+        ]);
+
         $tglBerangkat = Carbon::createFromFormat('Y-m-d', $request->tgl_berangkat);
         $tglKembali = Carbon::createFromFormat('Y-m-d', $request->tgl_kembali);
         $jumlah_hari = $tglKembali->diffInDays($tglBerangkat);
 
-        $jmlh_uang_harian = (int)$request->uang_harian * (int)$jumlah_hari;
+        $uangHarian = $request->uang_harian;
+        $uang_harian = (int) preg_replace("/[^0-9]/", "", $uangHarian);
+        $jmlh_uang_harian = $jumlah_hari * $uang_harian;
+        $jumlah_uang_harian = 'Rp ' . number_format($jmlh_uang_harian, 0, ',', '.');
 
-        $jmlh_uang_harian = (float)$jmlh_uang_harian;
-        $biaya_akomodasi = (float)$request->biaya_akomodasi;
-        $biaya_lain = (float)$request->biaya_lain;
-        $biaya_tiket_pp = (float)$request->biaya_tiket_pp;
+        $biaya_akomodasi = $request->biaya_akomodasi;
+        $biaya_akomodasi = (int) preg_replace("/[^0-9]/", "", $biaya_akomodasi);
+        $biaya_lain = $request->biaya_lain;
+        $biaya_lain = (int) preg_replace("/[^0-9]/", "", $biaya_lain);
+        $biaya_tiket_pp = $request->biaya_tiket_pp;
+        $biaya_tiket_pp = (int) preg_replace("/[^0-9]/", "", $biaya_tiket_pp);
+        $uang_representasi = $request->uang_representasi;
+        $uang_representasi = (int) preg_replace("/[^0-9]/", "", $uang_representasi);
 
-        if (!is_numeric($jmlh_uang_harian) || !is_numeric($biaya_akomodasi) || !is_numeric($biaya_lain) || !is_numeric($biaya_tiket_pp)) {
-            return response()->json(['error' => 'Input tidak valid'], 400);
+        $jumlah_biaya = $jmlh_uang_harian + $biaya_akomodasi + $biaya_lain + $biaya_tiket_pp + $uang_representasi;
+        $jmlh_biaya = 'Rp. ' . number_format($jumlah_biaya, 0, ',', '.');
+
+        if ($request->hasFile('bukti_surat_tugas')) {
+            $file = $request->file('bukti_surat_tugas');
+            $id = Auth::user()->id;
+            $filename = $id . time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('bukti_surat_tugas', $filename, 'public');
         }
-        $jumlah_biaya = $jmlh_uang_harian + $biaya_akomodasi + $biaya_lain + $biaya_tiket_pp;
 
         PerjalananDinas::create([
             // Data Diri
@@ -57,8 +79,8 @@ class PerjalananDinasController extends Controller
             // Keperluan Perjalanan Dinas
             'jns_perjadin' => $request->jns_perjadin,
             'keperluan_perjadin' => $request->keperluan_perjadin,
-            'provinsi' => $request->provinsi,
-            'kota_kab' => $request->kota_kab,
+            'province_id' => $request->provinsi,
+            'regency_id' => $request->kota_kab,
 
             // Perencanaan Tanggal Perjalanan Dinas
             'tgl_berangkat' => $request->tgl_berangkat,
@@ -67,16 +89,15 @@ class PerjalananDinasController extends Controller
 
             // Rincian Biaya
             'uang_harian' => $request->uang_harian,
-            'jmlh_uang_harian' => $jmlh_uang_harian,
+            'jmlh_uang_harian' => $jumlah_uang_harian,
             'biaya_akomodasi' => $request->biaya_akomodasi,
             'biaya_lain' => $request->biaya_lain,
             'biaya_tiket_pp' => $request->biaya_tiket_pp,
             'uang_representasi' => $request->uang_representasi,
-            'jumlah_biaya' => $jumlah_biaya,
+            'jumlah_biaya' => $jmlh_biaya,
 
             // Bukti Surat Tugas
-            'bukti_surat_tugas' => $request->bukti_surat_tugas,
-            // 'file_surat_tugas' => $request->file('surat_tugas')->store('surat_tugas'),
+            'bukti_surat_tugas' => '/storage/' . $filePath,
         ]);
 
         return redirect()->route('pegawai')->with('perjadin', 'Pengajuan perjalanan dinas berhasil dibuat.');

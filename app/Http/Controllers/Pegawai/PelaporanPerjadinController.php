@@ -2,70 +2,94 @@
 
 namespace App\Http\Controllers\Pegawai;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Pegawai\PerjalananDinas;
 use App\Models\Pegawai\PelaporanPerjadin;
-use App\Utils\FileUtils;
 
 class PelaporanPerjadinController extends Controller
 {
     public function show($id)
     {
-        $perjadin = PerjalananDinas::find($id);
-        return view('pegawai.pelaporan-perjadin', compact('perjadin'));
+        $perjadin = PerjalananDinas::findOrFail($id);
+        $title = 'Pelaporan Perjalanan Dinas';
+        return view('pegawai.perjadin.pelaporan-perjadin', compact('title', 'perjadin'));
     }
 
     public function store(Request $request, $id)
     {
         $perjadin = PerjalananDinas::find($id);
 
-        $pelaporan = new PelaporanPerjadin();
-        $pelaporan->perjalanan_dinas_id = $perjadin->id;
-        $pelaporan->user_id = Auth::id(); // Menambahkan user_id dari pengguna yang sedang login
-        $pelaporan->keperluan_perjadin = $perjadin->keperluan_perjadin;
-        $pelaporan->tujuan = $perjadin->tujuan;
-        $pelaporan->jns_penginapan = $request->jns_penginapan;
-        $pelaporan->tgl_berangkat = $perjadin->tgl_berangkat;
-        $pelaporan->tgl_kembali = $perjadin->tgl_kembali;
-        $pelaporan->jns_transportasi_berangkat = $request->jns_transportasi_berangkat;
-        $pelaporan->jns_transportasi_kembali = $request->jns_transportasi_kembali;
-        $pelaporan->nama_transportasi_berangkat = $request->nama_transportasi_berangkat;
-        $pelaporan->nama_transportasi_kembali = $request->nama_transportasi_kembali;
-        $pelaporan->nomor_tiket_berangkat = $request->nomor_tiket_berangkat;
-        $pelaporan->nomor_tiket_kembali = $request->nomor_tiket_kembali;
-        $pelaporan->nomor_kursi_berangkat = $request->nomor_kursi_berangkat;
-        $pelaporan->nomor_kursi_kembali = $request->nomor_kursi_kembali;
-        $pelaporan->harga_berangkat = $request->harga_berangkat;
-        $pelaporan->harga_kembali = $request->harga_kembali;
-        $pelaporan->total_biaya_akomodasi = $request->total_biaya_akomodasi;
-        $pelaporan->total_biaya_berangkat = $request->total_biaya_berangkat;
-        $pelaporan->total_biaya_kembali = $request->total_biaya_kembali;
-
-        // Handle file uploads
-        if ($request->file('bukti_akomodasi')) {
-            $bukti_akomodasi = $request->file('bukti_akomodasi');
-            $bukti_akomodasi_path = $bukti_akomodasi->store('uploads/bukti_akomodasi', 'public');
-            $pelaporan->bukti_akomodasi = $bukti_akomodasi_path;
+        if ($request->hasFile('bukti_akomodasi')) {
+            $file = $request->file('bukti_akomodasi');
+            $id = Auth::user()->id;
+            $filename = $id . time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('bukti_akomodasi', $filename, 'public');
+        }
+        if ($request->hasFile('bukti_biaya_lain')) {
+            $file = $request->file('bukti_biaya_lain');
+            $id = Auth::user()->id;
+            $filename = $id . time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('bukti_biaya_lain', $filename, 'public');
+        }
+        if ($request->hasFile('bukti_tiket_pp')) {
+            $file = $request->file('bukti_tiket_pp');
+            $id = Auth::user()->id;
+            $filename = $id . time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('bukti_tiket_pp', $filename, 'public');
+        }
+        if ($request->hasFile('bukti_brgkt')) {
+            $file = $request->file('bukti_brgkt');
+            $id = Auth::user()->id;
+            $filename = $id . time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('bukti_brgkt', $filename, 'public');
+        }
+        if ($request->hasFile('bukti_kmbl')) {
+            $file = $request->file('bukti_kmbl');
+            $id = Auth::user()->id;
+            $filename = $id . time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('bukti_kmbl', $filename, 'public');
+        }
+        if ($request->hasFile('bukti_uang_representasi')) {
+            $file = $request->file('bukti_uang_representasi');
+            $id = Auth::user()->id;
+            $filename = $id . time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('bukti_uang_representasi', $filename, 'public');
         }
 
-        if ($request->file('bukti_berangkat')) {
-            $bukti_berangkat = $request->file('bukti_berangkat');
-            $bukti_berangkat_path = $bukti_berangkat->store('uploads/bukti_berangkat', 'public');
-            $pelaporan->bukti_berangkat = $bukti_berangkat_path;
-        }
-
-        if ($request->file('bukti_kembali')) {
-            $bukti_kembali = $request->file('bukti_kembali');
-            $bukti_kembali_path = $bukti_kembali->store('uploads/bukti_kembali', 'public');
-            $pelaporan->bukti_kembali = $bukti_kembali_path;
-        }
-
-        $pelaporan->save();
-
-        return redirect()->route('pegawai', ['perjadin' => $perjadin->id])->with('pel-perjadin', 'Pelaporan berhasil diperbarui.');
+        $perjadin->update([
+            'perjalanan_dinas_id' => $perjadin->id,
+            'user_id' => Auth::user()->id,
+            'uang_harian' => $request->uang_harian,
+            'jmlh_uang_harian' => $request->jmlh_uang_harian,
+            'biaya_akomodasi' => $request->biaya_akomodasi,
+            'nama_jns_penginapan' => $request->nama_jns_penginapan,
+            'bukti_akomodasi' => '/storage/' . $filePath,
+            'biaya_lain' => $request->biaya_lain,
+            'penggunaan_biaya' => $request->penggunaan_biaya,
+            'bukti_biaya_lain' => '/storage/' . $filePath,
+            'biaya_tiket_pp' => '/storage/' . $filePath,
+            'tgl_brgkt' => $request->tgl_brgkt,
+            'tgl_kmbl' => $request->tgl_kmbl,
+            'jns_transport_brgkt' => $request->jns_transport_brgkt,
+            'jns_transport_kmbl' => $request->jns_transport_kmbl,
+            'nama_transport_brgkt' => $request->nama_transport_brgkt,
+            'nama_transport_kmbl' => $request->nama_transport_kmbl,
+            'nomor_tiket_brgkt' => $request->nomor_tiket_brgkt,
+            'nomor_tiket_kmbl' => $request->nomor_tiket_kmbl,
+            'nomor_kursi_brgkt' => $request->nomor_kursi_brgkt,
+            'nomor_kursi_kmbl' => $request->nomor_kursi_kmbl,
+            'status_brgkt' => $request->status_brgkt,
+            'status_kmbl' => $request->status_kmbl,
+            'biaya_brgkt' => $request->biaya_brgkt,
+            'biaya_kmbl' => $request->biaya_kmbl,
+            'bukti_brgkt' => '/storage/' . $filePath,
+            'bukti_kmbl' => '/storage/' . $filePath,
+            'uang_representasi' => $request->uang_representasi,
+            'bukti_uang_representasi' => '/storage/' . $filePath,
+            'jumlah_biaya' => $request->jumlah_biaya,
+        ]);
     }
 
     public function destroy(string $id)

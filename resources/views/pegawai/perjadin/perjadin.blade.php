@@ -1,7 +1,6 @@
 @extends('pegawai.layouts.app')
 
 @section('content')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         body {
             background-color: #E6F4F1;
@@ -92,10 +91,6 @@
                         <label for="tujuan" class="form-label">Kota/Kabupaten Tujuan</label>
                         <select class="form-select rounded-0 mb-2" aria-label="Default select example" id="kota"
                             name="kota_kab">
-                            <option selected>Pilih Kota/Kabupaten</option>
-                            <option value="1">Kota Balikpapan</option>
-                            <option value="2">Kota Samarinda</option>
-                            <option value="3">Kab. Kutai Kartanegara</option>
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -150,7 +145,7 @@
                             required oninput="formatRupiah(this)" />
                         <label for="jumlah-uang-harian" class="form-label">Jumlah Uang Harian</label>
                         <input class="form-control rounded-0 mb-2" type="text" id="jumlah-uang-harian"
-                            oninput="formatRupiah(this)" name="jumlah_uang_harian" disabled />
+                            oninput="formatRupiah(this)" name="jmlh_uang_harian" disabled />
                         <label for="biaya-akomodasi" class="form-label">Biaya Akomodasi</label>
                         <input class="form-control rounded-0 mb-2" type="text" id="biaya-akomodasi" required
                             oninput="formatRupiah(this)" name="biaya_akomodasi" />
@@ -159,8 +154,8 @@
                         <input class="form-control rounded-0 mb-2" type="text" id="biaya-lain" name="biaya_lain"
                             oninput="formatRupiah(this)" />
                         <label for="biaya-tiket-pp" class="form-label">Biaya Tiket Pulang-Pergi</label>
-                        <input class="form-control rounded-0 mb-2" type="text" id="biaya-tiket-pp" required
-                            oninput="formatRupiah(this)" />
+                        <input class="form-control rounded-0 mb-2" type="text" id="biaya-tiket-pp"
+                            name="biaya_tiket_pp" required oninput="formatRupiah(this)" />
                         <label for="uang-representasi" class="form-label">Uang Representasi (jika ada)</label>
                         <input class="form-control rounded-0 mb-2" type="text" id="uang-representasi"
                             name="uang_representasi" oninput="formatRupiah(this)" />
@@ -218,11 +213,11 @@
                 {{-- tombol kirim dan cancel --}}
                 <div class="row my-4 mx-4">
                     <div class="col-sm-6">
-                        <button type="submit" class="btn btn-primary rounded-0">Kirim</button>
+                        <a type="button" href="{{ url('dashboard') }}" class="btn btn-danger rounded-0">kembali</a>
+                        <button type="reset" class="btn bg-third border-primary rounded-0">Reset</button>
                     </div>
                     <div class="col-sm-6 text-end">
-                        <button type="reset" class="btn bg-third border-primary rounded-0">Reset</button>
-                        <a type="button" href="{{ url('dashboard') }}" class="btn btn-danger rounded-0">kembali</a>
+                        <button type="submit" class="btn btn-primary rounded-0">Kirim</button>
                     </div>
                 </div>
             </form>

@@ -18,7 +18,8 @@
                         Perjalanan Dinas
                     </a>
                     <ul class="dropdown-menu rounded-0">
-                        <li><a class="dropdown-item" href="#">Ketentuan Perjalanan Dinas</a></li>
+                        <li><a class="dropdown-item" href="{{ route('ketentuan-perjalanan-dinas') }}">Ketentuan
+                                Perjalanan Dinas</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -71,11 +72,13 @@
             <div id="profile" class="profile-large dropstart">
                 <a class="btn dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                     <span>{{ Auth::user()->nama }}</span>
-                    <img src="{{ asset('assets/img/miles1x1.jpeg') }}" alt="Profile" class="rounded-5"
-                        style="width: 50px; border-radius: 50%;">
+                    <img src="{{ Auth::user()->profile_photo_url ?? asset('assets/img/user.jpg') }}" alt="Profile"
+                        class="rounded-5" style="width: 50px; border-radius: 50%;">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-start rounded-0">
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear-fill"></i> Settings</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile', Auth::user()->id) }}"><i
+                                class="bi bi-gear-fill"></i>
+                            Profile</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
@@ -92,11 +95,14 @@
                 <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <span>{{ Auth::user()->nama }}</span>
-                    <img src="{{ asset('assets/img/miles1x1.jpeg') }}" alt="Profile" class="rounded-0"
-                        style="width: 30px; border-radius: 50%;">
+                    <img src="{{ Auth::user()->profile_photo_url ?? asset('assets/img/user.jpg') }}" alt="Profile"
+                        class="rounded-0" style="width: 30px; border-radius: 50%;">
                 </a>
                 <ul class="dropdown-menu rounded-0">
-                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear-fill mr-2"></i> Settings</a>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('profile', Auth::user()->id) }}"><i
+                                class="bi bi-gear-fill mr-2"></i>
+                            Profile</a>
                     </li>
                     <li>
                         <hr class="dropdown-divider">

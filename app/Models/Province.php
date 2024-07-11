@@ -9,8 +9,10 @@
 
 namespace App\Models;
 
-use AzisHapidin\IndoRegion\Traits\ProvinceTrait;
+use App\Models\Regency;
+use App\Models\Pegawai\PerjalananDinas;
 use Illuminate\Database\Eloquent\Model;
+use AzisHapidin\IndoRegion\Traits\ProvinceTrait;
 
 /**
  * Province Model.
@@ -33,5 +35,10 @@ class Province extends Model
     public function regencies()
     {
         return $this->hasMany(Regency::class);
+    }
+
+    public function perjalananDinas()
+    {
+        return $this->belongsTo(PerjalananDinas::class, 'province_id');
     }
 }

@@ -66,12 +66,12 @@ $(document).ready(function () {
 
             var totalUang = totaluang(jumlahHari, uangHarian);
             if (!isNaN(totalUang)) {
-                var formattedTotal = totalUang.toLocaleString("id-ID", {
+                var totalUangharian = totalUang.toLocaleString("id-ID", {
                     style: "currency",
                     currency: "IDR",
                     maximumFractionDigits: 0,
                 });
-                $("#jumlah-uang-harian").val(formattedTotal);
+                $("#jumlah-uang-harian").val(totalUangharian);
             } else {
                 $("#jumlah-uang-harian").val("");
             }
@@ -165,35 +165,4 @@ $(function () {
     var minDate = year + "-" + month + "-" + day;
     $("#tanggal-berangkat").attr("min", minDate);
     $("#tanggal-kembali").attr("min", minDate);
-});
-
-$(function () {
-    $.ajaxSetup({
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-        },
-    });
-});
-
-$(function () {
-    $("#provinsi").on("change", function () {
-        let id_provinsi = $("#provinsi").val();
-
-        console.log(id_provinsi);
-        $.ajax({
-            type: "POST",
-            url: "{{ route('getkota') }}",
-            data: {
-                id_provinsi: id_provinsi,
-            },
-            cache: false,
-
-            success: function (msg) {
-                $("#kota").html(msg);
-            },
-            error: function (data) {
-                console.log("Error:", data);
-            },
-        });
-    });
 });

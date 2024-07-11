@@ -15,29 +15,56 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('perjalanan_dinas_id');
             $table->foreign('perjalanan_dinas_id')->references('id')->on('perjalanan_dinas')->onDelete('cascade');
+
+            // Data Diri
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('keperluan_perjadin');
-            $table->string('tujuan');
-            $table->string('jns_penginapan');
-            $table->date('tgl_berangkat');
-            $table->date('tgl_kembali');
-            $table->string('jns_transportasi_berangkat');
-            $table->string('jns_transportasi_kembali');
-            $table->string('nama_transportasi_berangkat');
-            $table->string('nama_transportasi_kembali');
-            $table->string('nomor_tiket_berangkat');
-            $table->string('nomor_tiket_kembali');
-            $table->string('nomor_kursi_berangkat');
-            $table->string('nomor_kursi_kembali');
-            $table->integer('harga_berangkat');
-            $table->integer('harga_kembali');
+
+            // Pelaporan Rincian Biaya Perjalanan Dinas
+            // A. Data Pelaporan Uang Harian
+            $table->string('uang_harian');
+            $table->string('jmlh_uang_harian');
+
+            // B. Pelaporan Akomodasi Perjalanan Dinas
+            $table->string('biaya_akomodasi');
+            $table->string('nama_jns_penginapan');
             $table->string('bukti_akomodasi');
-            $table->integer('total_biaya_akomodasi');
-            $table->string('bukti_berangkat');
-            $table->integer('total_biaya_berangkat');
-            $table->string('bukti_kembali');
-            $table->integer('total_biaya_kembali');
+
+            // C. Pelaporan Biaya Lain
+            $table->string('biaya_lain');
+            $table->string('penggunaan_biaya');
+            $table->string('bukti_biaya_lain');
+
+            // D. Data Biaya Tiket Pulang-Pergi
+            $table->string('biaya_tiket_pp');
+
+            // E. Pelaporan Data Berangkat Perjalanan Dinas
+            $table->date('tgl_berangkat');
+            $table->string('jns_transport_brgkt');
+            $table->string('nama_transport_brgkt');
+            $table->string('nomor_tiket_brgkt');
+            $table->string('nomor_kursi_brgkt');
+            $table->string('status_brgkt');
+            $table->string('biaya_brgkt');
+            $table->string('bukti_brgkt');
+
+            // F. Pelaporan Data Kembali Perjalanan Dinas
+            $table->date('tgl_kembali');
+            $table->string('jns_transport_kmbl');
+            $table->string('nama_transport_kmbl');
+            $table->string('nomor_tiket_kmbl');
+            $table->string('nomor_kursi_kmbl');
+            $table->string('status_kmbl');
+            $table->string('biaya_kmbl');
+            $table->string('bukti_kmbl');
+
+            // G. Pelaporan Uang Representasi
+            $table->string('uang_representasi');
+            $table->string('bukti_uang_representasi');
+
+            // H. Pelaporan Jumlah Biaya
+            $table->string('jumlah_biaya');
+
             $table->enum('status', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
             $table->timestamps();
             $table->softDeletes();

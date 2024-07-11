@@ -23,8 +23,10 @@ return new class extends Migration
             $table->string('jns_perjadin');
             $table->string('keperluan_perjadin');
             $table->string('negara')->default('Indonesia');
-            $table->string('provinsi');
-            $table->string('kota_kab');
+            $table->string('province_id');
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
+            $table->string('regency_id');
+            $table->foreign('regency_id')->references('id')->on('regencies')->onDelete('cascade');
 
             // Perencanaan Tanggal Perjalanan Dinas
             $table->date('tgl_berangkat');
@@ -55,7 +57,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('perjalanandinas', function (Blueprint $table) {
+        Schema::table('perjalanan_dinas', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }

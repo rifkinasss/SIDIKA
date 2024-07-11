@@ -31,7 +31,8 @@
             <div class="col-lg-7 my-4">
                 <div class="my-4">
                     <div class="mx-4">
-                        <a href="#" class="mx-2 my-4 h-5 text-third text-decoration-none">Ketentuan Perjalanan Dinas
+                        <a href="{{ route('ketentuan-perjalanan-dinas') }}"
+                            class="mx-2 my-4 h-5 text-third text-decoration-none">Ketentuan Perjalanan Dinas
                             <div class="float-end"><i class="bi bi-chevron-right"></i></div>
                         </a>
                         <hr>
@@ -107,8 +108,8 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $perjadins->keperluan_perjadin }}</td>
-                                                <td>{{ $perjadins->kota_kab }}</td>
-                                                <td>{{ $perjadins->jumlah_dibayarkan }}</td>
+                                                <td>{{ $perjadins->province->name }}, {{ $perjadins->regency->name }}</td>
+                                                <td>{{ $perjadins->jumlah_biaya }}</td>
                                                 <td>{{ $perjadins->status }}</td>
                                                 <td></td>
                                             </tr>

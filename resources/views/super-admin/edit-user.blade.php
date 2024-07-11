@@ -1,6 +1,6 @@
 @extends('super-admin.layouts.app')
 
-@section('content-wrapper')
+@section('content')
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
@@ -70,11 +70,11 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="PendidikanTerakhir">Pendidikan Terakhir</label>
-                                                <select id="PendidikanTerakhir" class="form-control select2"
-                                                    style="width: 100%;" name="pendidikanTerakhir">
-                                                    <option value="{{ $user->pendidikanTerakhir }}" disabled selected>
-                                                        {{ $user->pendidikanTerakhir }}
+                                                <label for="pendidikan_terakhir">Pendidikan Terakhir</label>
+                                                <select id="pendidikan_terakhir" class="form-control select2"
+                                                    style="width: 100%;" name="pendidikan_terakhir">
+                                                    <option value="{{ $user->pendidikan_terakhir }}" disabled selected>
+                                                        {{ $user->pendidikan_terakhir }}
                                                     </option>
                                                     <option value="SD">SD</option>
                                                     <option value="SMP">Protestan</option>
@@ -85,11 +85,11 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="StatusPerkawinan">Status Perkawinan</label>
-                                                <select id="StatusPerkawinan" class="form-control select2"
-                                                    style="width: 100%;" name="statusPerkawinan">
-                                                    <option value="{{ $user->statusPerkawinan }}" disabled selected>
-                                                        {{ $user->statusPerkawinan }}
+                                                <label for="status_perkawinan">Status Perkawinan</label>
+                                                <select id="status_perkawinan" class="form-control select2"
+                                                    style="width: 100%;" name="status_perkawinan">
+                                                    <option value="{{ $user->status_perkawinan }}" disabled selected>
+                                                        {{ $user->status_perkawinan }}
                                                     </option>
                                                     <option value="Belum Menikah">Belum Menikah</option>
                                                     <option value="Sudah Menikah">Sudah Menikah</option>

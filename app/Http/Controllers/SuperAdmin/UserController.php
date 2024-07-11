@@ -9,6 +9,10 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Response;
 use App\Imports\UsersImport;
 use Carbon\Carbon;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
 
 class UserController extends Controller
 {
@@ -20,31 +24,20 @@ class UserController extends Controller
     }
     public function create()
     {
+        $provinces = Province::all();
         $title = 'Create User';
-        return view('super-admin.create-user', compact('title'));
+        return view('super-admin.create-user', compact('title', 'provinces'));
     }
     public function import(Request $request)
     {
-        $request->validate([
-            'file' => 'required|file|mimes:xls,xlsx'
-        ]);
+        $file = $request->file('file');
+        Excel::import(new UsersImport, $file);
 
-        if ($request->hasFile('file')) {
-            Excel::import(new UsersImport, $request->file('file'));
-
-            return redirect()->back()->with('success-import', 'Pengguna berhasil diimpor.');
-        } else {
-            return redirect()->back()->with('error-import', 'File tidak ditemukan.');
-        }
+        return back()->with('success', 'Users imported successfully.');
     }
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
-=======
-        $tanggal_lahir = Carbon::createFromFormat('d/m/Y', $request->tanggal_lahir)->format('Y-m-d');
-
->>>>>>> efba082a5c6c4b3a5227e57fe8294f12a60d9eb2
         User::create([
             'nip' => $request->nip,
             'nama' => $request->nama,

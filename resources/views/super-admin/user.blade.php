@@ -1,6 +1,6 @@
 @extends('super-admin.layouts.app')
 
-@section('content-wrapper')
+@section('content')
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
@@ -30,14 +30,57 @@
                                     data-bs-target="#tambahUserModal" class="btn btn-primary text-white mb-3">
                                     <i class="bi bi-person-add mr-2"></i> Tambah
                                 </a>
+                                <a href="#" data-toggle="modal" data-target="#uploadExcelModal"
+                                    class="btn btn-secondary text-white mb-3">
+                                    <i class="bi bi-upload mr-2"></i> Import
+                                </a>
+
+                                <!-- Modal structure -->
+                                <div class="modal fade" id="uploadExcelModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="uploadExcelModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="uploadExcelModalLabel">Upload Users via Excel
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ route('import') }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label for="excelFile">Upload Excel File</label>
+                                                        <input type="file" class="form-control" id="excelFile"
+                                                            name="file" accept=".xls,.xlsx"required>
+                                                    </div>
+                                                    <div>
+                                                        <h6>Template dapat di unduh : <a
+                                                                href="{{ asset('template/user.xlsx') }}" download>Template
+                                                                User</a></h6>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Upload</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <table id="user" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>NIP</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>Jabatan</th>
-                                            <th>Golongan</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tempat Tanggal Lahir</th>
                                             <th>Role</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -46,10 +89,11 @@
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $user->nip }}</td>
                                                 <td>{{ $user->nama }}</td>
                                                 <td>{{ $user->email }}</td>
-                                                <td>{{ $user->jabatan }}</td>
-                                                <td>{{ $user->golongan }}</td>
+                                                <td>{{ $user->jns_kelamin }}</td>
+                                                <td>{{ $user->tempat_lahir }}, {{ $user->tanggal_lahir }}</td>
                                                 <td>{{ $user->role }}</td>
                                                 <td><a href="{{ route('users.edit', ['id' => $user->id]) }}"
                                                         class="btn btn-warning btn-sm"><i
@@ -70,10 +114,11 @@
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
+                                            <th>NIP</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>Jabatan</th>
-                                            <th>Golongan</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Tempat Tanggal Lahir</th>
                                             <th>Role</th>
                                             <th>Aksi</th>
                                         </tr>

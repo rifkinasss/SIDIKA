@@ -11,7 +11,7 @@ class BarangJasa extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'barang_jasas';
+    protected $table = 'barang_jasa';
     protected $guarded = ['id'];
 
     public function user()

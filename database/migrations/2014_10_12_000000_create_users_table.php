@@ -19,23 +19,24 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->enum('role', ['pegawai', 'admin', 'superadmin']);
-<<<<<<< HEAD
-            $table->string('jns_Kelamin')->nullable();
-=======
             $table->string('jns_kelamin')->nullable();
->>>>>>> efba082a5c6c4b3a5227e57fe8294f12a60d9eb2
             $table->string('agama')->nullable();
             $table->string('alamat')->nullable();
-            $table->string('noHp')->nullable();
+            $table->string('kelurahan')->nullable();
+            $table->string('kecamatan')->nullable();
+            $table->string('kota_kab')->nullable();
+            $table->string('provinsi')->nullable();
+            $table->string('kode_pos')->nullable();
+            $table->string('no_handphone')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
-            $table->string('pendidikanTerakhir')->nullable();
-            $table->string('statusPerkawinan')->nullable();
-            $table->string('pangkat')->nullable();
+            $table->string('pendidikan_terakhir')->nullable();
+            $table->string('status_perkawinan')->nullable();
             $table->string('golongan')->nullable();
             $table->string('jabatan')->nullable();
             $table->string('unit_kerja')->nullable();
             $table->string('password');
+            $table->string('profile_photo_path', 5120)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -45,15 +46,14 @@ return new class extends Migration
             'nama' => 'Super Admin',
             'email' => 'su-admin@gmail.com',
             'role' => 'superadmin',
-            'jns_Kelamin' => null,
+            'jns_kelamin' => null,
             'agama' => null,
             'alamat' => null,
-            'noHp' => null,
+            'no_handphone' => null,
             'tempat_lahir' => null,
             'tanggal_lahir' => null,
-            'pendidikanTerakhir' => null,
-            'statusPerkawinan' => null,
-            'pangkat' => null,
+            'pendidikan_terakhir' => null,
+            'status_perkawinan' => null,
             'golongan' => null,
             'jabatan' => null,
             'unit_kerja' => null,

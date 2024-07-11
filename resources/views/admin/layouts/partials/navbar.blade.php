@@ -12,7 +12,7 @@
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                {{-- <span class="mr-2">{{ Auth::user()->nama }}</span> --}}
+                <span class="mr-2">{{ Auth::user()->nama }}</span>
                 <i class="far fa-user"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

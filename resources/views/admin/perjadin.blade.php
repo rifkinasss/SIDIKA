@@ -51,11 +51,9 @@
                                                 <td>{{ $p->kota_kab }}</td>
                                                 <td>{{ $p->status }}</td>
                                                 <td>
-                                                    <a href="{{ route('perjadin.edit', ['id' => $p->id]) }}"
-                                                        class="btn btn-warning btn-sm"><i
+                                                    <a href="#" class="btn btn-warning btn-sm"><i
                                                             class="bi bi-pencil-square"></i></a>
-                                                    <form action="{{ route('perjadin.destroy', ['id' => $p->id]) }}"
-                                                        method="POST" style="display:inline;"
+                                                    <form action="#" method="POST" style="display:inline;"
                                                         id="deleteForm{{ $p->id }}">
                                                         @csrf
                                                         @method('DELETE')

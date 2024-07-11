@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Middleware\RedirectToLogin;
 use App\Http\Controllers\SuperAdmin\UserController;
 use App\Http\Controllers\Pegawai\PerjalananDinasController;
+use App\Http\Controllers\Pegawai\PelaporanPerjadinController;
 use App\Http\Controllers\Pegawai\DashboardController as DashController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashController;
@@ -35,6 +36,7 @@ Route::middleware('superadmin')->group(function () {
     Route::get('dashboard-superadmin/user-management', [UserController::class, 'index'])->name('user-management');
     Route::get('dashboard-superadmin/user-management/tambah', [UserController::class, 'create']);
     Route::post('dashboard-superadmin/user-management/tambah', [UserController::class, 'store']);
+    Route::post('dashboard-superadmin/user-management/import', [UserController::class, 'import'])->name('import');
     Route::get('dashboard-superadmin/user-management/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('dashboard-superadmin/user-management/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('dashboard-superadmin/user-management/{id}', [UserController::class, 'destroy'])->name('users.destroy');
@@ -54,9 +56,14 @@ Route::middleware('admin')->group(function () {
 
 Route::middleware('pegawai')->group(function () {
     Route::get('dashboard', [Dashcontroller::class, 'index'])->name('pegawai');
+    Route::get('profile/{id}', [Dashcontroller::class, 'profile'])->name('profile');
+    Route::get('profile/upload/{id}', [Dashcontroller::class, 'uploadfoto'])->name('uploadfoto');
     Route::get('pengajuan-perjalanan-dinas', [PerjalananDinasController::class, 'index']);
+    Route::get('ketentuan-perjalanan-dinas', [PerjalananDinasController::class, 'ketentuan'])->name('ketentuan-perjalanan-dinas');
     Route::post('pengajuan-perjalanan-dinas', [PerjalananDinasController::class, 'pengajuan'])->name('pengajuan-perjalanan-dinas');
     Route::post('pengajuan-perjalanan-dinas/kota', [PerjalananDinasController::class, 'getkota'])->name('getkota');
+    Route::get('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'show'])->name('pelaporan-perjalanan-dinas.show');
+    Route::post('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'store'])->name('pelaporan-perjalanan-dinas.store');
 });
 
 Route::get('/pelaporan-perjadin', function () {

@@ -11,7 +11,7 @@ class BarangModal extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'barang_modals';
+    protected $table = 'barang_modal';
     protected $guarded = ['id'];
 
     public function user()

@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $title }}</title>
@@ -15,6 +16,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inknut+Antiqua:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
 
 </head>
 
@@ -29,6 +31,37 @@
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('assets/js/form-perjadin.js') }}"></script>
-</body>
+    <script>
+        $(function() {
+            $.ajaxSetup({
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+            });
+        });
+
+        $(function() {
+            $("#provinsi").on("change", function() {
+                let id_provinsi = $("#provinsi").val();
+
+                console.log(id_provinsi);
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('getkota') }}",
+                    data: {
+                        id_provinsi: id_provinsi,
+                    },
+                    cache: false,
+
+                    success: function(msg) {
+                        $("#kota").html(msg);
+                    },
+                    error: function(data) {
+                        console.log("Error:", data);
+                    },
+                });
+            });
+        });
+    </script>
 
 </html>
