@@ -193,7 +193,8 @@
                             </a>
                             <a href="" class="text-decoration-none">
                                 <li class="list-group-item bg-transparent">Ketentuan Belanja Modal <div class="float-end">
-                                        <i class="bi bi-chevron-right"></i></div>
+                                        <i class="bi bi-chevron-right"></i>
+                                    </div>
                                 </li>
                                 </li>
                             </a>
