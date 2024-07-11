@@ -49,7 +49,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('pelaporan_perjadin', function (Blueprint $table) {
+        Schema::table('pelaporan_perjadins', function (Blueprint $table) {
             $table->dropSoftDeletes();
         });
     }
