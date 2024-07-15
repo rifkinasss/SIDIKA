@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('deskripsi_kebutuhan');
             $table->string('estimasi_biaya');
             $table->string('jns_belanja');
-            $table->string('lainnya');
+            $table->string('lainnya')->nullable();
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
             $table->string('durasi');
@@ -30,43 +30,43 @@ return new class extends Migration
 
             //Perjanjian SPK
             $table->string('nomor_surat_spk')->nullable();
-            $table->string('nama_vendor');
-            $table->string('provinsi');
-            $table->string('kota');
-            $table->date('tgl_mulai_spk');
-            $table->date('tgl_selesai_spk');
-            $table->string('durasi_spk');
-            $table->integer('nilai_kontrak_spk');
-            $table->string('uraian_pengadaan');
+            $table->string('nama_vendor')->nullable();
+            $table->string('provinsi')->nullable();
+            $table->string('kota')->nullable();
+            $table->date('tgl_mulai_spk')->nullable();
+            $table->date('tgl_selesai_spk')->nullable();
+            $table->string('durasi_spk')->nullable();
+            $table->integer('nilai_kontrak_spk')->nullable();
+            $table->string('uraian_pengadaan')->nullable();
 
             //Adendum Kontrak Belanja Modal
             $table->string('nomor_surat_adendum')->nullable();
-            $table->string('uraian_adendum');
-            $table->date('tgl_mulai_adendum');
-            $table->date('tgl_selesai_adendum');
-            $table->string('durasi_adendum');
-            $table->integer('nilai_kontrak_adendum');
-            $table->string('bukti_surat__adendmum');
+            $table->string('uraian_adendum')->nullable();
+            $table->date('tgl_mulai_adendum')->nullable();
+            $table->date('tgl_selesai_adendum')->nullable();
+            $table->string('durasi_adendum')->nullable();
+            $table->integer('nilai_kontrak_adendum')->nullable();
+            $table->string('bukti_surat__adendmum')->nullable();
 
             //Jaminan Pelaksanaan
-            $table->integer('nilai_bank_garansi_pelaksanaan');
-            $table->string('bukti_bank_garansi_pelaksanaan');
-            $table->integer('nilai_surety_bond_pelaksanaan');
-            $table->string('bukti_surety_bond_pelaksanaan');
+            $table->integer('nilai_bank_garansi_pelaksanaan')->nullable();
+            $table->string('bukti_bank_garansi_pelaksanaan')->nullable();
+            $table->integer('nilai_surety_bond_pelaksanaan')->nullable();
+            $table->string('bukti_surety_bond_pelaksanaan')->nullable();
 
             //Jaminan Pengadaan
-            $table->integer('nilai_bank_garansi_pengadaan');
-            $table->string('bukti_bank_garansi_pengadaan');
-            $table->integer('nilai_surety_bond_pengadaan');
-            $table->string('bukti_surety_bond_pengadaan');
+            $table->integer('nilai_bank_garansi_pengadaan')->nullable();
+            $table->string('bukti_bank_garansi_pengadaan')->nullable();
+            $table->integer('nilai_surety_bond_pengadaan')->nullable();
+            $table->string('bukti_surety_bond_pengadaan')->nullable();
 
             //Sumber Dana DPA
-            $table->integer('dana_APBN');
-            $table->integer('dana_APBD');
-            $table->integer('dana_Hibah');
-            $table->string('bentuk_pengadaan');
-            $table->integer('nilai_DPA');
-            $table->string('bukti_DPA');
+            $table->integer('dana_APBN')->nullable();
+            $table->integer('dana_APBD')->nullable();
+            $table->integer('dana_Hibah')->nullable();
+            $table->string('bentuk_pengadaan')->nullable();
+            $table->integer('nilai_DPA')->nullable();
+            $table->string('bukti_DPA')->nullable();
 
             // diisi menggunakan metode update
             $table->enum('status', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
@@ -96,7 +96,7 @@ return new class extends Migration
             $table->date('tgl_sp2d')->nullable();
             $table->string('nomor_sp2d')->nullable();
             $table->integer('nilai_sp2d')->nullable();
-            $table->string('bukti_sp2f');
+            $table->string('bukti_sp2f')->nullable();
 
             $table->enum('status_lapor', ['Belum', 'Lapor', 'Disetujui', 'Ditolak'])->default('Belum');
             $table->timestamps();
