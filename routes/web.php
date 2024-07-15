@@ -9,6 +9,7 @@ use App\Http\Controllers\Pegawai\PerjalananDinasController;
 use App\Http\Controllers\Pegawai\PelaporanPerjadinController;
 use App\Http\Controllers\Pegawai\DashboardController as DashController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashController;
+use App\Http\Controllers\Pegawai\BarangModalController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashController;
 
 /*
@@ -56,28 +57,35 @@ Route::middleware('admin')->group(function () {
 
 Route::middleware('pegawai')->group(function () {
     Route::get('dashboard', [Dashcontroller::class, 'index'])->name('pegawai');
+    
+    // Profile
     Route::get('profile/{id}', [Dashcontroller::class, 'profile'])->name('profile');
     Route::get('profile/upload/{id}', [Dashcontroller::class, 'uploadfoto'])->name('uploadfoto');
+
+    // Perjalanan Dinas
     Route::get('pengajuan-perjalanan-dinas', [PerjalananDinasController::class, 'index']);
     Route::get('ketentuan-perjalanan-dinas', [PerjalananDinasController::class, 'ketentuan'])->name('ketentuan-perjalanan-dinas');
     Route::post('pengajuan-perjalanan-dinas', [PerjalananDinasController::class, 'pengajuan'])->name('pengajuan-perjalanan-dinas');
     Route::post('pengajuan-perjalanan-dinas/kota', [PerjalananDinasController::class, 'getkota'])->name('getkota');
     Route::get('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'show'])->name('pelaporan-perjalanan-dinas.show');
     Route::post('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'store'])->name('pelaporan-perjalanan-dinas.store');
+
+    // Belanja Modal
+    Route::get('perencanaan-belanja-modal', [BarangModalController::class, 'create']);
+    Route::post('perencanaan-belanja-modal', [BarangModalController::class, 'store'])->name('perencanaan-belanja-modal.store');
 });
 
 Route::get('/pelaporan-perjadin', function () {
     return view('pegawai.perjadin.pelaporan-perjadin');
 });
-Route::get('/perencanaan-belanja-modal', function () {
-    return view('pegawai.belanja-modal.perencanaan-modal');
-});
+
 Route::get('/pengerjaan-belanja-modal', function () {
     return view('pegawai.belanja-modal.pengerjaan-modal');
 });
 Route::get('/pelaporan-belanja-modal', function () {
     return view('pegawai.belanja-modal.pelaporan-modal');
 });
+
 Route::get('/perencanaan-belanja-barjas', function () {
     return view('pegawai.belanja-barjas.perencanaan-barjas');
 });
