@@ -35,22 +35,18 @@ class VerifikasiBelanjaModalController extends Controller
 
         if ($request->has('disetujui')) {
             $nomor_spmk = "SPMK/MDL/DISDIKBUD/{$tanggal}/{$barmod->id}";
-            $nomor_bast = "BAST/MDL/DISDIKBUD/{$tanggal}/{$barmod->id}";
-            $nomor_sp2d = "SP2D/MDL/DISDIKBUD/{$tanggal}/{$barmod->id}";
 
             $barmod->update([
-                'nomor_spmk' => $nomor_spmk,
-                'nomor_bast' => $nomor_bast,
-                'nomor_sp2d' => $nomor_sp2d,
-                'status_lapor' => 'Disetujui',
+                'nomor_surat' => $nomor_spmk,
+                'status' => 'Disetujui',
             ]);
         } elseif ($request->has('ditolak')) {
             $barmod->update([
-                'status_lapor' => 'Ditolak',
+                'status' => 'Ditolak',
             ]);
         }
 
-        return redirect()->route('verifikasi-belanja-modal.index')->with('verif-barmod', 'Status belanja modal berhasil diperbarui.');
+        return redirect(url('/dashboard-admin/perencanaan-belanja-modal'))->with('verif-barmod', 'Belanja modal telah disetujui.');
     }
 
     public function update(Request $request, string $id)

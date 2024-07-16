@@ -9,6 +9,7 @@ use App\Http\Controllers\Pegawai\PerjalananDinasController;
 use App\Http\Controllers\Pegawai\PelaporanPerjadinController;
 use App\Http\Controllers\Pegawai\DashboardController as DashController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashController;
+use App\Http\Controllers\Admin\VerifikasiBelanjaModalController;
 use App\Http\Controllers\Pegawai\BarangModalController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashController;
 
@@ -45,12 +46,19 @@ Route::middleware('superadmin')->group(function () {
 
 Route::middleware('admin')->group(function () {
     Route::get('dashboard-admin', [AdminDashController::class, 'index'])->name('admin');
+    
+    // Perjalanan Dinas
     Route::get('dashboard-admin/pengajuan-perjalanan-dinas', [AdminDashController::class, 'Pengajuan']);
     Route::get('dashboard-admin/pelaporan-perjalanan-dinas', [AdminDashController::class, 'Pelaporan']);
+    
+    // Belanja Barang Jasa
     Route::get('dashboard-admin/perencanaan-belanja-barjas', [AdminDashController::class, 'Perencanaanbarjas']);
     Route::get('dashboard-admin/pengerjaan-belanja-barjas', [AdminDashController::class, 'Pengerjaanbarjas']);
     Route::get('dashboard-admin/pelaporan-belanja-barjas', [AdminDashController::class, 'Pelaporanbarjas']);
+
+    // Belanja Modal
     Route::get('dashboard-admin/perencanaan-belanja-modal', [AdminDashController::class, 'Perencanaanbarmol']);
+    Route::post('dashboard-admin/perencanaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'verif'])->name('perencanaan-belanja-modal.verif');
     Route::get('dashboard-admin/pengerjaan-belanja-modal', [AdminDashController::class, 'Pengerjaanbarmol']);
     Route::get('dashboard-admin/pelaporan-belanja-modal', [AdminDashController::class, 'Pelaporanbarmol']);
 });
