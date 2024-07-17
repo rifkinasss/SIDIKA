@@ -25,7 +25,7 @@ return new class extends Migration
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
             $table->string('durasi');
-            $table->string('deskripsi_spesifikasi');
+            $table->text('deskripsi_spesifikasi');
 
 
             //Perjanjian SPK
