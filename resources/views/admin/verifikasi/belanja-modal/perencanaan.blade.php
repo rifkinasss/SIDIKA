@@ -34,7 +34,7 @@
                                             <th>Nomor Surat</th>
                                             <th>Nama</th>
                                             <th>Jenis Belanja</th>
-                                            <th>Jumlah Biaya</th>
+                                            <th>Estimasi Biaya</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -91,7 +91,7 @@
                                             <th>Nomor Surat</th>
                                             <th>Nama</th>
                                             <th>Jenis Belanja</th>
-                                            <th>Jumlah Biaya</th>
+                                            <th>Estimasi Biaya</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
