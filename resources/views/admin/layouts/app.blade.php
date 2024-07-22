@@ -30,7 +30,7 @@
     <div class="wrapper">
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="{{ asset('assets/img/SIDIKA_rpl.png') }}" alt="SIDIKALogo"
-                height="100" width="150">
+                height="100">
         </div>
         @include('admin.layouts.partials.navbar')
         @include('admin.layouts.partials.aside')
