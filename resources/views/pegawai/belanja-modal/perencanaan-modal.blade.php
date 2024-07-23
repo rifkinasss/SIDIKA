@@ -143,7 +143,7 @@
                     </div>
                     <div class="col-sm-6 text-end">
                         <button type="button" class="btn bg-third border-primary rounded-0" onclick="window.location.reload();">Reset</button>
-                        <button type="button" class="btn btn-danger rounded-0" onclick="window.location.href='{{ route('home') }}';">Kembali</button>
+                        <button type="button" class="btn btn-danger rounded-0" onclick="window.location.href='{{ url('dashboard') }}';">Kembali</button>
                     </div>
                 </div>
             </form>
@@ -164,7 +164,7 @@
             }
 
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            input.value = 'Rp. ' + rupiah;
+            input.value = 'Rp ' + rupiah;
         }
 
         function toggleBelanjaLainnya(select) {

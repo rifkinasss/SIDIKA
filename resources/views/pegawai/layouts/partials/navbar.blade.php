@@ -41,11 +41,8 @@
                         </li>
                         <li><a class="dropdown-item" href="/perencanaan-belanja-modal">Perencanaan Belanja Modal</a>
                         </li>
-                        <li><a class="dropdown-item" href="/pengerjaan-belanja-modal">Pengerjaan Belanja Modal</a>
-                        </li>
                         <li><a class="dropdown-item" href="/pelaporan-belanja-modal">Pelaporan Belanja Modal</a>
                         </li>
-                        {{-- nanti kalau tabel udah ada di home gaperlu nav pengerjaan dan pelaporan --}}
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

@@ -77,21 +77,22 @@ Route::middleware('pegawai')->group(function () {
     Route::post('pengajuan-perjalanan-dinas/kota', [PerjalananDinasController::class, 'getkota'])->name('getkota');
     Route::get('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'show'])->name('pelaporan-perjalanan-dinas.show');
     Route::post('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'store'])->name('pelaporan-perjalanan-dinas.store');
-
+    
     // Belanja Modal
-    Route::get('perencanaan-belanja-modal', [BarangModalController::class, 'create']);
+    Route::get('perencanaan-belanja-modal', [BarangModalController::class, 'perencanaan']);
     Route::post('perencanaan-belanja-modal', [BarangModalController::class, 'store'])->name('perencanaan-belanja-modal.store');
+    Route::get('pengerjaan-belanja-modal/{id}', [BarangModalController::class, 'pengerjaan'])->name('pengerjaan-belanja-modal');
+    Route::post('pengerjaan-belanja-modal/{id}', [BarangModalController::class, 'update'])->name('pengerjaan-belanja-modal.update');
+    Route::get('/get-regencies/{province_name}', [BarangModalController::class, 'getRegenciesByProvinceName'])->name('get-regencies');
 });
 
 Route::get('/pelaporan-perjadin', function () {
     return view('pegawai.perjadin.pelaporan-perjadin');
 });
 
-Route::get('/pengerjaan-belanja-modal', function () {
-    return view('pegawai.belanja-modal.pengerjaan-modal');
-});
 Route::get('/pelaporan-belanja-modal', function () {
-    return view('pegawai.belanja-modal.pelaporan-modal');
+    $title = '';
+    return view('pegawai.belanja-modal.pelaporan-modal', compact('title'));
 });
 
 Route::get('/perencanaan-belanja-barjas', function () {

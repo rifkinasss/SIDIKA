@@ -14,6 +14,10 @@ class BarangModal extends Model
     protected $table = 'barang_modal';
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'bukti_spk' => 'array',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

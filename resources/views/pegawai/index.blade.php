@@ -169,9 +169,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Keperluan</th>
-                                            <th>Tujuan</th>
-                                            <th>Jumlah Biaya</th>
+                                            <th>Nomor Surat</th>
+                                            <th>Jenis Belanja</th>
+                                            <th>Estimasi Biaya</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -180,20 +180,31 @@
                                         @foreach ($barmol as $barmols)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $barmols->keperluan_perjadin }}</td>
-                                                <td>{{ $barmols->kota_kab }}</td>
-                                                <td>{{ $barmols->jumlah_dibayarkan }}</td>
+                                                <td>{{ $barmols->nomor_surat }}</td>
+                                                @if ($barmols->jns_belanja == 'Belanja Modal Lainnya')
+                                                    <td>{{ $barmols->lainnya }}</td>
+                                                @else
+                                                    <td>{{ $barmols->jns_belanja }}</td>
+                                                @endif
+                                                <td>{{ $barmols->estimasi_biaya }}</td>
                                                 <td>{{ $barmols->status }}</td>
-                                                <td></td>
+                                                <td>
+                                                    @if ($barmols->status == 'Disetujui')
+                                                        <a href="{{ route('pengerjaan-belanja-modal', $barmols->id) }}"
+                                                            type="submit" class="btn btn-warning btn-sm">
+                                                            <i class="bi bi-pencil-square"></i> Pengerjaan
+                                                        </a>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Keperluan</th>
-                                            <th>Tujuan</th>
-                                            <th>Jumlah Biaya</th>
+                                            <th>Nomor Surat</th>
+                                            <th>Jenis Belanja</th>
+                                            <th>Estimasi Biaya</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>

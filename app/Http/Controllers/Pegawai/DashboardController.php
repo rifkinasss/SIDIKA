@@ -17,10 +17,14 @@ class DashboardController extends Controller
     public function index()
     {
         $title = 'Dashboard';
-        $perjadin = PerjalananDinas::all();
-        $pelaporan = PelaporanPerjadin::all();
-        $barjas = BarangJasa::all();
-        $barmol = BarangModal::all();
+
+        $user_id = Auth::user()->id;
+
+        $perjadin = PerjalananDinas::where('user_id', $user_id)->get();
+        $pelaporan = PelaporanPerjadin::where('user_id', $user_id)->get();
+        $barjas = BarangJasa::where('user_id', $user_id)->get();
+        $barmol = BarangModal::where('user_id', $user_id)->get();
+        
         return view('pegawai.index', compact('title', 'perjadin', 'barjas', 'barmol', 'pelaporan'));
     }
 
