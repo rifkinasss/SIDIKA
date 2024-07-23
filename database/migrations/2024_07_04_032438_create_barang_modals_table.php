@@ -36,36 +36,36 @@ return new class extends Migration
             $table->date('tgl_mulai_spk')->nullable();
             $table->date('tgl_selesai_spk')->nullable();
             $table->string('durasi_spk')->nullable();
-            $table->integer('nilai_kontrak_spk')->nullable();
+            $table->string('nilai_kontrak_spk')->nullable();
             $table->string('uraian_pengadaan')->nullable();
+            $table->text('bukti_spk')->nullable();
 
             //Adendum Kontrak Belanja Modal
             $table->string('nomor_surat_adendum')->nullable();
             $table->string('uraian_adendum')->nullable();
             $table->date('tgl_mulai_adendum')->nullable();
             $table->date('tgl_selesai_adendum')->nullable();
-            $table->string('durasi_adendum')->nullable();
-            $table->integer('nilai_kontrak_adendum')->nullable();
-            $table->string('bukti_surat__adendmum')->nullable();
+            $table->string('nilai_kontrak_adendum')->nullable();
+            $table->text('bukti_surat_adendum')->nullable();
 
             //Jaminan Pelaksanaan
-            $table->integer('nilai_bank_garansi_pelaksanaan')->nullable();
+            $table->string('nilai_bank_garansi_pelaksanaan')->nullable();
             $table->string('bukti_bank_garansi_pelaksanaan')->nullable();
-            $table->integer('nilai_surety_bond_pelaksanaan')->nullable();
+            $table->string('nilai_surety_bond_pelaksanaan')->nullable();
             $table->string('bukti_surety_bond_pelaksanaan')->nullable();
 
             //Jaminan Pengadaan
-            $table->integer('nilai_bank_garansi_pengadaan')->nullable();
+            $table->string('nilai_bank_garansi_pengadaan')->nullable();
             $table->string('bukti_bank_garansi_pengadaan')->nullable();
-            $table->integer('nilai_surety_bond_pengadaan')->nullable();
+            $table->string('nilai_surety_bond_pengadaan')->nullable();
             $table->string('bukti_surety_bond_pengadaan')->nullable();
 
             //Sumber Dana DPA
-            $table->integer('dana_APBN')->nullable();
-            $table->integer('dana_APBD')->nullable();
-            $table->integer('dana_Hibah')->nullable();
+            $table->string('dana_APBN')->nullable();
+            $table->string('dana_APBD')->nullable();
+            $table->string('dana_Hibah')->nullable();
             $table->string('bentuk_pengadaan')->nullable();
-            $table->integer('nilai_DPA')->nullable();
+            $table->string('nilai_DPA')->nullable();
             $table->string('bukti_DPA')->nullable();
 
             // diisi menggunakan metode update
@@ -95,7 +95,7 @@ return new class extends Migration
             // SP2D
             $table->date('tgl_sp2d')->nullable();
             $table->string('nomor_sp2d')->nullable();
-            $table->integer('nilai_sp2d')->nullable();
+            $table->string('nilai_sp2d')->nullable();
             $table->string('bukti_sp2f')->nullable();
 
             $table->enum('status_lapor', ['Belum', 'Lapor', 'Disetujui', 'Ditolak'])->default('Belum');
