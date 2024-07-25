@@ -37,7 +37,7 @@ class BarangModalController extends Controller
             'deskripsi_spesifikasi' => $request->deskripsi_spesifikasi,
         ]);
 
-        return redirect()->route('pegawai');
+        return redirect()->route('pegawai')->with('belanja-modal', 'Perencanaan belanja modal berhasil dikirim.');
     }
 
     public function pengerjaan(string $id)
@@ -72,11 +72,13 @@ class BarangModalController extends Controller
 
             $tgl_mulai_spk = Carbon::createFromFormat('Y-m-d', $request->tgl_mulai_spk);
             $tgl_selesai_spk = Carbon::createFromFormat('Y-m-d', $request->tgl_selesai_spk);
+            
+            $persentase = $barmod->persentase;
+            $persentase += 25;
 
             // Handle file upload
-            $uploadedFiles = $request->file('bukti_spk');
+            $uploadedFiles = $request->file('bukti_spk'); 
             $filePaths = [];
-
             if ($uploadedFiles) {
                 foreach ($uploadedFiles as $file) {
                     $path = $file->store('public/belanja_modal/bukti_spk');
@@ -95,6 +97,7 @@ class BarangModalController extends Controller
                 'nilai_kontrak_spk' => $request->nilai_kontrak_spk,
                 'uraian_pengadaan' => $request->uraian_pengadaan,
                 'bukti_spk' => json_encode($filePaths),
+                'persentase' => $persentase,
             ]);
         }
 
@@ -130,15 +133,21 @@ class BarangModalController extends Controller
 
         // Jaminan Pelaksanaan
         elseif ($request->has('submit_jaminan_pelaksanaan')) {
+            $persentase = $barmod->persentase;
+            $persentase += 25;
+            
+            $path_1 = null;
+            $path_2 = null;
+
             if ($request->nilai_bank_garansi_pelaksanaan != '') {
                 $request->validate([
                     'bukti_bank_garansi_pelaksanaan' => 'required|mimes:pdf|max:2048',
                 ]);
                 // Handle file upload bukti bank garansi pelaksanaan
                 $file_1 = $request->file('bukti_bank_garansi_pelaksanaan');
-                $path_1 = $file_1->store('public/belanja_modal/bukti_bank_garansi_pelaksanaan');
-            } else {
-                $path_1 = null;
+                if ($file_1) {
+                    $path_1 = $file_1->store('public/belanja_modal/bukti_bank_garansi_pelaksanaan');
+                }
             }
 
             if ($request->nilai_surety_bond_pelaksanaan != '') {
@@ -147,9 +156,9 @@ class BarangModalController extends Controller
                 ]);
                 // Handle file upload bukti surety bond pelaksanaan
                 $file_2 = $request->file('bukti_surety_bond_pelaksanaan');
-                $path_2 = $file_2->store('public/belanja_modal/bukti_surety_bond_pelaksanaan');
-            } else {
-                $path_2 = null;
+                if ($file_2) {
+                    $path_2 = $file_2->store('public/belanja_modal/bukti_surety_bond_pelaksanaan');
+                }
             }
 
             $barmod->update([
@@ -157,6 +166,77 @@ class BarangModalController extends Controller
                 'bukti_bank_garansi_pelaksanaan' => $path_1,
                 'nilai_surety_bond_pelaksanaan' => $request->nilai_surety_bond_pelaksanaan,
                 'bukti_surety_bond_pelaksanaan' => $path_2,
+                'persentase' => $persentase,
+            ]);
+        }
+
+        // Jaminan Pengadaan
+        elseif ($request->has('submit_jaminan_pengadaan')) {
+            $persentase = $barmod->persentase;
+            $persentase += 25;
+            
+            $path_1 = null;
+            $path_2 = null;
+
+            if ($request->nilai_bank_garansi_pengadaan != '') {
+                $request->validate([
+                    'bukti_bank_garansi_pengadaan' => 'required|mimes:pdf|max:2048',
+                ]);
+                // Handle file upload bukti bank garansi pengadaan
+                $file_1 = $request->file('bukti_bank_garansi_pengadaan');
+                if ($file_1) {
+                    $path_1 = $file_1->store('public/belanja_modal/bukti_bank_garansi_pengadaan');
+                }
+            }
+
+            if ($request->nilai_surety_bond_pengadaan != '') {
+                $request->validate([
+                    'bukti_surety_bond_pengadaan' => 'required|mimes:pdf|max:2048',
+                ]);
+                // Handle file upload bukti surety bond pengadaan
+                $file_2 = $request->file('bukti_surety_bond_pengadaan');
+                if ($file_2) {
+                    $path_2 = $file_2->store('public/belanja_modal/bukti_surety_bond_pengadaan');
+                }
+            }
+
+            $barmod->update([
+                'nilai_bank_garansi_pengadaan' => $request->nilai_bank_garansi_pengadaan,
+                'bukti_bank_garansi_pengadaan' => $path_1,
+                'nilai_surety_bond_pengadaan' => $request->nilai_surety_bond_pengadaan,
+                'bukti_surety_bond_pengadaan' => $path_2,
+                'persentase' => $persentase,
+            ]);
+        }
+
+        // Sumber Dana DPA
+        elseif ($request->has('submit_sumber_dana_dpa')) {
+            $request->validate([
+                'bukti_dpa.*' => 'required|mimes:pdf|max:2048',
+            ]);
+            
+            $persentase = $barmod->persentase;
+            $persentase += 25;
+            
+            // Handle file upload
+            $uploadedFiles = $request->file('bukti_dpa');
+            $filePaths = [];
+
+            if ($uploadedFiles) {
+                foreach ($uploadedFiles as $file) {
+                    $path = $file->store('public/belanja_modal/bukti_dpa');
+                    $filePaths[] = $path;
+                }
+            }
+            
+            $barmod->update([
+                'dana_apbn' => $request->dana_apbn,
+                'dana_apbd' => $request->dana_apbd,
+                'dana_hibah' => $request->dana_hibah,
+                'bentuk_pengadaan' => $request->bentuk_pengadaan,
+                'nilai_dpa' => $request->nilai_dpa,
+                'bukti_dpa' => json_encode($filePaths),
+                'persentase' => $persentase,
             ]);
         }
 

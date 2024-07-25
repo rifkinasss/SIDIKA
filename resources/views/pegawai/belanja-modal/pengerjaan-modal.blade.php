@@ -139,8 +139,8 @@
                         <label for="lokasi" class="form-label">Lokasi Penyedia Barang/ Kontraktor</label><br>
                         <label for="lokasi-provinsi-modal" class="form-label">Provinsi</label>
                         @if ($barmod->provinsi != '')
-                            <input class="form-select rounded-0 mb-2" aria-label="Default select example"
-                                id="lokasi-provinsi-modal" name="provinsi" value="{{ $barmod->provinsi }}" disabled>
+                            <input class="form-control rounded-0 mb-2" id="lokasi-provinsi-modal" name="provinsi"
+                                value="{{ $barmod->provinsi }}" disabled>
                         @else
                             <select class="form-select rounded-0 mb-2" aria-label="Default select example"
                                 id="lokasi-provinsi-modal" name="provinsi">
@@ -154,8 +154,8 @@
 
                         <label for="lokasi-kota-modal" class="form-label">Kota/Kabupaten</label>
                         @if ($barmod->kota != '')
-                            <input class="form-select rounded-0 mb-2" aria-label="Default select example"
-                                id="lokasi-kota-modal" name="kota" value="{{ $barmod->kota }}" disabled>
+                            <input class="form-control rounded-0 mb-2" id="lokasi-kota-modal" name="kota"
+                                value="{{ $barmod->kota }}" disabled>
                         @else
                             <select class="form-select rounded-0 mb-2" aria-label="Default select example"
                                 id="lokasi-kota-modal" name="kota">
@@ -386,6 +386,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="col-md-6">
                         <div class="card bg-third border border-primary rounded-0 pt-4 px-4">
                             <p><i class="bi bi-info-square-fill"></i> Info
@@ -402,6 +403,7 @@
                             </p>
                         </div>
                     </div>
+
                     {{-- tombol kirim dan cancel --}}
                     @if ($barmod->nilai_bank_garansi_pelaksanaan == '' && $barmod->nilai_surety_bond_pelaksanaan == '')
                         <div class="col-sm-6 mt-4">
@@ -421,110 +423,196 @@
     </form>
 
     {{-- Jaminan pengadaan --}}
-    <div class="container-fluid bg-transparent mb-4">
-        <div class="card bg-light rounded-0">
-            <div class="row mx-4 my-4 align-items-start">
-                <h4>4. Jaminan Pengadaan</h4>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label">Bukti Jaminan Pengadaan</label> <br>
-                        <label for="nilai-bank-pengadaan-modal" class="form-label">Nilai Bank Garansi</label>
-                        <input type="number" class="form-control rounded-0 mb-2" id="nilai-bank-pengadaan-modal"
-                            placeholder="misal. Rp 10.000.000.000 (satu miliar rupiah)">
-                        <label for="bank-garansi-Pengadaan-modal" class="form-label">Bank Garansi</label>
-                        <input class="form-control rounded-0 mb-4" type="file" id="bukti-bank-garansi-modal" multiple>
-                        <label for="nilai-surety-pengadaan-modal" class="form-label">Nilai Surety Bond</label>
-                        <input type="number" class="form-control rounded-0 mb-2" id="nilai-surety-pengadaan-modal"
-                            placeholder="misal. Rp 10.000.000.000 (satu miliar rupiah)">
-                        <label for="surety-bond-Pengadaan-modal" class="form-label">Surety Bond</label>
-                        <input class="form-control rounded-0 mb-2" type="file" id="surety-bond-pelaksanaan-modal"
-                            multiple>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card bg-third border border-primary rounded-0 pt-4 px-4">
-                        <p><i class="bi bi-info-square-fill"></i> Info
-                        <ol>
-                            <li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu(Bank Garansi / Surety Bond) atau
-                                keduanya (Bank Garansi & Surety Bond)</li>
-                            <li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
-                                uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
-                            <li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
-                                penjamin lainnya.</li>
-                        </ol>
-                        </p>
-                    </div>
-                </div>
-                {{-- tombol kirim dan cancel --}}
-                <div class="col-sm-6 mt-4">
-                    <button type="button" class="btn btn-primary rounded-0">Kirim</button>
-                </div>
-                <div class="col-sm-6 mt-4 text-end">
-                    <button type="button" class="btn bg-third border-primary rounded-0">Reset</button>
-                    <button type="button" class="btn btn-danger rounded-0">kembali</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <form action="{{ route('pengerjaan-belanja-modal.update', $barmod->id) }}" method="POST"
+        enctype="multipart/form-data">
+        @csrf
+        <div class="container-fluid bg-transparent mb-4">
+            <div class="card bg-light rounded-0">
+                <div class="row mx-4 my-4 align-items-start">
+                    <h4>4. Jaminan Pengadaan</h4>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Bukti Jaminan Pengadaan</label> <br>
+                            <label for="nilai-bank-pengadaan-modal" class="form-label">Nilai Bank Garansi</label>
+                            <input type="text" class="form-control rounded-0 mb-2" id="nilai-bank-pengadaan-modal"
+                                placeholder="misal. Rp 10.000.000.000 (satu miliar rupiah)"
+                                name="nilai_bank_garansi_pengadaan" onkeyup="formatRupiah(this)"
+                                @if ($barmod->nilai_bank_garansi_pengadaan != '') value='{{ $barmod->nilai_bank_garansi_pengadaan }}' disabled
+                                @elseif ($barmod->nilai_surety_bond_pengadaan != '') value='-' disabled @endif>
 
-    {{-- Jaminan pelaksanaan --}}
-    <div class="container-fluid bg-transparent mb-4">
-        <div class="card bg-light rounded-0">
-            <div class="row mx-4 my-4 align-items-start">
-                <h4>5. Sumber Dana DPA (Dokumen Pengadaan Anggaran) Belanja Modal</h4>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label class="form-label">Nilai Pengadaan Anggaran</label> <br>
-                        <label for="dana-apbn-modal" class="form-label">Nominal Dana APBN</label>
-                        <input type="number" class="form-control rounded-0 mb-2" id="dana-apbn-modal"
-                            placeholder="misal. Rp 10.000.000.000 (sepuluh miliar rupiah)">
-                        <label for="dana-apbd-modal" class="form-label">Nominal Dana APBD</label>
-                        <input type="number" class="form-control rounded-0 mb-2" id="dana-apbd-modal"
-                            placeholder="misal. Rp 5.000.000.000 (sepuluh miliar rupiah)">
-                        <label for="dana-hibah-modal" class="form-label">Nominal Dana Hibah</label>
-                        <input type="number" class="form-control rounded-0 mb-2" id="dana-hibah-modal"
-                            placeholder="misal. Rp 1.000.000.000 (sepuluh miliar rupiah)">
-                        <label for="bentuk-pengadaan" class="form-label">Bentuk Pengadaan</label>
-                        <select class="form-select rounded-0 mb-2" aria-label="Default select example"
-                            id="bentuk-pengadaan">
-                            <option selected>Pilih Bentuk Pengadaan</option>
-                            <option value="1">Tender Terbuka</option>
-                            <option value="2">Tender Terbatas</option>
-                            <option value="3">Pengadaan Langsung</option>
-                            <option value="4">Penunjukan Langsung</option>
-                        </select>
-                        <label for="nilai-dpa-modal" class="form-label">Nilai DPA</label>
-                        <input type="number" class="form-control rounded-0 mb-2" id="nilai-dpa-modal"
-                            placeholder="misal. Rp 10.000.000.000 (satu miliar rupiah)">
-                        <label class="form-label" for="bukti-dpa">Bukti Dokumen Pengadaan Anggaran</label>
-                        <input class="form-control rounded-0 mb-2" type="file" id="bukti-dpa" multiple>
+                            <label for="bank-garansi-Pengadaan-modal" class="form-label">Bank Garansi</label>
+                            @if ($barmod->bukti_bank_garansi_pengadaan != '')
+                                <ul>
+                                    <li><a href="{{ Storage::url($barmod->bukti_bank_garansi_pengadaan) }}"
+                                            target="_blank">Lihat File</a></li>
+                                </ul>
+                            @elseif ($barmod->bukti_surety_bond_pengadaan != '')
+                                <input type="text" class="form-control rounded-0 mb-2" id="bukti-bank-pengadaan-modal"
+                                    value="-" disabled>
+                            @else
+                                <input class="form-control rounded-0 mb-4" type="file" id="bukti-bank-pengadaan-modal"
+                                    name="bukti_bank_garansi_pengadaan">
+                            @endif
+
+                            <label for="nilai-surety-pengadaan-modal" class="form-label">Nilai Surety Bond</label>
+                            <input type="text" class="form-control rounded-0 mb-2" id="nilai-surety-pengadaan-modal"
+                                placeholder="misal. Rp 10.000.000.000 (satu miliar rupiah)"
+                                name="nilai_surety_bond_pengadaan" onkeyup="formatRupiah(this)"
+                                @if ($barmod->nilai_surety_bond_pengadaan != '') value='{{ $barmod->nilai_surety_bond_pengadaan }}' disabled
+                                @elseif ($barmod->nilai_bank_garansi_pengadaan != '') value='-' disabled @endif>
+
+                            <label for="surety-bond-Pengadaan-modal" class="form-label">Surety Bond</label>
+                            @if ($barmod->bukti_surety_bond_pengadaan != '')
+                                <ul>
+                                    <li><a href="{{ Storage::url($barmod->bukti_surety_bond_pengadaan) }}"
+                                            target="_blank">Lihat File</a></li>
+                                </ul>
+                            @elseif ($barmod->bukti_bank_garansi_pengadaan != '')
+                                <input type="text" class="form-control rounded-0 mb-2" id="bukti-surety_bond-modal"
+                                    value="-" disabled>
+                            @else
+                                <input class="form-control rounded-0 mb-2" type="file"
+                                    id="surety-bond-pelaksanaan-modal" name="bukti_surety_bond_pengadaan">
+                            @endif
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card bg-third border border-primary rounded-0 pt-4 px-4">
-                        <p><i class="bi bi-info-square-fill"></i> Info
-                        <ol>
-                            <li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu (Dana APBN / Dana APBD/ Dana
-                                Hibah) atau ketiganya (Dana APBN & Dana APBD & Dana Hibah)</li>
-                            <li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
-                                uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
-                            <li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
-                                penjamin lainnya.</li>
-                        </ol>
-                        </p>
+
+                    <div class="col-md-6">
+                        <div class="card bg-third border border-primary rounded-0 pt-4 px-4">
+                            <p><i class="bi bi-info-square-fill"></i> Info
+                            <ol>
+                                <li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu(Bank Garansi / Surety Bond)
+                                    atau
+                                    keduanya (Bank Garansi & Surety Bond)</li>
+                                <li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
+                                    uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
+                                <li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
+                                    penjamin lainnya.</li>
+                                <li>Batas maksimal ukuran file yang dapat diupload adalah 2 MB</li>
+                            </ol>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                {{-- tombol kirim dan cancel --}}
-                <div class="col-sm-6 mt-4">
-                    <button type="button" class="btn btn-primary rounded-0">Kirim</button>
-                </div>
-                <div class="col-sm-6 mt-4 text-end">
-                    <button type="button" class="btn bg-third border-primary rounded-0">Reset</button>
-                    <button type="button" class="btn btn-danger rounded-0">kembali</button>
+
+                    {{-- tombol kirim dan cancel --}}
+                    @if ($barmod->nilai_bank_garansi_pelaksanaan == '' && $barmod->nilai_surety_bond_pelaksanaan == '')
+                        <div class="col-sm-6 mt-4">
+                            <button type="submit" class="btn btn-primary rounded-0"
+                                name="submit_jaminan_pengadaan">Kirim</button>
+                        </div>
+                        <div class="col-sm-6 mt-4 text-end">
+                            <button type="button" class="btn bg-third border-primary rounded-0"
+                                onclick="window.location.reload();">Reset</button>
+                            <button type="button" class="btn btn-danger rounded-0"
+                                onclick="window.location.href='{{ url('dashboard') }}';">kembali</button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
-    </div>
+    </form>
+
+    {{-- Sumber Dana DPA --}}
+    <form action="{{ route('pengerjaan-belanja-modal.update', $barmod->id) }}" method="POST"
+        enctype="multipart/form-data">
+        @csrf
+        <div class="container-fluid bg-transparent mb-4">
+            <div class="card bg-light rounded-0">
+                <div class="row mx-4 my-4 align-items-start">
+                    <h4>5. Sumber Dana DPA (Dokumen Pengadaan Anggaran) Belanja Modal</h4>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Nilai Pengadaan Anggaran</label> <br>
+                            <label for="dana-apbn-modal" class="form-label">Nominal Dana APBN</label>
+                            <input type="text" class="form-control rounded-0 mb-2" id="dana-apbn-modal"
+                                placeholder="misal. Rp 10.000.000.000 (sepuluh miliar rupiah)" name="dana_apbn"
+                                oninput="formatRupiah(this); calculateTotal()"
+                                @if ($barmod->dana_apbn != '') value='{{ $barmod->dana_apbn }}' disabled
+                                @elseif ($barmod->dana_apbd != '' || $barmod->dana_hibah != '') value='-' disabled @endif>
+
+                            <label for="dana-apbd-modal" class="form-label">Nominal Dana APBD</label>
+                            <input type="text" class="form-control rounded-0 mb-2" id="dana-apbd-modal"
+                                placeholder="misal. Rp 5.000.000.000 (sepuluh miliar rupiah)" name="dana_apbd"
+                                oninput="formatRupiah(this); calculateTotal()"
+                                @if ($barmod->dana_apbd != '') value='{{ $barmod->dana_apbd }}' disabled 
+                                @elseif ($barmod->dana_apbn != '' || $barmod->dana_hibah != '') value='-' disabled @endif>
+
+                            <label for="dana-hibah-modal" class="form-label">Nominal Dana Hibah</label>
+                            <input type="text" class="form-control rounded-0 mb-2" id="dana-hibah-modal"
+                                placeholder="misal. Rp 1.000.000.000 (sepuluh miliar rupiah)" name="dana_hibah"
+                                oninput="formatRupiah(this); calculateTotal()"
+                                @if ($barmod->dana_hibah != '') value='{{ $barmod->dana_hibah }}' disabled
+                                @elseif ($barmod->dana_apbn != '' || $barmod->dana_apbd != '') value='-' disabled @endif>
+
+                            <label for="bentuk-pengadaan" class="form-label">Bentuk Pengadaan</label>
+                            @if ($barmod->bentuk_pengadaan != '')
+                                <input class="form-control rounded-0 mb-2" id="bentuk-pengadaan" name="bentuk_pengadaan"
+                                    value='{{ $barmod->bentuk_pengadaan }}' disabled>
+                            @else
+                                <select class="form-select rounded-0 mb-2" aria-label="Default select example"
+                                    id="bentuk-pengadaan" name="bentuk_pengadaan" required>
+                                    <option selected>Pilih Bentuk Pengadaan</option>
+                                    <option value="Tender Terbuka">Tender Terbuka</option>
+                                    <option value="Tender Terbatas">Tender Terbatas</option>
+                                    <option value="Pengadaan Langsung">Pengadaan Langsung</option>
+                                    <option value="Penunjukan Langsung">Penunjukan Langsung</option>
+                                </select>
+                            @endif
+
+                            <label for="nilai-dpa-modal" class="form-label">Nilai DPA</label>
+                            <input type="text" class="form-control rounded-0 mb-2" id="nilai-dpa-modal"
+                                placeholder="misal. Rp 10.000.000.000 (satu miliar rupiah)" name="nilai_dpa" readonly
+                                required
+                                @if ($barmod->nilai_dpa != '') value='{{ $barmod->nilai_dpa }}' disabled @endif>
+
+                            <label class="form-label" for="bukti-dpa">Bukti Dokumen Pengadaan Anggaran</label>
+                            @if ($barmod->bukti_dpa)
+                                @php
+                                    $filePaths = json_decode($barmod->bukti_dpa);
+                                @endphp
+
+                                <ul>
+                                    @foreach ($filePaths as $filePath)
+                                        <li><a href="{{ Storage::url($filePath) }}" target="_blank">Lihat File</a></li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <input class="form-control rounded-0 mb-2" type="file" id="bukti-dpa"
+                                    name="bukti_dpa[]" multiple required>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card bg-third border border-primary rounded-0 pt-4 px-4">
+                            <p><i class="bi bi-info-square-fill"></i> Info
+                            <ol>
+                                <li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu (Dana APBN / Dana APBD/ Dana
+                                    Hibah) atau ketiganya (Dana APBN & Dana APBD & Dana Hibah)</li>
+                                <li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
+                                    uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
+                                <li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
+                                    penjamin lainnya.</li>
+                            </ol>
+                            </p>
+                        </div>
+                    </div>
+                    {{-- tombol kirim dan cancel --}}
+                    @if ($barmod->nilai_dpa == '')
+                        <div class="col-sm-6 mt-4">
+                            <button type="submit" class="btn btn-primary rounded-0"
+                                name="submit_sumber_dana_dpa">Kirim</button>
+                        </div>
+                        <div class="col-sm-6 mt-4 text-end">
+                            <button type="button" class="btn bg-third border-primary rounded-0"
+                                onclick="window.location.reload();">Reset</button>
+                            <button type="button" class="btn btn-danger rounded-0"
+                                onclick="window.location.href='{{ url('dashboard') }}';">kembali</button>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </form>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -597,17 +685,19 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            const fileInput = document.getElementById('bukti-spk');
+            const fileInputs = document.querySelectorAll('input[type="file"]');
 
-            fileInput.addEventListener('change', function(event) {
-                const files = event.target.files;
-                for (const file of files) {
-                    if (file.type !== 'application/pdf') {
-                        alert('Hanya dapat menginputkan PDF file.');
-                        fileInput.value = '';
-                        break;
+            fileInputs.forEach(function(fileInput) {
+                fileInput.addEventListener('change', function(event) {
+                    const files = event.target.files;
+                    for (const file of files) {
+                        if (file.type !== 'application/pdf') {
+                            alert('Hanya dapat menginputkan PDF file.');
+                            fileInput.value = '';
+                            break;
+                        }
                     }
-                }
+                });
             });
         });
 
@@ -638,5 +728,31 @@
                 }
             });
         });
+
+        function formatRupiah(element) {
+            let value = element.value.replace(/[^0-9]/g, '');
+            element.value = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(value);
+        }
+
+        function parseRupiah(value) {
+            return parseInt(value.replace(/[^0-9]/g, ''), 10) || 0;
+        }
+
+        function calculateTotal() {
+            let danaApbn = parseRupiah(document.getElementById('dana-apbn-modal').value);
+            let danaApbd = parseRupiah(document.getElementById('dana-apbd-modal').value);
+            let danaHibah = parseRupiah(document.getElementById('dana-hibah-modal').value);
+            let total = danaApbn + danaApbd + danaHibah;
+
+            document.getElementById('nilai-dpa-modal').value = new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(total);
+        }
     </script>
 @endsection

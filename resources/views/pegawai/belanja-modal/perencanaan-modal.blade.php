@@ -47,7 +47,8 @@
             </div>
             <hr>
             {{-- Perencanaan Belanja Modal --}}
-            <form action="{{ route('perencanaan-belanja-modal.store') }}" method="POST" enctype="multipart/form-data" onsubmit="copyDurasiToHiddenInput()">
+            <form action="{{ route('perencanaan-belanja-modal.store') }}" method="POST" enctype="multipart/form-data"
+                onsubmit="copyDurasiToHiddenInput()">
                 @csrf
                 <div class="row mx-4 my-4 align-items-start">
                     <h4>1. Proposal & Surat Permohonan Belanja Modal</h4>
@@ -72,12 +73,12 @@
                             rows="4" required></textarea>
 
                         <label for="estimasi-perencanaan-modal" class="form-label">Estimasi Biaya (Rp.)</label>
-                        <input type="text" class="form-control rounded-0 mb-2" id="estimasi-perencanaan-modal" name="estimasi_biaya" required
-                            onkeyup="formatRupiah(this)">
+                        <input type="text" class="form-control rounded-0 mb-2" id="estimasi-perencanaan-modal"
+                            name="estimasi_biaya" onkeyup="formatRupiah(this)" required>
 
                         <label for="jenis-belanja-modal" class="form-label">Jenis Belanja Modal</label>
                         <select class="form-select rounded-0 mb-2" aria-label="Default select example"
-                            id="jenis-belanja-modal" name="jns_belanja" required onchange="toggleBelanjaLainnya(this)">
+                            id="jenis-belanja-modal" name="jns_belanja" onchange="toggleBelanjaLainnya(this)" required>
                             <option selected>Pilih Jenis Belanja Modal</option>
                             <option value="Pembelian Tanah">Pembelian Tanah</option>
                             <option value="Pembangunan Gedung">Pembangunan Gedung</option>
@@ -86,7 +87,8 @@
                             <option value="Renovasi dan Perbaikan">Renovasi dan Perbaikan</option>
                             <option value="Pembelian Kendaraan">Pembelian Kendaraan</option>
                             <option value="Pengembangan Teknologi Informasi">Pengembangan Teknologi Informasi</option>
-                            <option value="Belanja Modal Jalan, Irigasi dan Jaringan">Belanja Modal Jalan, Irigasi dan Jaringan</option>
+                            <option value="Belanja Modal Jalan, Irigasi dan Jaringan">Belanja Modal Jalan, Irigasi dan
+                                Jaringan</option>
                             <option value="Belanja Modal Lainnya">Belanja Modal Lainnya</option>
                         </select>
 
@@ -96,11 +98,11 @@
 
                         <label for="tanggal-mulai-modal" class="form-label">Tanggal Mulai</label>
                         <input type="date" class="form-control rounded-0 mb-2" id="tanggal-mulai-modal" name="tgl_mulai"
-                            placeholder="DD/MM/YYYY" required onchange="calculateDurasi()">
+                            placeholder="DD/MM/YYYY" onchange="calculateDurasi()" required>
 
                         <label for="tanggal-selesai-modal" class="form-label">Tanggal Selesai (Tenggat)</label>
-                        <input type="date" class="form-control rounded-0 mb-2" id="tanggal-selesai-modal" name="tgl_selesai"
-                            placeholder="DD/MM/YYYY" required onchange="calculateDurasi()">
+                        <input type="date" class="form-control rounded-0 mb-2" id="tanggal-selesai-modal"
+                            name="tgl_selesai" placeholder="DD/MM/YYYY" onchange="calculateDurasi()" required>
 
                         <label for="durasi" class="form-label">Durasi</label>
                         <input type="text" class="form-control rounded-0 mb-2" id="durasi" disabled>
@@ -142,8 +144,10 @@
                         <button type="submit" class="btn btn-primary rounded-0">Kirim</button>
                     </div>
                     <div class="col-sm-6 text-end">
-                        <button type="button" class="btn bg-third border-primary rounded-0" onclick="window.location.reload();">Reset</button>
-                        <button type="button" class="btn btn-danger rounded-0" onclick="window.location.href='{{ url('dashboard') }}';">Kembali</button>
+                        <button type="button" class="btn bg-third border-primary rounded-0"
+                            onclick="window.location.reload();">Reset</button>
+                        <button type="button" class="btn btn-danger rounded-0"
+                            onclick="window.location.href='{{ url('dashboard') }}';">Kembali</button>
                     </div>
                 </div>
             </form>
@@ -204,10 +208,10 @@
             hiddenDurasiInput.value = durasiInput.value;
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const jenisBelanjaModal = document.getElementById('jenis-belanja-modal');
             toggleBelanjaLainnya(jenisBelanjaModal); // Initial check
-            jenisBelanjaModal.addEventListener('change', function () {
+            jenisBelanjaModal.addEventListener('change', function() {
                 toggleBelanjaLainnya(this);
             });
         });
