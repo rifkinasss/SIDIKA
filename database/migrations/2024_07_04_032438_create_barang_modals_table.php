@@ -26,8 +26,11 @@ return new class extends Migration
             $table->date('tgl_selesai');
             $table->string('durasi');
             $table->text('deskripsi_spesifikasi');
+            
+            // diisi menggunakan metode update
+            $table->enum('status', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
 
-
+            /// Pengerjaan Belanja Modal
             //Perjanjian SPK
             $table->string('nomor_surat_spk')->nullable();
             $table->string('nama_vendor')->nullable();
@@ -61,16 +64,16 @@ return new class extends Migration
             $table->string('bukti_surety_bond_pengadaan')->nullable();
 
             //Sumber Dana DPA
-            $table->string('dana_APBN')->nullable();
-            $table->string('dana_APBD')->nullable();
-            $table->string('dana_Hibah')->nullable();
+            $table->string('dana_apbn')->nullable();
+            $table->string('dana_apbd')->nullable();
+            $table->string('dana_hibah')->nullable();
             $table->string('bentuk_pengadaan')->nullable();
-            $table->string('nilai_DPA')->nullable();
-            $table->string('bukti_DPA')->nullable();
+            $table->string('nilai_dpa')->nullable();
+            $table->text('bukti_dpa')->nullable();
 
-            // diisi menggunakan metode update
-            $table->enum('status', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
+            $table->integer('persentasi')->default(0);
 
+            /// Laporan Belanja Modal
             // SPMK
             $table->string('nomor_spmk')->nullable();
             $table->date('tgl_spmk')->nullable();

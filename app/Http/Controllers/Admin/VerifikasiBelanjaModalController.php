@@ -46,7 +46,7 @@ class VerifikasiBelanjaModalController extends Controller
             ]);
         }
 
-        return redirect(url('/dashboard-admin/perencanaan-belanja-modal'))->with('verif-barmod', 'Belanja modal telah disetujui.');
+        return redirect(url('/dashboard-admin/perencanaan-belanja-modal'))->with('verif-barmod', 'Perencanaan belanja modal telah disetujui.');
     }
 
     public function update(Request $request, string $id)
