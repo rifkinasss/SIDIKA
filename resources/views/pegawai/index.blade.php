@@ -192,7 +192,8 @@
                                                     @if ($barmols->status == 'Disetujui')
                                                         <a href="{{ route('pengerjaan-belanja-modal', $barmols->id) }}"
                                                             type="submit" class="btn btn-warning btn-sm">
-                                                            <i class="bi bi-pencil-square"></i> Pengerjaan
+                                                            <i class="bi bi-pencil-square"></i> Pengerjaan <span
+                                                                class="badge text-bg-light">{{ $barmols->persentase }}%</span>
                                                         </a>
                                                     @endif
                                                 </td>
@@ -217,9 +218,9 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Keperluan</th>
-                                            <th>Tujuan</th>
-                                            <th>Jumlah Biaya</th>
+                                            <th>Nomor Surat</th>
+                                            <th>Jenis Belanja</th>
+                                            <th>Estimasi Biaya</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -228,20 +229,32 @@
                                         @foreach ($barjas as $barjass)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $barjass->keperluan_perjadin }}</td>
-                                                <td>{{ $barjass->kota_kab }}</td>
-                                                <td>{{ $barjass->jumlah_dibayarkan }}</td>
+                                                <td>{{ $barjass->nomor_surat }}</td>
+                                                @if ($barjass->jns_belanja == 'Belanja Barang Jasa Lainnya')
+                                                    <td>{{ $barjass->lainnya }}</td>
+                                                @else
+                                                    <td>{{ $barjass->jns_belanja }}</td>
+                                                @endif
+                                                <td>{{ $barjass->estimasi_biaya }}</td>
                                                 <td>{{ $barjass->status }}</td>
-                                                <td></td>
+                                                <td>
+                                                    @if ($barjass->status == 'Disetujui')
+                                                        <a href="{{ route('pengerjaan-belanja-barjas', $barjass->id) }}"
+                                                            type="submit" class="btn btn-warning btn-sm">
+                                                            <i class="bi bi-pencil-square"></i> Pengerjaan <span
+                                                                class="badge text-bg-light">{{ $barjass->persentase }}%</span>
+                                                        </a>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Keperluan</th>
-                                            <th>Tujuan</th>
-                                            <th>Jumlah Biaya</th>
+                                            <th>Nomor Surat</th>
+                                            <th>Jenis Belanja</th>
+                                            <th>Estimasi Biaya</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>

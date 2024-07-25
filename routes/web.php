@@ -10,6 +10,8 @@ use App\Http\Controllers\Pegawai\PelaporanPerjadinController;
 use App\Http\Controllers\Pegawai\DashboardController as DashController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashController;
 use App\Http\Controllers\Admin\VerifikasiBelanjaModalController;
+use App\Http\Controllers\Admin\VerifikasiBelanjaBarangJasaController;
+use App\Http\Controllers\Pegawai\BarangJasaController;
 use App\Http\Controllers\Pegawai\BarangModalController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashController;
 
@@ -53,6 +55,7 @@ Route::middleware('admin')->group(function () {
     
     // Belanja Barang Jasa
     Route::get('dashboard-admin/perencanaan-belanja-barjas', [AdminDashController::class, 'Perencanaanbarjas']);
+    Route::post('dashboard-admin/perencanaan-belanja-barjas/{id}', [VerifikasiBelanjaBarangJasaController::class, 'verif'])->name('perencanaan-belanja-barjas.verif');
     Route::get('dashboard-admin/pengerjaan-belanja-barjas', [AdminDashController::class, 'Pengerjaanbarjas']);
     Route::get('dashboard-admin/pelaporan-belanja-barjas', [AdminDashController::class, 'Pelaporanbarjas']);
 
@@ -84,6 +87,10 @@ Route::middleware('pegawai')->group(function () {
     Route::get('pengerjaan-belanja-modal/{id}', [BarangModalController::class, 'pengerjaan'])->name('pengerjaan-belanja-modal');
     Route::post('pengerjaan-belanja-modal/{id}', [BarangModalController::class, 'update'])->name('pengerjaan-belanja-modal.update');
     Route::get('/get-regencies/{province_name}', [BarangModalController::class, 'getRegenciesByProvinceName'])->name('get-regencies');
+    
+    // Belanja Barang Jasa
+    Route::get('perencanaan-belanja-barjas', [BarangJasaController::class, 'perencanaan']);
+    Route::post('perencanaan-belanja-barjas', [BarangJasaController::class, 'store'])->name('perencanaan-belanja-barjas.store');
 });
 
 Route::get('/pelaporan-perjadin', function () {
@@ -95,15 +102,13 @@ Route::get('/pelaporan-belanja-modal', function () {
     return view('pegawai.belanja-modal.pelaporan-modal', compact('title'));
 });
 
-Route::get('/perencanaan-belanja-barjas', function () {
-    return view('pegawai.belanja-barjas.perencanaan-barjas');
-});
 Route::get('/pengerjaan-belanja-barjas', function () {
-    return view('pegawai.belanja-barjas.pengerjaan-barjas');
+    return view('pegawai.belanja-barjas.pengerjaan-barjas', ['title' => '']);
 });
 Route::get('/pelaporan-belanja-barjas', function () {
-    return view('pegawai.belanja-barjas.pelaporan-barjas');
+    return view('pegawai.belanja-barjas.pelaporan-barjas', ['title' => '']);
 });
+
 Route::get('/ketentuan-perjadin', function () {
     return view('pegawai.perjadin.ket-perjadin', [
         'title' => 'Ketentuan Perjalanan Dinas'

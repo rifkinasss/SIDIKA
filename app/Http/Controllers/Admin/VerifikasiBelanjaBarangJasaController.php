@@ -34,23 +34,19 @@ class VerifikasiBelanjaBarangJasaController extends Controller
         $tanggal = date('dmY');
 
         if ($request->has('disetujui')) {
-            $nomor_spmk = "SPMK/BJS/DISDIKBUD/{$tanggal}/{$barjas->id}";
-            $nomor_bast = "BAST/BJS/DISDIKBUD/{$tanggal}/{$barjas->id}";
-            $nomor_sp2d = "SP2D/BJS/DISDIKBUD/{$tanggal}/{$barjas->id}";
+            $nomor_spmk = "SPMK/MDL/DISDIKBUD/{$tanggal}/{$barjas->id}";
 
             $barjas->update([
-                'nomor_spmk' => $nomor_spmk,
-                'nomor_bast' => $nomor_bast,
-                'nomor_sp2d' => $nomor_sp2d,
-                'status_lapor' => 'Disetujui',
+                'nomor_surat' => $nomor_spmk,
+                'status' => 'Disetujui',
             ]);
         } elseif ($request->has('ditolak')) {
             $barjas->update([
-                'status_lapor' => 'Ditolak',
+                'status' => 'Ditolak',
             ]);
         }
 
-        return redirect()->route('verifikasi-belanja-barang-jasa.index')->with('verif-barjas', 'Status barang jasa berhasil diperbarui.');
+        return redirect(url('/dashboard-admin/perencanaan-belanja-barjas'))->with('verif-barjas', 'Pengajuan belanja barang jasa telah disetujui.');
     }
 
     public function update(Request $request, string $id)

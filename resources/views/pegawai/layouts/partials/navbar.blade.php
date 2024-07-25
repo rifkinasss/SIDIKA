@@ -55,11 +55,11 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/perencanaan-belanja-barjas">Pengajuan Barang Jasa</a>
+                        <li><a class="dropdown-item" href="/perencanaan-belanja-barjas">Pengajuan Belanja Barang Jasa</a>
                         </li>
-                        <li><a class="dropdown-item" href="/pengerjaan-belanja-modal">Pengerjaan Barang Jasa</a>
+                        <li><a class="dropdown-item" href="/pengerjaan-belanja-barjas">Pengerjaan Belanja Barang Jasa</a>
                         </li>
-                        <li><a class="dropdown-item" href="/pelaporan-belanja-modal">Pelaporan Barang Jasa</a></li>
+                        <li><a class="dropdown-item" href="/pelaporan-belanja-barjas">Pelaporan Belanja Barang Jasa</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
