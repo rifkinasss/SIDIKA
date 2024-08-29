@@ -74,7 +74,7 @@ class BarangModalController extends Controller
             $tgl_selesai_spk = Carbon::createFromFormat('Y-m-d', $request->tgl_selesai_spk);
             
             $persentase = $barmod->persentase;
-            $persentase += 25;
+            $persentase += 20;
 
             // Handle file upload
             $uploadedFiles = $request->file('bukti_spk'); 
@@ -107,8 +107,18 @@ class BarangModalController extends Controller
                 'bukti_surat_adendum.*' => 'mimes:pdf|max:2048',
             ]);
 
-            $tgl_mulai_adendum = Carbon::createFromFormat('Y-m-d', $request->tgl_mulai_adendum);
-            $tgl_selesai_adendum = Carbon::createFromFormat('Y-m-d', $request->tgl_selesai_adendum);
+            if ($request->nomor_surat_adendum != '-') {
+                $tgl_mulai_adendum = Carbon::createFromFormat('Y-m-d', $request->tgl_mulai_adendum);
+                $tgl_selesai_adendum = Carbon::createFromFormat('Y-m-d', $request->tgl_selesai_adendum);
+
+                $barmod->update([
+                    'tgl_mulai_adendum' => $tgl_mulai_adendum,
+                    'tgl_selesai_adendum' => $tgl_selesai_adendum,
+                ]);
+            };
+
+            $persentase = $barmod->persentase;
+            $persentase += 20;
 
             // Handle file upload
             $uploadedFiles = $request->file('bukti_surat_adendum');
@@ -124,9 +134,8 @@ class BarangModalController extends Controller
             $barmod->update([
                 'nomor_surat_adendum' => $request->nomor_surat_adendum,
                 'uraian_adendum' => $request->uraian_adendum,
-                'tgl_mulai_adendum' => $tgl_mulai_adendum,
-                'tgl_selesai_adendum' => $tgl_selesai_adendum,
                 'nilai_kontrak_adendum' => $request->nilai_kontrak_adendum,
+                'persentase' => $persentase,
                 'bukti_surat_adendum' => json_encode($filePaths),
             ]);
         }
@@ -134,7 +143,7 @@ class BarangModalController extends Controller
         // Jaminan Pelaksanaan
         elseif ($request->has('submit_jaminan_pelaksanaan')) {
             $persentase = $barmod->persentase;
-            $persentase += 25;
+            $persentase += 20;
             
             $path_1 = null;
             $path_2 = null;
@@ -173,7 +182,7 @@ class BarangModalController extends Controller
         // Jaminan Pengadaan
         elseif ($request->has('submit_jaminan_pengadaan')) {
             $persentase = $barmod->persentase;
-            $persentase += 25;
+            $persentase += 20;
             
             $path_1 = null;
             $path_2 = null;
@@ -216,7 +225,7 @@ class BarangModalController extends Controller
             ]);
             
             $persentase = $barmod->persentase;
-            $persentase += 25;
+            $persentase += 20;
             
             // Handle file upload
             $uploadedFiles = $request->file('bukti_dpa');
@@ -241,5 +250,11 @@ class BarangModalController extends Controller
         }
 
         return redirect()->back()->with('pel-belanja-modal', 'Progress dokumen belanja modal berhasil diperbarui.');
+    }
+
+    public function pelaporan(string $id)
+    {
+        $title = 'Pelaporan Belanja Modal';
+        return view('pegawai.belanja-modal.pelaporan-modal', compact('title'));
     }
 }

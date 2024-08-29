@@ -189,11 +189,17 @@
                                                 <td>{{ $barmols->estimasi_biaya }}</td>
                                                 <td>{{ $barmols->status }}</td>
                                                 <td>
-                                                    @if ($barmols->status == 'Disetujui')
+                                                    @if ($barmols->status == 'Disetujui' && $barmols->status_pengerjaan != 'Disetujui')
                                                         <a href="{{ route('pengerjaan-belanja-modal', $barmols->id) }}"
                                                             type="submit" class="btn btn-warning btn-sm">
                                                             <i class="bi bi-pencil-square"></i> Pengerjaan <span
                                                                 class="badge text-bg-light">{{ $barmols->persentase }}%</span>
+                                                        </a>
+                                                    @elseif ($barmols->persentase == 100)
+                                                        <a href="{{ route('pelaporan-belanja-modal', $barmols->id) }}"
+                                                            type="submit" class="btn btn-warning btn-sm">
+                                                            <i class="bi bi-pencil-square"></i> Pelaporan <span
+                                                            class="badge text-bg-light">{{ $barmols->persentase_lapor }}%</span>
                                                         </a>
                                                     @endif
                                                 </td>

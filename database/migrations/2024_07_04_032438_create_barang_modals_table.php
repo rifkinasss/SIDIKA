@@ -71,7 +71,8 @@ return new class extends Migration
             $table->string('nilai_dpa')->nullable();
             $table->text('bukti_dpa')->nullable();
 
-            $table->integer('persentasi')->default(0);
+            $table->integer('persentase')->default(0);
+            $table->enum('status_pengerjaan', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
 
             /// Laporan Belanja Modal
             // SPMK
@@ -100,8 +101,9 @@ return new class extends Migration
             $table->string('nomor_sp2d')->nullable();
             $table->string('nilai_sp2d')->nullable();
             $table->string('bukti_sp2f')->nullable();
-
-            $table->enum('status_lapor', ['Belum', 'Lapor', 'Disetujui', 'Ditolak'])->default('Belum');
+            
+            $table->integer('persentase_lapor')->default(0);
+            $table->enum('status_lapor', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -33,9 +33,8 @@
                                             <th>No</th>
                                             <th>Nomor Surat</th>
                                             <th>Nama</th>
-                                            <th>Keperluan</th>
-                                            <th>Jumlah Biaya</th>
-                                            <th>Tujuan</th>
+                                            <th>Jenis Belanja</th>
+                                            <th>Estimasi Biaya</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -44,19 +43,38 @@
                                         @foreach ($barmol as $p)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $p->nomor_surat }}</td>
+                                                @if ($p->nomor_surat == '')
+                                                    <td>-</td>
+                                                @else
+                                                    <td>{{ $p->nomor_surat }}</td>
+                                                @endif
                                                 <td>{{ $p->user->nama }}</td>
-                                                <td>{{ $p->keperluan_perjadin }}</td>
-                                                <td>{{ $p->jumlah_dibayarkan }}</td>
-                                                <td>{{ $p->kota_kab }}</td>
+                                                @if ($p->jns_belanja == 'Belanja Modal Lainnya')
+                                                    <td>{{ $p->lainnya }}</td>
+                                                @else
+                                                    <td>{{ $p->jns_belanja }}</td>
+                                                @endif
+                                                <td>{{ $p->estimasi_biaya }}</td>
                                                 <td>{{ $p->status }}</td>
                                                 <td>
-                                                    <a href="{{ route('perjadin.edit', ['id' => $p->id]) }}"
-                                                        class="btn btn-warning btn-sm"><i
-                                                            class="bi bi-pencil-square"></i></a>
-                                                    <form action="{{ route('perjadin.destroy', ['id' => $p->id]) }}"
-                                                        method="POST" style="display:inline;"
-                                                        id="deleteForm{{ $p->id }}">
+                                                    <button type="button" class="btn btn-info btn-sm viewButton"
+                                                        data-id="{{ $p->id }}"
+                                                        data-nomor-surat="{{ $p->nomor_surat }}"
+                                                        data-nama="{{ $p->user->nama }}"
+                                                        data-latar-belakang="{{ $p->latar_belakang }}"
+                                                        data-jns-belanja="{{ $p->jns_belanja }}"
+                                                        data-lainnya="{{ $p->lainnya }}"
+                                                        data-estimasi-biaya="{{ $p->estimasi_biaya }}"
+                                                        data-tujuan="{{ $p->tujuan }}"
+                                                        data-deskripsi-kebutuhan="{{ $p->deskripsi_kebutuhan }}"
+                                                        data-tgl-mulai="{{ $p->tgl_mulai }}"
+                                                        data-tgl-selesai="{{ $p->tgl_selesai }}"
+                                                        data-durasi="{{ $p->durasi }}"
+                                                        data-deskripsi-spesifikasi="{{ $p->deskripsi_spesifikasi }}">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
+                                                    <form action="#{{-- route('perjadin.destroy', ['id' => $p->id]) --}}" method="POST"
+                                                        style="display:inline;" id="deleteForm{{ $p->id }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger deleteUser btn-sm"
@@ -72,9 +90,8 @@
                                             <th>No</th>
                                             <th>Nomor Surat</th>
                                             <th>Nama</th>
-                                            <th>Keperluan</th>
-                                            <th>Jumlah Biaya</th>
-                                            <th>Tujuan</th>
+                                            <th>Jenis Belanja</th>
+                                            <th>Estimasi Biaya</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>

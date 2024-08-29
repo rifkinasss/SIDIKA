@@ -41,8 +41,8 @@
                     <p><i class="bi bi-exclamation-square-fill"></i> Pastikan anda telah membaca seluruh ketentuan Belanja
                         Modal. <br>
                     <ul>
-                        <li>Kesalahan data pada dokumen berakibat penolakan</li>
-                        <li>Pemalsuan dokumen berakibat masuk ke daftar blacklist</li>
+                        <li>Kesalahan data pada dokumen berakibat penolakan.</li>
+                        <li>Pemalsuan dokumen berakibat masuk ke daftar blacklist.</li>
                     </ul>
                     </p>
                 </div>
@@ -101,7 +101,7 @@
                         <ol>
                             <li>Nomor Surat akan terisi otomatis jika form disetujui oleh admin.</li>
                             <li>Setelah Form ini disetujui akan keluar sebagai <b>Surat digital Permohonan Perencanaan
-                                    Belanja Modal dan Proposal digital Proposal Belanja Modal</b> yang dapat diunduh</li>
+                                    Belanja Modal dan Proposal digital Proposal Belanja Modal</b> yang dapat diunduh.</li>
                             <li>Latar Belakang dan tujuan harap menggunakan kalimat <b>baku dan formal</b>.</li>
                             <li>Deskripsi Kebutuhan diisi singkat, padat, dan jelas.</li>
                             <li>Deskripsi Spesifikasi berisi kebutuhan mendetail.</li>
@@ -151,7 +151,6 @@
                             </select>
                         @endif
 
-
                         <label for="lokasi-kota-modal" class="form-label">Kota/Kabupaten</label>
                         @if ($barmod->kota != '')
                             <input class="form-control rounded-0 mb-2" id="lokasi-kota-modal" name="kota"
@@ -191,13 +190,9 @@
                         <label for="uraian-pengadaan-modal" class="form-label">Uraian Pengadaan (Sesuai Kontrak)</label>
                         <textarea class="form-control rounded-0 mb-4" id="uraian-pengadaan-modal"
                             placeholder="Contoh: Pembayaran Belanja Modal Pembangunan Gedung Kantor 5 Lantai lengkap dengan fasilitas umum, listrik, dan air."
-                            rows="4" name="uraian_pengadaan" @if ($barmod->uraian_pengadaan != '') disabled @endif required>
-@if ($barmod->uraian_pengadaan != '')
-{{ $barmod->uraian_pengadaan }}
-@endif
-</textarea>
+                            rows="4" name="uraian_pengadaan" @if ($barmod->uraian_pengadaan != '') disabled @endif required>@if ($barmod->uraian_pengadaan != ''){{ $barmod->uraian_pengadaan }}@endif</textarea>
 
-                        <label for="bukti-spk" class="form-label">Bukti Surat Perijinan Kerja (.pdf)</label>
+                        <label for="bukti-spk" class="form-label" accept=".pdf">Bukti Surat Perijinan Kerja (.pdf)</label>
                         @if ($barmod->bukti_spk)
                             @php
                                 $filePaths = json_decode($barmod->bukti_spk);
@@ -222,7 +217,7 @@
                                 <li>Nilai kontrak masukkan angka saja tanpa (,)</li>
                                 <li>Jika ada Surat Perijinan Kerja lebih dari satu(misal. sub-SPK milik Kontraktor) harap
                                     dimasukkan</li>
-                                <li>Batas maksimal ukuran satu file Surat Perijinan Kerja adalah 2 MB</li>
+                                <li>Ukuran maksimal setiap file Dokumen Surat Perijinan Kerja adalah 2 MB.</li>
                             </ol>
                             </p>
                         </div>
@@ -262,43 +257,41 @@
                         <label for="uraian-adendum-modal" class="form-label">Uraian Adendum (Sesuai Kontrak)</label>
                         <textarea class="form-control rounded-0 mb-4" id="uraian-adendum-modal"
                             placeholder="Contoh: Pembayaran Belanja Modal Pembangunan Gedung Kantor 5 Lantai lengkap dengan fasilitas umum, listrik, dan air."
-                            rows="4" name="uraian_adendum" required @if ($barmod->uraian_adendum != '') disabled @endif>
-@if ($barmod->uraian_adendum != '')
-{{ $barmod->uraian_adendum }}
-@endif
-</textarea>
+                            rows="4" name="uraian_adendum" @if ($barmod->uraian_adendum != '' || $barmod->nomor_surat_adendum == '-') disabled @endif>@if ($barmod->uraian_adendum != '' || $barmod->nomor_surat_adendum == '-'){{ $barmod->uraian_adendum }}@endif</textarea>
 
                         <label for="tanggal-mulai-adendum-modal" class="form-label">Tanggal Mulai Adendum Kontrak</label>
                         <input type="date" class="form-control rounded-0 mb-2" id="tanggal-mulai-adendum-modal"
-                            placeholder="DD/MM/YYYY" name="tgl_mulai_adendum" required
-                            @if ($barmod->tgl_mulai_adendum != '') value='{{ $barmod->tgl_mulai_adendum }}' disabled @endif>
+                            placeholder="DD/MM/YYYY" name="tgl_mulai_adendum"
+                            @if ($barmod->tgl_mulai_adendum != '' || $barmod->nomor_surat_adendum == '-') value='{{ $barmod->tgl_mulai_adendum }}' disabled @endif>
 
                         <label for="tanggal-selesai-adendum-modal" class="form-label">Tanggal Berakhir Adendum Kontrak
                             (tenggat)</label>
                         <input type="date" class="form-control rounded-0 mb-2" id="tanggal-selesai-adendum-modal"
-                            placeholder="DD/MM/YYYY" name="tgl_selesai_adendum" required
-                            @if ($barmod->tgl_selesai_adendum != '') value='{{ $barmod->tgl_selesai_adendum }}' disabled @endif>
+                            placeholder="DD/MM/YYYY" name="tgl_selesai_adendum" 
+                            @if ($barmod->tgl_selesai_adendum != '' || $barmod->nomor_surat_adendum == '-') value='{{ $barmod->tgl_selesai_adendum }}' disabled @endif>
 
                         <label for="nilai-adendum-modal" class="form-label">Nilai Kontrak Adendum</label>
                         <input type="text" class="form-control rounded-0 mb-4" id="nilai-adendum-modal"
                             placeholder="misal. Rp 10.000.000.000 (satu miliar rupiah)" name="nilai_kontrak_adendum"
-                            onkeyup="formatRupiah(this)" required
-                            @if ($barmod->nilai_kontrak_adendum != '') value='{{ $barmod->nilai_kontrak_adendum }}' disabled @endif>
+                            onkeyup="formatRupiah(this)"
+                            @if ($barmod->nilai_kontrak_adendum != '' || $barmod->nomor_surat_adendum == '-') value='{{ $barmod->nilai_kontrak_adendum }}' disabled @endif>
 
-                        <label for="bukti-adendum-modal" class="form-label">Bukti Surat Adendum Kerja (.pdf)</label>
-                        @if ($barmod->bukti_surat_adendum)
-                            @php
-                                $filePaths = json_decode($barmod->bukti_surat_adendum);
-                            @endphp
+                        @if ($barmod->nomor_surat_adendum != '-')
+                            <label for="bukti-adendum-modal" class="form-label" accept=".pdf">Bukti Surat Adendum Kerja (.pdf)</label>
+                            @if ($barmod->bukti_surat_adendum != '[]')
+                                @php
+                                    $filePaths = json_decode($barmod->bukti_surat_adendum);
+                                @endphp
 
-                            <ul>
-                                @foreach ($filePaths as $filePath)
-                                    <li><a href="{{ Storage::url($filePath) }}" target="_blank">Lihat File</a></li>
-                                @endforeach
-                            </ul>
-                        @else
-                            <input class="form-control rounded-0 mb-2" type="file" id="bukti-adendum-modal"
-                                name="bukti_surat_adendum[]" multiple required>
+                                <ul>
+                                    @foreach ($filePaths as $filePath)
+                                        <li><a href="{{ Storage::url($filePath) }}" target="_blank">Lihat File</a></li>
+                                    @endforeach
+                                </ul>
+                            @else
+                                <input class="form-control rounded-0 mb-2" type="file" id="bukti-adendum-modal"
+                                    name="bukti_surat_adendum[]" multiple>
+                            @endif
                         @endif
                     </div>
 
@@ -306,9 +299,10 @@
                         <div class="card bg-third border border-primary rounded-0 pt-4 px-4">
                             <p><i class="bi bi-info-square-fill"></i> Info
                             <ol>
-                                <li>Adendum Kontrak tidak wajib diisi</li>
-                                <li>File Dokumen Adendum Kontrak bisa diisi lebih dari 1</li>
-                                <li>Batas maksimal ukuran satu file Dokumen Adendum adalah 2 MB</li>
+                                <li>Adendum Kontrak tidak wajib diisi.</li>
+                                <li>File Dokumen Adendum Kontrak bisa diisi lebih dari 1.</li>
+                                <li>Ukuran maksimal setiap file Dokumen Adendum adalah 2 MB.</li>
+                                <li>Jika tidak ada data yang perlu diisi, masukkan karakter "-" pada nomor surat adendum.</li>
                             </ol>
                             </p>
                         </div>
@@ -392,13 +386,12 @@
                             <p><i class="bi bi-info-square-fill"></i> Info
                             <ol>
                                 <li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu(Bank Garansi / Surety Bond)
-                                    atau
-                                    dua-duanya(Bank Garansi & Surety Bond)</li>
+                                    atau dua-duanya(Bank Garansi & Surety Bond).</li>
                                 <li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
                                     uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
                                 <li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
                                     penjamin lainnya.</li>
-                                <li>Batas maksimal ukuran file yang dapat diupload adalah 2 MB</li>
+                                <li>Ukuran maksimal setiap file adalah 2 MB.</li>
                             </ol>
                             </p>
                         </div>
@@ -482,20 +475,19 @@
                             <p><i class="bi bi-info-square-fill"></i> Info
                             <ol>
                                 <li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu(Bank Garansi / Surety Bond)
-                                    atau
-                                    keduanya (Bank Garansi & Surety Bond)</li>
+                                    atau keduanya (Bank Garansi & Surety Bond).</li>
                                 <li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
                                     uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
                                 <li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
                                     penjamin lainnya.</li>
-                                <li>Batas maksimal ukuran file yang dapat diupload adalah 2 MB</li>
+                                <li>Ukuran maksimal setiap file adalah 2 MB.</li>
                             </ol>
                             </p>
                         </div>
                     </div>
 
                     {{-- tombol kirim dan cancel --}}
-                    @if ($barmod->nilai_bank_garansi_pelaksanaan == '' && $barmod->nilai_surety_bond_pelaksanaan == '')
+                    @if ($barmod->nilai_bank_garansi_pengadaan == '' && $barmod->nilai_surety_bond_pengadaan == '')
                         <div class="col-sm-6 mt-4">
                             <button type="submit" class="btn btn-primary rounded-0"
                                 name="submit_jaminan_pengadaan">Kirim</button>
@@ -587,11 +579,12 @@
                             <p><i class="bi bi-info-square-fill"></i> Info
                             <ol>
                                 <li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu (Dana APBN / Dana APBD/ Dana
-                                    Hibah) atau ketiganya (Dana APBN & Dana APBD & Dana Hibah)</li>
+                                    Hibah) atau ketiganya (Dana APBN & Dana APBD & Dana Hibah).</li>
                                 <li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
                                     uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
                                 <li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
                                     penjamin lainnya.</li>
+                                <li>Ukuran maksimal setiap file Dokumen Adendum adalah 2 MB.</li>
                             </ol>
                             </p>
                         </div>

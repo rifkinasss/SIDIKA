@@ -31,7 +31,7 @@ return new class extends Migration
             // diisi menggunakan metode update
             $table->enum('status', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
 
-            /// Pengerjaan Belanja Modal
+            /// Pengerjaan Belanja Barang Jasa
             //Perjanjian SPK
             $table->string('nomor_surat_spk')->nullable();
             $table->string('nama_vendor')->nullable();
@@ -72,9 +72,10 @@ return new class extends Migration
             $table->string('nilai_dpa')->nullable();
             $table->text('bukti_dpa')->nullable();
 
-            $table->integer('persentasi')->default(0);
+            $table->integer('persentase')->default(0);
+            $table->enum('status_lapor', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
 
-            /// Laporan Belanja Modal
+            /// Laporan Belanja Barang Jasa
             // SPMK
             $table->string('nomor_spmk')->nullable();
             $table->date('tgl_spmk')->nullable();
@@ -102,7 +103,8 @@ return new class extends Migration
             $table->string('nilai_sp2d')->nullable();
             $table->string('bukti_sp2f')->nullable();
 
-            $table->enum('status_lapor', ['Belum', 'Lapor', 'Disetujui', 'Ditolak'])->default('Belum');
+            $table->integer('persentase_lapor')->default(0);
+            $table->enum('status_lapor', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
             $table->timestamps();
             $table->softDeletes();
         });

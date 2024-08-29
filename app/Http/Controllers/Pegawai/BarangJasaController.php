@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Pegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pegawai\BarangJasa;
+use App\Models\Province;
+use App\Models\Regency;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,6 +16,15 @@ class BarangJasaController extends Controller
     {
         $title = 'Perencanaan Belanja Barang Jasa';
         return view('pegawai.belanja-barjas.perencanaan-barjas', compact('title'));
+    }
+
+    public function pengerjaan(string $id)
+    {
+        $title = 'Pengerjaan Belanja Modal';
+        $barjas = BarangJasa::find($id);
+        $provinces = Province::all();
+        $regencies = Regency::all();
+        return view('pegawai.belanja-barjas.pengerjaan-barjas', compact('barjas', 'provinces', 'regencies', 'title'));
     }
 
     public function store(Request $request)
@@ -45,42 +56,5 @@ class BarangJasaController extends Controller
         ]);
 
         return redirect()->route('pegawai')->with('belanja-barjas', 'Pengajuan belanja barang jasa berhasil dikirim.');
-    }
-
-    public function show($id)
-    {
-        $barjas = BarangJasa::find($id);
-        return view('pegawai.laporan_belanja-barang-jasa', compact('barjas'));
-    }
-
-    public function update(Request $request, string $id)
-    {
-        $barjas = BarangJasa::find($id);
-
-        if ($barjas->status_lapor == 'Belum') {
-            $tgl_spmk = Carbon::createFromFormat('Y-m-d', $request->tgl_spmk);
-            $tgl_bast = Carbon::createFromFormat('Y-m-d', $request->tgl_bast);
-            $tgl_pho = Carbon::createFromFormat('Y-m-d', $request->tgl_pho);
-            $tgl_fho = Carbon::createFromFormat('Y-m-d', $request->tgl_fho);
-            $tgl_sp2d = Carbon::createFromFormat('Y-m-d', $request->tgl_sp2d);
-
-            $barjas->update([
-                'tgl_spmk' => $tgl_spmk,
-                'tgl_bast' => $tgl_bast,
-                'nilai_bast' => $request->nilai_bast,
-                'tgl_pho' => $tgl_pho,
-                'tgl_fho' => $tgl_fho,
-                'tgl_sp2d' => $tgl_sp2d,
-                'nilai_sp2d' => $request->nilai_sp2d,
-                'persentase_progress' => $request->persentase_progress,
-                'status_lapor' => 'Lapor',
-            ]);
-        } elseif ($barjas->status_lapor != 'Belum') {
-            $barjas->update([
-                'persentase_progress' => $request->persentase_progress,
-            ]);
-        }
-
-        return redirect()->route('pegawai')->with('pel-belanja-barjas', 'Progress dokumen belanja barang jasa berhasil diperbarui.');
     }
 }

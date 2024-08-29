@@ -53,10 +53,6 @@
                 <div class="row mx-4 my-4 align-items-start">
                     <h4>1. Proposal & Surat Permohonan Belanja Modal</h4>
                     <div class="col-md-6">
-                        <label for="nomor-proposal-modal" class="form-label">Nomor Surat</label>
-                        <input type="text" class="form-control rounded-0 mb-2" id="nomor-proposal-modal"
-                            name="nomor_surat" disabled>
-
                         <label for="latar-belakang-modal" class="form-label">Latar Belakang</label>
                         <textarea class="form-control rounded-0 mb-2" id="latar-belakang-modal" name="latar_belakang"
                             placeholder="Contoh: Dalam rangka meningkatkan kinerja dan pelayanan, diperlukan pembangunan gedung kantor baru yang memadai."
