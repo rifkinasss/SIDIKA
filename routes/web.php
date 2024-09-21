@@ -61,8 +61,9 @@ Route::middleware('admin')->group(function () {
 
     // Belanja Modal
     Route::get('dashboard-admin/perencanaan-belanja-modal', [AdminDashController::class, 'Perencanaanbarmol']);
-    Route::post('dashboard-admin/perencanaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'verif'])->name('perencanaan-belanja-modal.verif');
+    Route::post('dashboard-admin/perencanaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'PerencanaanVerif'])->name('perencanaan-belanja-modal.verif');
     Route::get('dashboard-admin/pengerjaan-belanja-modal', [AdminDashController::class, 'Pengerjaanbarmol']);
+    Route::post('dashboard-admin/pengerjaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'PengerjaanVerif'])->name('pengerjaan-belanja-modal.verif');
     Route::get('dashboard-admin/pelaporan-belanja-modal', [AdminDashController::class, 'Pelaporanbarmol']);
 });
 

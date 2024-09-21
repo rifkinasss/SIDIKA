@@ -252,7 +252,7 @@
                         <label for="nomor-adendum-modal" class="form-label">Nomor Surat Adendum Kontrak</label>
                         <input class="form-control rounded-0 mb-2" type="text" id="nomor-adendum-modal"
                             name="nomor_surat_adendum" required
-                            @if ($barmod->nomor_surat_adendum != '') value='{{ $barmod->nomor_surat_spk }}' disabled @endif>
+                            @if ($barmod->nomor_surat_adendum != '') value='{{ $barmod->nomor_surat_adendum }}' disabled @endif>
 
                         <label for="uraian-adendum-modal" class="form-label">Uraian Adendum (Sesuai Kontrak)</label>
                         <textarea class="form-control rounded-0 mb-4" id="uraian-adendum-modal"

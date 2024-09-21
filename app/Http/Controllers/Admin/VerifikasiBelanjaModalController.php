@@ -28,7 +28,7 @@ class VerifikasiBelanjaModalController extends Controller
         return view('admin.detail.laporan-belanja-modal', compact('barmod'));
     }
 
-    public function verif(Request $request, $id)
+    public function PerencanaanVerif(Request $request, $id)
     {
         $barmod = BarangModal::find($id);
         $tanggal = date('dmY');
@@ -47,6 +47,23 @@ class VerifikasiBelanjaModalController extends Controller
         }
 
         return redirect(url('/dashboard-admin/perencanaan-belanja-modal'))->with('verif-barmod', 'Perencanaan belanja modal telah disetujui.');
+    }
+
+    public function PengerjaanVerif(Request $request, $id)
+    {
+        $barmod = BarangModal::find($id);
+
+        if ($request->has('disetujui')) {
+            $barmod->update([
+                'status_pengerjaan' => 'Disetujui',
+            ]);
+        } elseif ($request->has('ditolak')) {
+            $barmod->update([
+                'status_pengerjaan' => 'Ditolak',
+            ]);
+        }
+
+        return redirect(url('/dashboard-admin/pengerjaan-belanja-modal'))->with('verif-pengerjaan-barmod', 'Pengerjaan belanja modal telah disetujui.');
     }
 
     public function update(Request $request, string $id)
