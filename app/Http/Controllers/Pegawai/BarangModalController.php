@@ -60,7 +60,7 @@ class BarangModalController extends Controller
         }
     }
 
-    public function update(Request $request, string $id)
+    public function PengerjaanUpdate(Request $request, string $id)
     {
         $barmod = BarangModal::find($id);
 
@@ -249,12 +249,74 @@ class BarangModalController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('pel-belanja-modal', 'Progress dokumen belanja modal berhasil diperbarui.');
+        return redirect()->back()->with('peng-belanja-modal', 'Progress dokumen belanja modal berhasil diperbarui.');
     }
 
     public function pelaporan(string $id)
     {
         $title = 'Pelaporan Belanja Modal';
-        return view('pegawai.belanja-modal.pelaporan-modal', compact('title'));
+        $barmod = BarangModal::find($id);
+        return view('pegawai.belanja-modal.pelaporan-modal', compact('title', 'barmod'));
+    }
+
+    public function PelaporanUpdate(Request $request, string $id) 
+    {
+        $barmod = BarangModal::find($id);
+
+        // SPMK
+        if ($request->has('submit_spmk')) {
+            $request->validate([
+                'bukti_spmk' => 'mimes:pdf|max:2048',
+            ]);
+
+            $path = null;
+
+            // Handle file upload bukti surety bond pelaksanaan
+            $file = $request->file('bukti_spmk');
+            if ($file) {
+                $path = $file->store('public/belanja_modal/bukti_spmk');
+            }
+
+            $tgl_spmk = Carbon::createFromFormat('Y-m-d', $request->tgl_spmk);
+            
+            $persentase_lapor = $barmod->persentase_lapor;
+            $persentase_lapor += 20;
+
+            $barmod->update([
+                'nomor_spmk' => $request->nomor_spmk,
+                'tgl_spmk' => $tgl_spmk,
+                'bukti_spmk' => $path,
+                'persentase_lapor' => $persentase_lapor,
+            ]);
+        }
+
+        // PHO
+        elseif ($request->has('submit_pho')) {
+            $request->validate([
+                'bukti_pho' => 'mimes:pdf|max:2048',
+            ]);
+
+            $path = null;
+
+            // Handle file upload bukti surety bond pelaksanaan
+            $file = $request->file('bukti_pho');
+            if ($file) {
+                $path = $file->store('public/belanja_modal/bukti_pho');
+            }
+
+            $tgl_pho = Carbon::createFromFormat('Y-m-d', $request->tgl_pho);
+            
+            $persentase_lapor = $barmod->persentase_lapor;
+            $persentase_lapor += 20;
+
+            $barmod->update([
+                'nomor_pho' => $request->nomor_pho,
+                'tgl_pho' => $tgl_pho,
+                'bukti_pho' => $path,
+                'persentase_lapor' => $persentase_lapor,
+            ]);
+        }
+
+        return redirect()->back()->with('pel-belanja-modal', 'Progress dokumen belanja modal berhasil diperbarui.');
     }
 }

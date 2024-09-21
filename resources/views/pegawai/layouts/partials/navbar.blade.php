@@ -41,8 +41,6 @@
                         </li>
                         <li><a class="dropdown-item" href="/perencanaan-belanja-modal">Perencanaan Belanja Modal</a>
                         </li>
-                        <li><a class="dropdown-item" href="/pelaporan-belanja-modal">Pelaporan Belanja Modal</a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

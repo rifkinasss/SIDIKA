@@ -86,9 +86,10 @@ Route::middleware('pegawai')->group(function () {
     Route::get('perencanaan-belanja-modal', [BarangModalController::class, 'perencanaan']);
     Route::post('perencanaan-belanja-modal', [BarangModalController::class, 'store'])->name('perencanaan-belanja-modal.store');
     Route::get('pengerjaan-belanja-modal/{id}', [BarangModalController::class, 'pengerjaan'])->name('pengerjaan-belanja-modal');
-    Route::post('pengerjaan-belanja-modal/{id}', [BarangModalController::class, 'update'])->name('pengerjaan-belanja-modal.update');
+    Route::post('pengerjaan-belanja-modal/{id}', [BarangModalController::class, 'PengerjaanUpdate'])->name('pengerjaan-belanja-modal.update');
     Route::get('/get-regencies/{province_name}', [BarangModalController::class, 'getRegenciesByProvinceName'])->name('get-regencies');
     Route::get('pelaporan-belanja-modal/{id}', [BarangModalController::class, 'pelaporan'])->name('pelaporan-belanja-modal');
+    Route::post('pelaporan-belanja-modal/{id}', [BarangModalController::class, 'PelaporanUpdate'])->name('pelaporan-belanja-modal.update');
     
     // Belanja Barang Jasa
     Route::get('perencanaan-belanja-barjas', [BarangJasaController::class, 'perencanaan']);
