@@ -88,7 +88,7 @@ return new class extends Migration
             // BAST
             $table->string('nomor_bast')->nullable();
             $table->date('tgl_bast')->nullable();
-            $table->integer('nilai_bast')->nullable();
+            $table->string('nilai_bast')->nullable();
             $table->string('bukti_bast')->nullable();
 
             //FHO

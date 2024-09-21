@@ -156,8 +156,10 @@
 							<button type="submit" class="btn btn-primary rounded-0" name="submit_pho">Kirim</button>
 						</div>
 						<div class="col-sm-6 mt-4 text-end">
-							<button type="button" class="btn bg-third border-primary rounded-0">Reset</button>
-							<button type="button" class="btn btn-danger rounded-0">kembali</button>
+							<button type="button" class="btn bg-third border-primary rounded-0" 
+								onclick="window.location.reload();">Reset</button>
+							<button type="button" class="btn btn-danger rounded-0"
+								onclick="window.location.href='{{ url('dashboard') }}';">kembali</button>
 						</div>
 					@endif
 				</div>
@@ -166,132 +168,221 @@
 	</form>
 
     {{-- Berita Acara Serah Terima (BAST) --}}
-    <div class="container-fluid bg-transparent mb-4">
-        <div class="card bg-light rounded-0">
-            <div class="row mx-4 my-4 align-items-start">
-                <h4>3. Berita Acara Serah Terima (BAST)</h4>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="nomor-bast-modal" class="form-label">Nomor Dokumen BAST</label>
-                        <input class="form-control rounded-0 mb-2" type="text" id="nomor-bast-modal" />
-                        <label for="tanggal-bast-modal" class="form-label">Tanggal BAST</label>
-                        <input type="date" class="form-control rounded-0 mb-2" id="tanggal-bast-modal"
-                            placeholder="DD/MM/YYYY">
-                        <label for="nilai-bast-modal" class="form-label">Nilai BAST</label>
-                        <input class="form-control rounded-0 mb-2" type="number" id="nilai-bast-modal" />
-                        <label for="bukti-bast-modal" class="form-label">Bukti Dokumen BAST (.pdf)</label>
-                        <input class="form-control rounded-0 mb-2" type="file" id="bukti-bast-modal" multiple>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card bg-third border border-primary rounded-0 pt-4 px-4">
-                        <p><i class="bi bi-info-square-fill"></i> Info
-                        <ol>
-                            <li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu(Bank Garansi / Surety Bond) atau
-                                dua-duanya(Bank Garansi & Surety Bond)</li>
-                            <li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
-                                uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
-                            <li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
-                                penjamin lainnya.</li>
-                        </ol>
-                        </p>
-                    </div>
-                </div>
-                {{-- tombol kirim dan cancel --}}
-                <div class="col-sm-6 mt-4">
-                    <button type="button" class="btn btn-primary rounded-0">Kirim</button>
-                </div>
-                <div class="col-sm-6 mt-4 text-end">
-                    <button type="button" class="btn bg-third border-primary rounded-0">Reset</button>
-                    <button type="button" class="btn btn-danger rounded-0">kembali</button>
-                </div>
-            </div>
-        </div>
-    </div>
+	<form action="{{ route('pelaporan-belanja-modal.update', $barmod->id) }}" method="POST" enctype="multipart/form-data">
+		@csrf
+		<div class="container-fluid bg-transparent mb-4">
+			<div class="card bg-light rounded-0">
+				<div class="row mx-4 my-4 align-items-start">
+					<h4>3. Berita Acara Serah Terima (BAST)</h4>
+					<div class="col-md-6">
+						<div class="mb-3">
+							<label for="nomor-bast-modal" class="form-label">Nomor Dokumen BAST</label>
+							<input class="form-control rounded-0 mb-2" type="text" id="nomor-bast-modal" name="nomor_bast" 
+								@if ($barmod->nomor_bast != '') value='{{ $barmod->nomor_bast }}' disabled @endif
+								required>
+
+							<label for="tanggal-bast-modal" class="form-label">Tanggal BAST</label>
+							<input type="date" class="form-control rounded-0 mb-2" id="tanggal-bast-modal"
+								placeholder="DD/MM/YYYY" name="tgl_bast" 
+								@if ($barmod->tgl_bast != '') value='{{ $barmod->tgl_bast }}' disabled @endif
+								required> 
+
+							<label for="nilai-bast-modal" class="form-label">Nilai BAST</label>
+							<input class="form-control rounded-0 mb-2" type="text" id="nilai-bast-modal" name="nilai_bast"
+								oninput="formatRupiah(this);"
+								@if ($barmod->nilai_bast != '') value='{{ $barmod->nilai_bast }}' disabled @endif
+								required>
+
+							<label for="bukti-bast-modal" class="form-label">Bukti Dokumen BAST (.pdf)</label>
+							@if ($barmod->bukti_bast != '')
+								<ul>
+									<li><a href="{{ Storage::url($barmod->bukti_bast) }}"
+											target="_blank">Lihat File</a></li>
+								</ul>
+							@else
+								<input class="form-control rounded-0 mb-4" type="file" id="bukti-bast-modal"
+									name="bukti_bast" required>
+							@endif
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card bg-third border border-primary rounded-0 pt-4 px-4">
+							<p><i class="bi bi-info-square-fill"></i> Info
+							<ol>
+								<li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu(Bank Garansi / Surety Bond) atau
+									dua-duanya(Bank Garansi & Surety Bond)</li>
+								<li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
+									uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
+								<li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
+									penjamin lainnya.</li>
+							</ol>
+							</p>
+						</div>
+					</div>
+					{{-- tombol kirim dan cancel --}}
+					@if ($barmod->nomor_bast == '')
+						<div class="col-sm-6 mt-4">
+							<button type="submit" class="btn btn-primary rounded-0" name="submit_bast">Kirim</button>
+						</div>
+						<div class="col-sm-6 mt-4 text-end">
+							<button type="button" class="btn bg-third border-primary rounded-0" 
+								onclick="window.location.reload();">Reset</button>
+							<button type="button" class="btn btn-danger rounded-0"
+								onclick="window.location.href='{{ url('dashboard') }}';">kembali</button>
+						</div>
+					@endif
+				</div>
+			</div>
+		</div>
+	</form>
 
     {{-- Jaminan pelaksanaan --}}
-    <div class="container-fluid bg-transparent mb-4">
-        <div class="card bg-light rounded-0">
-            <div class="row mx-4 my-4 align-items-start">
-                <h4>4. Final Hand Over (FHO)</h4>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="nomor-fho-modal" class="form-label">Nomor Dokumen FHO</label>
-                        <input class="form-control rounded-0 mb-2" type="text" id="nomor-fho-modal" />
-                        <label for="tanggal-fho-modal" class="form-label">Tanggal FHO</label>
-                        <input type="date" class="form-control rounded-0 mb-2" id="tanggal-fho-modal"
-                            placeholder="DD/MM/YYYY">
-                        <label for="bukti-fho-modal" class="form-label">Bukti Dokumen FHO (.pdf)</label>
-                        <input class="form-control rounded-0 mb-2" type="file" id="bukti-fho-modal" multiple>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card bg-third border border-primary rounded-0 pt-4 px-4">
-                        <p><i class="bi bi-info-square-fill"></i> Info
-                        <ol>
-                            <li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu(Bank Garansi / Surety Bond) atau
-                                keduanya (Bank Garansi & Surety Bond)</li>
-                            <li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
-                                uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
-                            <li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
-                                penjamin lainnya.</li>
-                        </ol>
-                        </p>
-                    </div>
-                </div>
-                {{-- tombol kirim dan cancel --}}
-                <div class="col-sm-6 mt-4">
-                    <button type="button" class="btn btn-primary rounded-0">Kirim</button>
-                </div>
-                <div class="col-sm-6 mt-4 text-end">
-                    <button type="button" class="btn bg-third border-primary rounded-0">Reset</button>
-                    <button type="button" class="btn btn-danger rounded-0">kembali</button>
-                </div>
-            </div>
-        </div>
-    </div>
+	<form action="{{ route('pelaporan-belanja-modal.update', $barmod->id) }}" method="POST" enctype="multipart/form-data">
+		@csrf
+		<div class="container-fluid bg-transparent mb-4">
+			<div class="card bg-light rounded-0">
+				<div class="row mx-4 my-4 align-items-start">
+					<h4>4. Final Hand Over (FHO)</h4>
+					<div class="col-md-6">
+						<div class="mb-3">
+							<label for="nomor-fho-modal" class="form-label">Nomor Dokumen FHO</label>
+							<input class="form-control rounded-0 mb-2" type="text" id="nomor-fho-modal" name="nomor_fho" 
+								@if ($barmod->nomor_fho != '') value='{{ $barmod->nomor_fho }}' disabled @endif
+								required>
+
+							<label for="tanggal-fho-modal" class="form-label">Tanggal FHO</label>
+							<input type="date" class="form-control rounded-0 mb-2" id="tanggal-fho-modal"
+								placeholder="DD/MM/YYYY" name="tgl_fho" 
+								@if ($barmod->tgl_fho != '') value='{{ $barmod->tgl_fho }}' disabled @endif
+								required>
+
+							<label for="bukti-fho-modal" class="form-label">Bukti Dokumen FHO (.pdf)</label>
+							@if ($barmod->bukti_fho != '')
+								<ul>
+									<li><a href="{{ Storage::url($barmod->bukti_fho) }}"
+											target="_blank">Lihat File</a></li>
+								</ul>
+							@else
+								<input class="form-control rounded-0 mb-4" type="file" id="bukti-fho-modal"
+									name="bukti_fho" required>
+							@endif
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card bg-third border border-primary rounded-0 pt-4 px-4">
+							<p><i class="bi bi-info-square-fill"></i> Info
+							<ol>
+								<li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu(Bank Garansi / Surety Bond) atau
+									keduanya (Bank Garansi & Surety Bond)</li>
+								<li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
+									uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
+								<li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
+									penjamin lainnya.</li>
+							</ol>
+							</p>
+						</div>
+					</div>
+					{{-- tombol kirim dan cancel --}}
+					@if ($barmod->nomor_fho == '')
+						<div class="col-sm-6 mt-4">
+							<button type="submit" class="btn btn-primary rounded-0" name="submit_fho">Kirim</button>
+						</div>
+						<div class="col-sm-6 mt-4 text-end">
+							<button type="button" class="btn bg-third border-primary rounded-0" 
+								onclick="window.location.reload();">Reset</button>
+							<button type="button" class="btn btn-danger rounded-0"
+								onclick="window.location.href='{{ url('dashboard') }}';">kembali</button>
+						</div>
+					@endif
+				</div>
+			</div>
+		</div>
+	</form>
 
     {{-- Jaminan pelaksanaan --}}
-    <div class="container-fluid bg-transparent mb-4">
-        <div class="card bg-light rounded-0">
-            <div class="row mx-4 my-4 align-items-start">
-                <h4>5. Surat Perintah Pencairan Dana (SP2D)</h4>
-                <div class="col-md-6">
-                    <div class="mb-3">
-                        <label for="nomor-sp2d-modal" class="form-label">Nomor Dokumen SP2D</label>
-                        <input class="form-control rounded-0 mb-2" type="text" id="nomor-sp2d-modal" />
-                        <label for="tanggal-sp2d-modal" class="form-label">Tanggal SP2D</label>
-                        <input type="date" class="form-control rounded-0 mb-2" id="tanggal-sp2d-modal"
-                            placeholder="DD/MM/YYYY">
-                        <label for="nilai-sp2d-modal" class="form-label">Nilai SP2D</label>
-                        <input class="form-control rounded-0 mb-2" type="number" id="nilai-sp2d-modal" />
-                        <label for="bukti-sp2d-modal" class="form-label">Bukti Dokumen SP2D (.pdf)</label>
-                        <input class="form-control rounded-0 mb-2" type="file" id="bukti-sp2d-modal" multiple>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card bg-third border border-primary rounded-0 pt-4 px-4">
-                        <p><i class="bi bi-info-square-fill"></i> Info
-                        <ol>
-                            <li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu (Dana APBN / Dana APBD/ Dana
-                                Hibah) atau ketiganya (Dana APBN & Dana APBD & Dana Hibah)</li>
-                            <li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
-                                uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
-                            <li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
-                                penjamin lainnya.</li>
-                        </ol>
-                        </p>
-                    </div>
-                </div>
-                {{-- tombol kirim dan cancel --}}
-                <div class="col-sm-6 mt-4">
-                    <button type="button" class="btn btn-primary rounded-0">Kirim</button>
-                </div>
-                <div class="col-sm-6 mt-4 text-end">
-                    <button type="button" class="btn bg-third border-primary rounded-0">Reset</button>
-                    <button type="button" class="btn btn-danger rounded-0">kembali</button>
-                </div>
-            </div>
-        </div>
-    </div>
+	<form action="{{ route('pelaporan-belanja-modal.update', $barmod->id) }}" method="POST" enctype="multipart/form-data">
+		@csrf
+		<div class="container-fluid bg-transparent mb-4">
+			<div class="card bg-light rounded-0">
+				<div class="row mx-4 my-4 align-items-start">
+					<h4>5. Surat Perintah Pencairan Dana (SP2D)</h4>
+					<div class="col-md-6">
+						<div class="mb-3">
+							<label for="nomor-sp2d-modal" class="form-label">Nomor Dokumen SP2D</label>
+							<input class="form-control rounded-0 mb-2" type="text" id="nomor-sp2d-modal" name="nomor_sp2d" 
+								@if ($barmod->nomor_sp2d != '') value='{{ $barmod->nomor_sp2d }}' disabled @endif
+								required>
+
+							<label for="tanggal-sp2d-modal" class="form-label">Tanggal SP2D</label>
+							<input type="date" class="form-control rounded-0 mb-2" id="tanggal-sp2d-modal"
+								placeholder="DD/MM/YYYY" name="tgl_sp2d"
+								@if ($barmod->tgl_sp2d != '') value='{{ $barmod->tgl_sp2d }}' disabled @endif
+								required>
+
+							<label for="nilai-sp2d-modal" class="form-label">Nilai SP2D</label>
+							<input class="form-control rounded-0 mb-2" type="text" id="nilai-sp2d-modal" name="nilai_sp2d" 
+								oninput="formatRupiah(this);"
+								@if ($barmod->nilai_sp2d != '') value='{{ $barmod->nilai_sp2d }}' disabled @endif
+								required>
+
+							<label for="bukti-sp2d-modal" class="form-label">Bukti Dokumen SP2D (.pdf)</label>
+							@if ($barmod->bukti_sp2d != '')
+								<ul>
+									<li><a href="{{ Storage::url($barmod->bukti_sp2d) }}"
+											target="_blank">Lihat File</a></li>
+								</ul>
+							@else
+								<input class="form-control rounded-0 mb-4" type="file" id="bukti-sp2d-modal"
+									name="bukti_sp2d" required>
+							@endif
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="card bg-third border border-primary rounded-0 pt-4 px-4">
+							<p><i class="bi bi-info-square-fill"></i> Info
+							<ol>
+								<li>Pada Bagian ini Bentuk Jaminan Pelaksanaan bisa salah satu (Dana APBN / Dana APBD/ Dana
+									Hibah) atau ketiganya (Dana APBN & Dana APBD & Dana Hibah)</li>
+								<li>Bank Garansi: Surat jaminan yang dikeluarkan oleh bank yang menjamin pembayaran sejumlah
+									uang tertentu jika pihak yang dijamin tidak dapat memenuhi kewajibannya.</li>
+								<li>Surety Bond: Surat jaminan yang dikeluarkan oleh perusahaan asuransi atau perusahaan
+									penjamin lainnya.</li>
+							</ol>
+							</p>
+						</div>
+					</div>
+					{{-- tombol kirim dan cancel --}}
+					@if ($barmod->nomor_sp2d == '')
+						<div class="col-sm-6 mt-4">
+							<button type="submit" class="btn btn-primary rounded-0" name="submit_sp2d">Kirim</button>
+						</div>
+						<div class="col-sm-6 mt-4 text-end">
+							<button type="button" class="btn bg-third border-primary rounded-0" 
+								onclick="window.location.reload();">Reset</button>
+							<button type="button" class="btn btn-danger rounded-0"
+								onclick="window.location.href='{{ url('dashboard') }}';">kembali</button>
+						</div>
+					@endif
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<script>
+		function formatRupiah(element) {
+			let value = element.value.replace(/[^,\d]/g, '').toString();
+			let split = value.split(',');
+			let sisa = split[0].length % 3;
+			let rupiah = split[0].substr(0, sisa);
+			let ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+	
+			if (ribuan) {
+				let separator = sisa ? '.' : '';
+				rupiah += separator + ribuan.join('.');
+			}
+	
+			rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+			element.value = 'Rp ' + rupiah;
+		}
+	</script>	
 @endsection
