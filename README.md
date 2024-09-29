@@ -1,4 +1,4 @@
-# Sistem Informasi Dinas Pendidikan DKI Jakarta
+# Sistem Informasi Dinas Pendidikan Kota Balikpapan
 
 ## Tata Cara Penggunaan
 ```
