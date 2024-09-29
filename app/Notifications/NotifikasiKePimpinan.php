@@ -24,7 +24,7 @@ class NotifikasiKePimpinan extends Notification
         return (new MailMessage)
             ->subject('Notifikasi Perjalanan Dinas')
             ->line('Ada pengajuan perjalanan dinas yang memerlukan persetujuan.')
-            ->action('Lihat Detail', url('/perjalanan-dinas/' . $this->perjalanandinas->id))
+            ->action('Lihat Detail', url('dashboard-pimpinan/pengajuan-perjalanan-dinas/' . $this->perjalanandinas->id))
             ->line('Terima kasih telah menggunakan aplikasi kami!');
     }
 }

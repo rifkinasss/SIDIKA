@@ -63,13 +63,6 @@ class DashboardController extends Controller
         $barmol = BarangModal::all();
         return view('admin.verifikasi.belanja-modal.perencanaan', compact('barmol', 'title'));
     }
-    
-    public function detailPerencanaanbarmol($id)
-    {
-        $title = 'Perencanaan Barang Modal';
-        $barmol = BarangModal::find($id);
-        return view('admin.verifikasi.belanja-modal.detail-perencanaan', compact('barmol', 'title'));
-    }
 
     public function Pengerjaanbarmol()
     {

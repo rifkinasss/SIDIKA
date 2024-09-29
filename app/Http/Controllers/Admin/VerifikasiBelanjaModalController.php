@@ -5,27 +5,33 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Pegawai\BarangModal;
 use App\Models\User;
+use App\Notifications\belanja_modal\NotifikasiKePimpinan;
 use Illuminate\Http\Request;
 
 class VerifikasiBelanjaModalController extends Controller
 {
-    public function index()
+    public function detailPerencanaanbarmol($id)
     {
-        $barmod = BarangModal::all();
-        return view('admin.verifikasi.verifikasi-belanja-modal', compact('barmod'));
+        $title = 'Perencanaan Barang Modal';
+        $barmol = BarangModal::find($id);
+        return view('admin.verifikasi.belanja-modal.detail-perencanaan', compact('barmol', 'title'));
     }
 
-    public function show($id)
+    public function kirimNotifPimpinan($id)
     {
-        $user = User::find($id);
-        $barmod = BarangModal::find($id);
-        return view('admin.detail.detail-belanja-modal', compact('barmod', 'user'));
-    }
+        // Logika mendapatkan detail perjalanan dinas berdasarkan $id
+        $barmol = BarangModal::find($id);
 
-    public function laporan(string $id)
-    {
-        $barmod = BarangModal::find($id);
-        return view('admin.detail.laporan-belanja-modal', compact('barmod'));
+        // Misalkan ada role 'pimpinan', kita dapatkan pengguna dengan role tersebut
+        $pimpinan = User::where('role', 'pimpinan')->get();
+
+        // Kirim notifikasi ke semua pengguna dengan role pimpinan
+        foreach ($pimpinan as $user) {
+            $user->notify(new NotifikasiKePimpinan($barmol));
+        }
+
+        // Redirect setelah notifikasi dikirim
+        return redirect()->back()->with('success', 'Notifikasi telah dikirim ke pimpinan.');
     }
 
     public function PerencanaanVerif(Request $request, $id)

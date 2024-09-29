@@ -37,13 +37,13 @@
                                         <label for="deskripsi-kebutuhan" class="form-label">Deskripsi Kebutuhan</label>
                                         <textarea type="text" class="form-control rounded-0 mb-2" id="deskripsi-kebutuhan" rows="4" readonly>{{ $barmol->deskripsi_kebutuhan }}</textarea>
 
-                                        <label for="estimasi-biaya" class="form-label">Estimasi Biaya</label>
-                                        <input type="text" class="form-control rounded-0 mb-2" id="estimasi-biaya"
-                                            value="{{ $barmol->estimasi_biaya }}" readonly>
+                                        <label for="jns-belanja-modal" class="form-label">Jenis Belanja Modal</label>
+                                        <input type="text" class="form-control rounded-0 mb-2" id="jns-belanja-modal"
+                                            value="{{ $barmol->jns_belanja != 'Belanja Modal Lainnya' ? $barmol->jns_belanja : $barmol->lainnya }}" readonly> 
 
-                                            <label for="estimasi-biaya" class="form-label">Estimasi Biaya</label>
+                                        <label for="estimasi-biaya" class="form-label">Tanggal Mulai / Tanggal Selesai</label>
                                         <input type="text" class="form-control rounded-0 mb-2" id="estimasi-biaya"
-                                            value="{{ $barmol->estimasi_biaya }}" readonly>
+                                            value="{{ \Carbon\Carbon::parse($barmol->tgl_mulai)->format('d M Y') .' / ' .\Carbon\Carbon::parse($barmol->tgl_selesai)->format('d M Y') }}" readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="nip" class="form-label">NIP</label>
@@ -56,17 +56,13 @@
                                         <label for="deskripsi-spesifikasi" class="form-label">Deskripsi dan Spesifikasi</label>
                                         <textarea type="text" class="form-control rounded-0 mb-2" id="deskripsi-spesifikasi" rows="4" readonly>{{ $barmol->deskripsi_spesifikasi }}</textarea>
 
-                                        <label for="jns-belanja-modal" class="form-label">Jenis Belanja Modal</label>
-                                        <input type="text" class="form-control rounded-0 mb-2" id="jns-belanja-modal"
-                                            value="{{ $barmol->jns_belanja != 'Belanja Modal Lainnya' ? $barmol->jns_belanja : $barmol->lainnya }}" readonly>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="mb-3">
-                                            <label for="bukti-surat-tugas" class="form-label">Bukti Surat
-                                                Tugas</label>
-                                            <embed src=""
-                                                type="application/pdf" width="100%" height="600px" />
-                                        </div>
+                                        <label for="estimasi-biaya" class="form-label">Estimasi Biaya</label>
+                                        <input type="text" class="form-control rounded-0 mb-2" id="estimasi-biaya"
+                                            value="{{ $barmol->estimasi_biaya }}" readonly>
+
+                                        <label for="estimasi-biaya" class="form-label">Durasi</label>
+                                        <input type="text" class="form-control rounded-0 mb-2" id="estimasi-biaya"
+                                            value="{{ $barmol->durasi }}" readonly>
                                     </div>
                                 </div>
 
@@ -79,7 +75,7 @@
                                     <div class="col-sm-6 d-flex justify-content-end">
                                         @if ($barmol->status == 'Diproses')
                                             <form
-                                                action="{{-- route('perjadin.kirimNotifPimpinan', ['id' => $barmol->id]) --}}"
+                                                action="{{ route('perencanaan-belanja-modal.kirimNotifPimpinan', ['id' => $barmol->id]) }}"
                                                 method="POST" style="display:inline;">
                                                 @csrf
                                                 <button type="submit" class="btn btn-warning"

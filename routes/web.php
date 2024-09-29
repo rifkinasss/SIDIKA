@@ -56,6 +56,11 @@ Route::middleware('pimpinan')->group(function () {
     Route::get('dashboard-pimpinan/pengajuan-perjalanan-dinas', [LeadController::class, 'perjadin'])->name('perjadinLead');
     Route::get('dashboard-pimpinan/pengajuan-perjalanan-dinas/{id}', [PerjadinController::class, 'detail'])->name('detail-perjadinLead');
     Route::post('dashboard-pimpinan/pengajuan-perjalanan-dinas/{id}', [PerjadinController::class, 'update'])->name('update-perjadinLead');
+
+    // Belanja Modal
+    // Route::get('dashboard-pimpinan/pengajuan-perjalanan-dinas', [LeadController::class, 'perjadin'])->name('perjadinLead');
+    // Route::get('dashboard-pimpinan/perencanaan-belanja-modal/{id}', [PerjadinController::class, 'detail'])->name('detail-barmolLead');
+    // Route::post('dashboard-pimpinan/pengajuan-perjalanan-dinas/{id}', [PerjadinController::class, 'update'])->name('update-perjadinLead');
 });
 
 Route::middleware('admin')->group(function () {
@@ -77,7 +82,8 @@ Route::middleware('admin')->group(function () {
 
     // Belanja Modal
     Route::get('dashboard-admin/perencanaan-belanja-modal', [AdminDashController::class, 'Perencanaanbarmol'])->name('perencanaan-barang-modal');
-    Route::get('dashboard-admin/perencanaan-belanja-modal/{id}', [AdminDashController::class, 'detailPerencanaanbarmol'])->name('detail-perencanaan-barmod');
+    Route::get('dashboard-admin/perencanaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'detailPerencanaanbarmol'])->name('detail-perencanaan-barmod');
+    Route::post('dashboard-admin/perencanaan-belanja-modal/{id}/send-notification', [VerifikasiBelanjaModalController::class, 'kirimNotifPimpinan'])->name('perencanaan-belanja-modal.kirimNotifPimpinan');
     Route::post('dashboard-admin/perencanaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'PerencanaanVerif'])->name('perencanaan-belanja-modal.verif');
     Route::get('dashboard-admin/pengerjaan-belanja-modal', [AdminDashController::class, 'Pengerjaanbarmol']);
     Route::post('dashboard-admin/pengerjaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'PengerjaanVerif'])->name('pengerjaan-belanja-modal.verif');
