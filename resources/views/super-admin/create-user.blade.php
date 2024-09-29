@@ -27,7 +27,7 @@
                             </div>
                             <div class="card-body">
                                 <form id="quickForm" method="POST"
-                                    action="{{ url('dashboard-superadmin/user-management/tambah') }}">
+                                    action="{{ url('dashboard-superadmin/user-management/create') }}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
@@ -46,18 +46,17 @@
                                                 <input type="email" name="email" class="form-control" id="Email"
                                                     placeholder="Masukkan Email">
                                             </div>
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label>No Handphone</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control"
-                                                        data-inputmask='"mask": "(+62) 899-9999-9999"' data-mask
-                                                        id="nohp" name="noHp" placeholder="(+62) 899-9999-9999">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                                                     </div>
+                                                    <input type="text" class="form-control" id="nohp" name="noHp"
+                                                        placeholder="(+62) 812-3456-7890">
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
+                                            </div> --}}
+                                            {{-- <div class="form-group">
                                                 <label for="Jenis_Kelamin">Jenis Kelamin</label>
                                                 <select id="Jenis_Kelamin" class="form-control select2" style="width: 100%;"
                                                     name="jns_kelamin">
@@ -65,8 +64,8 @@
                                                     <option value="Laki-laki">Laki-laki</option>
                                                     <option value="Perempuan">Perempuan</option>
                                                 </select>
-                                            </div>
-                                            <div class="form-group">
+                                            </div> --}}
+                                            {{-- <div class="form-group">
                                                 <label for="PendidikanTerakhir">Pendidikan Terakhir</label>
                                                 <select id="PendidikanTerakhir" class="form-control select2"
                                                     style="width: 100%;" name="pendidikanTerakhir">
@@ -91,7 +90,7 @@
                                                     <option value="Duda">Duda</option>
                                                     <option value="Janda">Janda</option>
                                                 </select>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -101,10 +100,11 @@
                                                     <option value="" disabled selected>Pilih Role</option>
                                                     <option value="pegawai">Pegawai</option>
                                                     <option value="admin">Admin</option>
-                                                    <option value="superadmin">Superadmin</option>
+                                                    <option value="pimpinan">Pimpinan</option>
+                                                    <option value="superadmin">Super Admin</option>
                                                 </select>
                                             </div>
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label for="jabatan">Jabatan</label>
                                                 <select id="jabatan" class="form-control select2" style="width: 100%;"
                                                     name="jabatan">
@@ -141,8 +141,8 @@
                                                     <option>Bidang Humas dan Komunikasi</option>
                                                     <option>Bidang Teknologi Informasi dan Komputerisasi</option>
                                                 </select>
-                                            </div>
-                                            <div class="form-group">
+                                            </div> --}}
+                                            {{-- <div class="form-group">
                                                 <label for="pangkat">Golongan</label>
                                                 <select id="golongan" class="form-control select2" style="width: 100%;"
                                                     name="golongan">
@@ -166,7 +166,7 @@
                                                     <option value="IV-d">IV-d</option>
                                                     <option value="IV-e">IV-e</option>
                                                 </select>
-                                            </div>
+                                            </div> --}}
                                             <div class="form-group">
                                                 <label for="Tempat_Lahir">Tempat Lahir</label>
                                                 <input type="text" name="tempat_lahir" class="form-control"
@@ -187,7 +187,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label for="Agama">Agama</label>
                                                 <select id="Agama" class="form-control select2" style="width: 100%;"
                                                     name="agama">
@@ -200,13 +200,13 @@
                                                     <option value="Buddha">Buddha</option>
                                                     <option value="Kong hu cu">Kong hu cu</option>
                                                 </select>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label>Alamat</label>
                                         <textarea class="form-control" name="alamat" rows="3" placeholder="Masukkan Alamat"></textarea>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="Password">Password</label>
                                         <div class="input-group">

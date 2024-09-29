@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('durasi');
             $table->string('dokumen_rab');
             $table->text('deskripsi_spesifikasi');
-            
+
             // diisi menggunakan metode update
             $table->enum('status', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
 
@@ -73,7 +73,7 @@ return new class extends Migration
             $table->text('bukti_dpa')->nullable();
 
             $table->integer('persentase')->default(0);
-            $table->enum('status_lapor', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
+            $table->enum('status_pengerjaan', ['Diproses', 'Disetujui', 'Ditolak'])->default('Diproses');
 
             /// Laporan Belanja Barang Jasa
             // SPMK
@@ -89,7 +89,7 @@ return new class extends Migration
             // BAST
             $table->string('nomor_bast')->nullable();
             $table->date('tgl_bast')->nullable();
-            $table->integer('nilai_bast')->nullable();
+            $table->string('nilai_bast')->nullable();
             $table->string('bukti_bast')->nullable();
 
             //FHO

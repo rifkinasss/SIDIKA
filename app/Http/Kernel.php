@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'superadmin' => \App\Http\Middleware\SuperAdmin::class,
         'admin' => \App\Http\Middleware\Admin::class,
         'pegawai' => \App\Http\Middleware\Pegawai::class,
+        'pimpinan' => \App\Http\Middleware\Pimpinan::class,
     ];
 }

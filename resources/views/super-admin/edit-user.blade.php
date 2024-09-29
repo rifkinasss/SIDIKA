@@ -27,7 +27,7 @@
                             </div>
                             <div class="card-body">
                                 <form id="quickForm" method="POST"
-                                    action="{{ url('dashboard-superadmin/user-management/tambah') }}">
+                                    action="{{ url('dashboard-superadmin/user-management/create') }}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">

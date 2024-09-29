@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $jmlhuser = User::count();
+        $jmlhuser = User::where('role', '!=', 'superadmin')->count();
         $title = 'Dashboard';
         return view('super-admin.index', compact('jmlhuser', 'title'));
     }

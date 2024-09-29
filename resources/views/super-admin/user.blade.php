@@ -26,7 +26,7 @@
                                 <h3 class="card-title">User Management</h3>
                             </div>
                             <div class="card-body">
-                                <a href="{{ url('dashboard-superadmin/user-management/tambah') }}" data-bs-toggle="modal"
+                                <a href="{{ url('dashboard-superadmin/user-management/create') }}" data-bs-toggle="modal"
                                     data-bs-target="#tambahUserModal" class="btn btn-primary text-white mb-3">
                                     <i class="bi bi-person-add mr-2"></i> Tambah
                                 </a>

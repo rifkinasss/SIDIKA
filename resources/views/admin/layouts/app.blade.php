@@ -28,10 +28,10 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-        <div class="preloader flex-column justify-content-center align-items-center">
+        {{-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="{{ asset('assets/img/SIDIKA_rpl.png') }}" alt="SIDIKALogo"
                 height="100">
-        </div>
+        </div> --}}
         @include('admin.layouts.partials.navbar')
         @include('admin.layouts.partials.aside')
         @yield('content-wrapper')
@@ -96,6 +96,7 @@
             });
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 </body>
 
 </html>

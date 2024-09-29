@@ -27,7 +27,7 @@ class DashboardController extends Controller
     {
         $title = 'Perjalanan Dinas';
         $perjadin = PerjalananDinas::all();
-        return view('admin.perjadin', compact('perjadin', 'title'));
+        return view('admin.verifikasi.perjadin.index', compact('perjadin', 'title'));
     }
 
     public function Pelaporan()

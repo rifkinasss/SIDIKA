@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('lead.layouts.app')
 
 @section('content-wrapper')
     <div class="content-wrapper">
@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ url('dashboard-admin') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('dashboard-pimpinan') }}">Home</a></li>
                             <li class="breadcrumb-item">Perjalanan Dinas</li>
                             <li class="breadcrumb-item active">Pengajuan Perjalanan Dinas</li>
                         </ol>
@@ -41,21 +41,21 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($barmol as $p)
+                                        @foreach ($perjadin as $p)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $p->nomor_surat }}</td>
                                                 <td>{{ $p->user->nama }}</td>
                                                 <td>{{ $p->keperluan_perjadin }}</td>
-                                                <td>{{ $p->jumlah_dibayarkan }}</td>
-                                                <td>{{ $p->kota_kab }}</td>
+                                                <td>{{ $p->jumlah_biaya }}</td>
+                                                <td>{{ $p->regency->name }} , {{ $p->province->name }}</td>
                                                 <td>{{ $p->status }}</td>
                                                 <td>
-                                                    <a href="{{ route('perjadin.edit', ['id' => $p->id]) }}"
-                                                        class="btn btn-warning btn-sm"><i
-                                                            class="bi bi-pencil-square"></i></a>
-                                                    <form action="{{ route('perjadin.destroy', ['id' => $p->id]) }}"
-                                                        method="POST" style="display:inline;"
+                                                    <a href="{{ url('dashboard-pimpinan/pengajuan-perjalanan-dinas/' . $p->id) }}"
+                                                        class="btn btn-warning btn-sm">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </a>
+                                                    <form action="#" method="POST" style="display:inline;"
                                                         id="deleteForm{{ $p->id }}">
                                                         @csrf
                                                         @method('DELETE')

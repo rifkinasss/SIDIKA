@@ -47,12 +47,14 @@
                                                 <td>{{ $p->nomor_surat }}</td>
                                                 <td>{{ $p->user->nama }}</td>
                                                 <td>{{ $p->keperluan_perjadin }}</td>
-                                                <td>{{ $p->jumlah_dibayarkan }}</td>
-                                                <td>{{ $p->kota_kab }}</td>
+                                                <td>{{ $p->jumlah_biaya }}</td>
+                                                <td>{{ $p->regency->name }} , {{ $p->province->name }}</td>
                                                 <td>{{ $p->status }}</td>
                                                 <td>
-                                                    <a href="#" class="btn btn-warning btn-sm"><i
-                                                            class="bi bi-pencil-square"></i></a>
+                                                    <a href="{{ url('dashboard-admin/pengajuan-perjalanan-dinas/' . $p->id) }}"
+                                                        class="btn btn-warning btn-sm">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </a>
                                                     <form action="#" method="POST" style="display:inline;"
                                                         id="deleteForm{{ $p->id }}">
                                                         @csrf

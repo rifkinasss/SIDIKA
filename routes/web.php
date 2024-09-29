@@ -4,15 +4,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\RedirectToLogin;
+use App\Http\Controllers\Lead\LeadController;
 use App\Http\Controllers\SuperAdmin\UserController;
-use App\Http\Controllers\Pegawai\PerjalananDinasController;
-use App\Http\Controllers\Pegawai\PelaporanPerjadinController;
-use App\Http\Controllers\Pegawai\DashboardController as DashController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashController;
-use App\Http\Controllers\Admin\VerifikasiBelanjaModalController;
-use App\Http\Controllers\Admin\VerifikasiBelanjaBarangJasaController;
 use App\Http\Controllers\Pegawai\BarangJasaController;
 use App\Http\Controllers\Pegawai\BarangModalController;
+use App\Http\Controllers\Pegawai\PerjalananDinasController;
+use App\Http\Controllers\Pegawai\PelaporanPerjadinController;
+use App\Http\Controllers\Admin\VerifikasiBelanjaModalController;
+use App\Http\Controllers\Admin\VerifikasiPerjalananDinasController;
+use App\Http\Controllers\Admin\VerifikasiBelanjaBarangJasaController;
+use App\Http\Controllers\Pegawai\DashboardController as DashController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashController;
+use App\Http\Controllers\Lead\PerjadinController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashController;
 
 /*
@@ -38,21 +41,34 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware('superadmin')->group(function () {
     Route::get('dashboard-superadmin', [SuperAdminDashController::class, 'index'])->name('superadmin');
     Route::get('dashboard-superadmin/user-management', [UserController::class, 'index'])->name('user-management');
-    Route::get('dashboard-superadmin/user-management/tambah', [UserController::class, 'create']);
-    Route::post('dashboard-superadmin/user-management/tambah', [UserController::class, 'store']);
+    Route::get('dashboard-superadmin/user-management/create', [UserController::class, 'create']);
+    Route::post('dashboard-superadmin/user-management/create', [UserController::class, 'store']);
     Route::post('dashboard-superadmin/user-management/import', [UserController::class, 'import'])->name('import');
     Route::get('dashboard-superadmin/user-management/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::post('dashboard-superadmin/user-management/{id}', [UserController::class, 'update'])->name('users.update');
     Route::delete('dashboard-superadmin/user-management/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
+Route::middleware('pimpinan')->group(function () {
+    Route::get('dashboard-pimpinan', [LeadController::class, 'index'])->name('pimpinan');
+
+    // Perjalanan Dinas
+    Route::get('dashboard-pimpinan/pengajuan-perjalanan-dinas', [LeadController::class, 'perjadin'])->name('perjadinLead');
+    Route::get('dashboard-pimpinan/pengajuan-perjalanan-dinas/{id}', [PerjadinController::class, 'detail'])->name('detail-perjadinLead');
+    Route::post('dashboard-pimpinan/pengajuan-perjalanan-dinas/{id}', [PerjadinController::class, 'update'])->name('update-perjadinLead');
+});
+
 Route::middleware('admin')->group(function () {
     Route::get('dashboard-admin', [AdminDashController::class, 'index'])->name('admin');
-    
+
     // Perjalanan Dinas
-    Route::get('dashboard-admin/pengajuan-perjalanan-dinas', [AdminDashController::class, 'Pengajuan']);
+    Route::get('dashboard-admin/pengajuan-perjalanan-dinas', [AdminDashController::class, 'Pengajuan'])->name('pengajuan');
+    Route::get('dashboard-admin/pengajuan-perjalanan-dinas/{id}', [VerifikasiPerjalananDinasController::class, 'detail'])->name('detail-perjadin.index');
+    Route::post('dashboard-admin/pengajuan-perjalanan-dinas/{id}/send-notification', [VerifikasiPerjalananDinasController::class, 'kirimNotifPimpinan'])->name('perjadin.kirimNotifPimpinan');
+
+    // Pelaporan Perjalanan Dinas
     Route::get('dashboard-admin/pelaporan-perjalanan-dinas', [AdminDashController::class, 'Pelaporan']);
-    
+
     // Belanja Barang Jasa
     Route::get('dashboard-admin/perencanaan-belanja-barjas', [AdminDashController::class, 'Perencanaanbarjas']);
     Route::post('dashboard-admin/perencanaan-belanja-barjas/{id}', [VerifikasiBelanjaBarangJasaController::class, 'verif'])->name('perencanaan-belanja-barjas.verif');
@@ -69,7 +85,7 @@ Route::middleware('admin')->group(function () {
 
 Route::middleware('pegawai')->group(function () {
     Route::get('dashboard', [Dashcontroller::class, 'index'])->name('pegawai');
-    
+
     // Profile
     Route::get('profile/{id}', [Dashcontroller::class, 'profile'])->name('profile');
     Route::get('profile/upload/{id}', [Dashcontroller::class, 'uploadfoto'])->name('uploadfoto');
@@ -81,7 +97,7 @@ Route::middleware('pegawai')->group(function () {
     Route::post('pengajuan-perjalanan-dinas/kota', [PerjalananDinasController::class, 'getkota'])->name('getkota');
     Route::get('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'show'])->name('pelaporan-perjalanan-dinas.show');
     Route::post('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'store'])->name('pelaporan-perjalanan-dinas.store');
-    
+
     // Belanja Modal
     Route::get('perencanaan-belanja-modal', [BarangModalController::class, 'perencanaan']);
     Route::post('perencanaan-belanja-modal', [BarangModalController::class, 'store'])->name('perencanaan-belanja-modal.store');
@@ -90,31 +106,32 @@ Route::middleware('pegawai')->group(function () {
     Route::get('/get-regencies/{province_name}', [BarangModalController::class, 'getRegenciesByProvinceName'])->name('get-regencies');
     Route::get('pelaporan-belanja-modal/{id}', [BarangModalController::class, 'pelaporan'])->name('pelaporan-belanja-modal');
     Route::post('pelaporan-belanja-modal/{id}', [BarangModalController::class, 'PelaporanUpdate'])->name('pelaporan-belanja-modal.update');
-    
+
     // Belanja Barang Jasa
     Route::get('perencanaan-belanja-barjas', [BarangJasaController::class, 'perencanaan']);
     Route::post('perencanaan-belanja-barjas', [BarangJasaController::class, 'store'])->name('perencanaan-belanja-barjas.store');
     Route::get('pengerjaan-belanja-barjas/{id}', [BarangJasaController::class, 'pengerjaan'])->name('pengerjaan-belanja-barjas');
-});
 
-Route::get('/pelaporan-perjadin', function () {
-    return view('pegawai.perjadin.pelaporan-perjadin');
-});
 
-Route::get('/pelaporan-belanja-modal', function () {
-    $title = '';
-    return view('pegawai.belanja-modal.pelaporan-modal', compact('title'));
-});
+    Route::get('/pelaporan-perjadin', function () {
+        return view('pegawai.perjadin.pelaporan-perjadin');
+    });
 
-Route::get('/pengerjaan-belanja-barjas', function () {
-    return view('pegawai.belanja-barjas.pengerjaan-barjas', ['title' => '']);
-});
-Route::get('/pelaporan-belanja-barjas', function () {
-    return view('pegawai.belanja-barjas.pelaporan-barjas', ['title' => '']);
-});
+    Route::get('/pelaporan-belanja-modal', function () {
+        $title = '';
+        return view('pegawai.belanja-modal.pelaporan-modal', compact('title'));
+    });
 
-Route::get('/ketentuan-perjadin', function () {
-    return view('pegawai.perjadin.ket-perjadin', [
-        'title' => 'Ketentuan Perjalanan Dinas'
-    ]);
+    Route::get('/pengerjaan-belanja-barjas', function () {
+        return view('pegawai.belanja-barjas.pengerjaan-barjas', ['title' => '']);
+    });
+    Route::get('/pelaporan-belanja-barjas', function () {
+        return view('pegawai.belanja-barjas.pelaporan-barjas', ['title' => '']);
+    });
+
+    Route::get('/ketentuan-perjadin', function () {
+        return view('pegawai.perjadin.ket-perjadin', [
+            'title' => 'Ketentuan Perjalanan Dinas'
+        ]);
+    });
 });

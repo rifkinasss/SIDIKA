@@ -48,6 +48,8 @@ class LoginController extends Controller
                 return redirect()->route('pegawai');
             } elseif ($user->role == 'admin') {
                 return redirect()->route('admin');
+            } elseif ($user->role == 'pimpinan') {
+                return redirect()->route('pimpinan');
             } elseif ($user->role == 'superadmin') {
                 return redirect()->route('superadmin');
             } else {

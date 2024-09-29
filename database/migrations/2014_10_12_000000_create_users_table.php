@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nip', 18)->nullable()->unique();
             $table->string('nama');
             $table->string('email')->unique();
-            $table->enum('role', ['pegawai', 'admin', 'superadmin']);
+            $table->enum('role', ['pegawai', 'admin', 'pimpinan', 'superadmin']);
             $table->string('jns_kelamin')->nullable();
             $table->string('agama')->nullable();
             $table->string('alamat')->nullable();
