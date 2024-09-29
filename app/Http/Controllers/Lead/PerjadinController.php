@@ -22,7 +22,7 @@ class PerjadinController extends Controller
 
     public function update(Request $request, string $id)
     {
-        $perjalanandinas = perjalanandinas::find($id);
+        $perjalanandinas = PerjalananDinas::find($id);
 
         if ($request->has('disetujui')) {
             $tanggal = date('dmY');

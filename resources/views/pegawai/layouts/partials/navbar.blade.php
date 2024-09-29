@@ -39,7 +39,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/perencanaan-belanja-modal">Perencanaan Belanja Modal</a>
+                        <li><a class="dropdown-item" href="{{ url('perencanaan-belanja-modal') }}">Perencanaan Belanja Modal</a>
                         </li>
                     </ul>
                 </li>
@@ -53,7 +53,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/perencanaan-belanja-barjas">Pengajuan Belanja Barang Jasa</a>
+                        <li><a class="dropdown-item" href="{{ url('perencanaan-belanja-barjas') }}">Pengajuan Belanja Barang Jasa</a>
                         </li>
                         <li><a class="dropdown-item" href="/pengerjaan-belanja-barjas">Pengerjaan Belanja Barang Jasa</a>
                         </li>
@@ -67,7 +67,7 @@
             <div id="profile" class="profile-large dropstart">
                 <a class="btn dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                     <span>{{ Auth::user()->nama }}</span>
-                    <img src="{{ Auth::user()->profile_photo_url ?? asset('assets/img/user.jpg') }}" alt="Profile"
+                    <img src="{{ Auth::user()->profile_photo_url ?? asset('assets/Dashboard/img/user.jpg') }}" alt="Profile"
                         class="rounded-5" style="width: 50px; border-radius: 50%;">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-start rounded-0">
@@ -90,7 +90,7 @@
                 <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false">
                     <span>{{ Auth::user()->nama }}</span>
-                    <img src="{{ Auth::user()->profile_photo_url ?? asset('assets/img/user.jpg') }}" alt="Profile"
+                    <img src="{{ Auth::user()->profile_photo_url ?? asset('assets/Dashboard/img/user.jpg') }}" alt="Profile"
                         class="rounded-0" style="width: 30px; border-radius: 50%;">
                 </a>
                 <ul class="dropdown-menu rounded-0">

@@ -76,7 +76,8 @@ Route::middleware('admin')->group(function () {
     Route::get('dashboard-admin/pelaporan-belanja-barjas', [AdminDashController::class, 'Pelaporanbarjas']);
 
     // Belanja Modal
-    Route::get('dashboard-admin/perencanaan-belanja-modal', [AdminDashController::class, 'Perencanaanbarmol']);
+    Route::get('dashboard-admin/perencanaan-belanja-modal', [AdminDashController::class, 'Perencanaanbarmol'])->name('perencanaan-barang-modal');
+    Route::get('dashboard-admin/perencanaan-belanja-modal/{id}', [AdminDashController::class, 'detailPerencanaanbarmol'])->name('detail-perencanaan-barmod');
     Route::post('dashboard-admin/perencanaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'PerencanaanVerif'])->name('perencanaan-belanja-modal.verif');
     Route::get('dashboard-admin/pengerjaan-belanja-modal', [AdminDashController::class, 'Pengerjaanbarmol']);
     Route::post('dashboard-admin/pengerjaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'PengerjaanVerif'])->name('pengerjaan-belanja-modal.verif');
@@ -95,7 +96,7 @@ Route::middleware('pegawai')->group(function () {
     Route::get('ketentuan-perjalanan-dinas', [PerjalananDinasController::class, 'ketentuan'])->name('ketentuan-perjalanan-dinas');
     Route::post('pengajuan-perjalanan-dinas', [PerjalananDinasController::class, 'pengajuan'])->name('pengajuan-perjalanan-dinas');
     Route::post('pengajuan-perjalanan-dinas/kota', [PerjalananDinasController::class, 'getkota'])->name('getkota');
-    Route::get('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'show'])->name('pelaporan-perjalanan-dinas.show');
+    Route::get('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'show'])->name('pelaporan-perjalanan-dinas');
     Route::post('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'store'])->name('pelaporan-perjalanan-dinas.store');
 
     // Belanja Modal

@@ -9,7 +9,7 @@
                     untuk membantu melayani perjalanan dinas, belanja modal, dan belanja barang dan jasa.</p>
             </div>
             <div class="col-sm-6 align-self-end">
-                <img src="{{ asset('assets/img/perjadin-landscape2.jpeg ') }}" class="img-fluid rounded">
+                <img src="{{ asset('assets/Dashboard/img/perjadin-landscape2.jpeg ') }}" class="img-fluid rounded">
             </div>
         </div>
     </div>
@@ -111,7 +111,12 @@
                                                 <td>{{ $perjadins->province->name }}, {{ $perjadins->regency->name }}</td>
                                                 <td>{{ $perjadins->jumlah_biaya }}</td>
                                                 <td>{{ $perjadins->status }}</td>
-                                                <td></td>
+                                                <td>
+                                                    <a href="{{ route('pelaporan-perjalanan-dinas', $perjadins->id) }}"
+                                                        type="submit" class="btn btn-warning btn-sm">
+                                                        <i class="bi bi-pencil-square"></i> Pelaporan
+                                                    </a>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
