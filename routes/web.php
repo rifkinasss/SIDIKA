@@ -141,4 +141,19 @@ Route::middleware('pegawai')->group(function () {
             'title' => 'Ketentuan Perjalanan Dinas'
         ]);
     });
+    Route::get('/ketentuan-belanja-modal', function () {
+        return view('pegawai.belanja-modal.ket-modal', [
+            'title' => 'Ketentuan Belanja Modal'
+        ]);
+    });
+    Route::get('/ketentuan-belanja-barang-jasa', function () {
+        return view('pegawai.belanja-barjas.ket-barjas', [
+            'title' => 'Ketentuan Belanja Barang Jasa'
+        ]);
+    });
+    Route::get('/bantuan', function () {
+        return view('pegawai.bantuan', [
+            'title' => 'Bantuan Pengguna'
+        ]);
+    });
 });

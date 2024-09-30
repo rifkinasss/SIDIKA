@@ -288,25 +288,25 @@
             <div class="col-md-4 align-self-start">
                 <div class="card rounded-0">
                     <a href="/">
-                        <img src="{{ asset('assets/img/SIDIKA_Landscape.png') }}" class="card-img-top" alt="Logo SIDIKA">
+                        <img src="{{ asset('assets/Dashboard/img/SIDIKA_Landscape.png') }}" class="card-img-top" alt="Logo SIDIKA">
                     </a>
                     <div class="card-body bg-third">
                         <h5 class="card-title">Layanan Lainnya</h5>
                         <p class="card-text">Cari tahu ketentuan layanan lainnya melalui akses link-link di bawah ini:</p>
                         <ul class="list-group list-group-flush">
-                            <a href="" class="text-decoration-none">
+                            <a href="{{ url('/ketentuan-belanja-modal') }}" class="text-decoration-none">
                                 <li class="list-group-item bg-transparent">Ketentuan Belanja Modal <div class="float-end">
                                         <i class="bi bi-chevron-right"></i>
                                     </div>
                                 </li>
                             </a>
-                            <a href="" class="text-decoration-none">
+                            <a href="{{ url('/ketentuan-belanja-barang-jasa') }}" class="text-decoration-none">
                                 <li class="list-group-item bg-transparent">Ketentuan Belanja Barang Jasa <div
                                         class="float-end"><i class="bi bi-chevron-right"></i></div>
                                 </li>
                                 </li>
                             </a>
-                            <a href="" class="text-decoration-none">
+                            <a href="{{ url('/bantuan') }}" class="text-decoration-none">
                                 <li class="list-group-item bg-transparent">Bantuan Pengguna <div class="float-end"><i
                                             class="bi bi-chevron-right"></i></div>
                                 </li>

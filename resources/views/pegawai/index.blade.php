@@ -38,17 +38,17 @@
                         <hr>
                     </div>
                     <div class="mx-4">
-                        <a href="#" class="mx-2 my-4 h-5 text-third text-decoration-none">Ketentuan Belanja Modal<div
+                        <a href="{{ url('ketentuan-belanja-modal') }}" class="mx-2 my-4 h-5 text-third text-decoration-none">Ketentuan Belanja Modal<div
                                 class="float-end"><i class="bi bi-chevron-right"></i></div></a>
                         <hr>
                     </div>
                     <div class="mx-4">
-                        <a href="#" class="mx-2 my-4 h-5 text-third text-decoration-none">Ketentuan Belanja Barang
+                        <a href="{{ url('ketentuan-belanja-barang-jasa') }}" class="mx-2 my-4 h-5 text-third text-decoration-none">Ketentuan Belanja Barang
                             Jasa<div class="float-end"><i class="bi bi-chevron-right"></i></div></a>
                         <hr>
                     </div>
                     <div class="mx-4">
-                        <a href="#" class="mx-2 my-4 h-5 text-third text-decoration-none">Bantuan Pengguna<div
+                        <a href="{{ url('bantuan') }}" class="mx-2 my-4 h-5 text-third text-decoration-none">Bantuan Pengguna<div
                                 class="float-end"><i class="bi bi-chevron-right"></i></div></a>
                         <hr>
                     </div>

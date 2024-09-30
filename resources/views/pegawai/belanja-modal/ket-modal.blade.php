@@ -5,7 +5,7 @@
     <div class="container-fluid px-4 py-4 bg-transparent">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-dark">Home</a></li>
+                <li class="breadcrumb-item"><a  class="text-decoration-none text-dark">Home</a></li>
                 <li class="breadcrumb-item">Belanja Modal</li>
                 <li class="breadcrumb-item active" aria-current="page"><span class="text-first"><u>Ketentuan Belanja
                             Modal</u></span></li>
@@ -13,22 +13,7 @@
         </nav>
         <div class="row">
             <h1>Ketentuan Belanja Modal</h1>
-            <span>07/07/2024 16:01 WITA</span>
             <div class="col-md-8 mt-2 align-self-start">
-                <div class="row">
-                    <div class="col-1">
-                        <img src="{{ asset('assets/img/miles1x1.jpeg') }}" alt="Profile" class="rounded-circle"
-                            style="width: 50px;">
-                    </div>
-                    <div class="col">
-                        <span><b>Faiq Athari</b></span>
-                        <p>Admin</p>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <img src="{{ asset('assets/img/belanja-modal.jpeg ') }}" class="img-fluid rounded-0 mt-4">
-                </div>
-                <h6 class="mt-2 text-center"><i>gambar 1. ilustrasi belanja modal</i></h6>
                 <section class="ms-4 mt-4">
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <!-- Pengertian -->
@@ -177,24 +162,24 @@
             <div class="col-md-4 align-self-start">
                 <div class="card rounded-0">
                     <a href="/">
-                        <img src="{{ asset('assets/img/SIDIKA_Landscape.png') }}" class="card-img-top" alt="Logo SIDIKA">
+                        <img src="{{ asset('assets/Dashboard/img/SIDIKA_Landscape.png') }}" class="card-img-top" alt="Logo SIDIKA">
                     </a>
                     <div class="card-body bg-third">
                         <h5 class="card-title">Layanan Lainnya</h5>
                         <p class="card-text">Cari tahu ketentuan layanan lainnya melalui akses link-link di bawah ini:</p>
                         <ul class="list-group list-group-flush">
-                            <a href="" class="text-decoration-none">
+                            <a href="{{ url('/ketentuan-perjadin') }}" class="text-decoration-none">
                                 <li class="list-group-item bg-transparent">Ketentuan Perjalanan Dinas <div
                                         class="float-end"><i class="bi bi-chevron-right"></i></div>
                                 </li>
                             </a>
-                            <a href="" class="text-decoration-none">
+                            <a href="{{ url('/ketentuan-belanja-barang-jasa') }}" class="text-decoration-none">
                                 <li class="list-group-item bg-transparent">Ketentuan Belanja Barang Jasa <div
                                         class="float-end"><i class="bi bi-chevron-right"></i></div>
                                 </li>
                                 </li>
                             </a>
-                            <a href="" class="text-decoration-none">
+                            <a href="{{ url('/bantuan') }}" class="text-decoration-none">
                                 <li class="list-group-item bg-transparent">Bantuan Pengguna <div class="float-end"><i
                                             class="bi bi-chevron-right"></i></div>
                                 </li>

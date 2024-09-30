@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-third sticky-top">
     <div class="container">
         <a class="navbar-brand" href="{{ url('dashboard') }}">
-            <img src="{{ asset('assets/img/SIDIKA_rpl.png') }}" style="width: 140px">
+            <img src="{{ asset('assets/Dashboard/img/SIDIKA_rpl.png') }}" style="width: 140px">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,8 +25,8 @@
                         </li>
                         <li><a class="dropdown-item" href="{{ url('pengajuan-perjalanan-dinas') }}">Pengajuan Perjalanan
                                 Dinas</a></li>
-                        <li><a class="dropdown-item" href="{{ url('pelaporan-perjalanan-dinas') }}">Pelaporan Perjalanan
-                                Dinas</a></li>
+                        {{-- <li><a class="dropdown-item" href="{{ url('pelaporan-perjalanan-dinas') }}">Pelaporan Perjalanan
+                                Dinas</a></li> --}}
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -35,7 +35,7 @@
                         Belanja Modal
                     </a>
                     <ul class="dropdown-menu rounded-0">
-                        <li><a class="dropdown-item" href="#">Ketentuan Belanja Modal</a></li>
+                        <li><a class="dropdown-item" href="{{ url('ketentuan-belanja-modal') }}">Ketentuan Belanja Modal</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -49,26 +49,32 @@
                         Barang Jasa
                     </a>
                     <ul class="dropdown-menu rounded-0">
-                        <li><a class="dropdown-item" href="#">Ketentuan Barang Jasa</a></li>
+                        <li><a class="dropdown-item" href="{{ url('ketentuan-belanja-barang-jasa') }}">Ketentuan Barang Jasa</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item" href="{{ url('perencanaan-belanja-barjas') }}">Pengajuan Belanja Barang Jasa</a>
                         </li>
-                        <li><a class="dropdown-item" href="/pengerjaan-belanja-barjas">Pengerjaan Belanja Barang Jasa</a>
+                        {{-- <li><a class="dropdown-item" href="/pengerjaan-belanja-barjas">Pengerjaan Belanja Barang Jasa</a>
                         </li>
-                        <li><a class="dropdown-item" href="/pelaporan-belanja-barjas">Pelaporan Belanja Barang Jasa</a></li>
+                        <li><a class="dropdown-item" href="/pelaporan-belanja-barjas">Pelaporan Belanja Barang Jasa</a></li> --}}
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#">Bantuan</a>
+                    <a class="nav-link text-dark" href="{{ url('bantuan') }}">Bantuan</a>
                 </li>
             </ul>
             <div id="profile" class="profile-large dropstart">
-                <a class="btn dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
-                    <span>{{ Auth::user()->nama }}</span>
-                    <img src="{{ Auth::user()->profile_photo_url ?? asset('assets/Dashboard/img/user.jpg') }}" alt="Profile"
-                        class="rounded-5" style="width: 50px; border-radius: 50%;">
+                <a class="btn dropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                    <div style="display: flex; align-items: center;">
+                        <!-- Nama pengguna di sebelah kiri -->
+                        <span>{{ Auth::user()->nama }}</span>
+                        
+                        <!-- Foto profil di sebelah kanan -->
+                        <img src="{{ Auth::user()->profile_photo_url ?? asset('assets/Dashboard/img/user.jpg') }}" 
+                            alt="Profile" class="rounded-5" 
+                            style="width: 50px; height: 50px; border-radius: 50%; margin-left: 10px;">
+                    </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-start rounded-0">
                     <li><a class="dropdown-item" href="{{ route('profile', Auth::user()->id) }}"><i

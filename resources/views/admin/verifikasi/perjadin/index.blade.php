@@ -34,10 +34,10 @@
                                             <th>Nomor Surat</th>
                                             <th>Nama</th>
                                             <th>Keperluan</th>
-                                            <th>Jumlah Biaya</th>
-                                            <th>Tujuan</th>
+                                            <th class="text-center">Jumlah Biaya</th>
+                                            <th class="text-center">Tujuan</th>
                                             <th>Status</th>
-                                            <th>Aksi</th>
+                                            <th class="text-center">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -48,21 +48,35 @@
                                                 <td>{{ $p->user->nama }}</td>
                                                 <td>{{ $p->keperluan_perjadin }}</td>
                                                 <td>{{ $p->jumlah_biaya }}</td>
-                                                <td>{{ $p->regency->name }} , {{ $p->province->name }}</td>
-                                                <td>{{ $p->status }}</td>
+                                                <td class="text-center">{{ $p->regency->name }} , {{ $p->province->name }}</td>
                                                 <td>
-                                                    <a href="{{ url('dashboard-admin/pengajuan-perjalanan-dinas/' . $p->id) }}"
-                                                        class="btn btn-warning btn-sm">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                    </a>
-                                                    <form action="#" method="POST" style="display:inline;"
-                                                        id="deleteForm{{ $p->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger deleteUser btn-sm"
-                                                            data-id="{{ $p->id }}">
-                                                            <i class="bi bi-trash"></i></button>
-                                                    </form>
+                                                    @if($p->status == 'Diproses')
+                                                        <span class="badge badge-warning">Diproses</span>
+                                                    @elseif($p->status == 'Disetujui')
+                                                        <span class="badge badge-success">Disetujui</span>
+                                                    @elseif($p->status == 'Ditolak')
+                                                        <span class="badge badge-danger">Ditolak</span>
+                                                    @else
+                                                        <span class="badge badge-secondary">{{ $p->status }}</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <div style="display: flex; justify-content: space-between;">
+                                                        <!-- Tombol Edit di sebelah kiri -->
+                                                        <a href="{{ url('dashboard-admin/pengajuan-perjalanan-dinas/' . $p->id) }}"
+                                                            class="btn btn-warning btn-sm">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </a>
+                                                        
+                                                        <!-- Form Delete di sebelah kanan -->
+                                                        <form action="#" method="POST" style="display:inline;" id="deleteForm{{ $p->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger deleteUser btn-sm" data-id="{{ $p->id }}">
+                                                                <i class="bi bi-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -47,9 +47,19 @@
                                                 <td>{{ $p->nomor_surat }}</td>
                                                 <td>{{ $p->user->nama }}</td>
                                                 <td>{{ $p->keperluan_perjadin }}</td>
-                                                <td>{{ $p->jumlah_dibayarkan }}</td>
-                                                <td>{{ $p->kota_kab }}</td>
-                                                <td>{{ $p->status }}</td>
+                                                <td>{{ $p->jumlah_biaya }}</td>
+                                                <td class="text-center">{{ $p->regency->name }} , {{ $p->province->name }}</td>
+                                                <td>
+                                                    @if($p->status == 'Diproses')
+                                                        <span class="badge badge-warning">Diproses</span>
+                                                    @elseif($p->status == 'Disetujui')
+                                                        <span class="badge badge-success">Disetujui</span>
+                                                    @elseif($p->status == 'Ditolak')
+                                                        <span class="badge badge-danger">Ditolak</span>
+                                                    @else
+                                                        <span class="badge badge-secondary">{{ $p->status }}</span>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <a href="{{ route('perjadin.edit', ['id' => $p->id]) }}"
                                                         class="btn btn-warning btn-sm"><i
