@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $pelaporan = PelaporanPerjadin::where('user_id', $user_id)->get();
         $barjas = BarangJasa::where('user_id', $user_id)->get();
         $barmol = BarangModal::where('user_id', $user_id)->get();
-        
+
         return view('pegawai.index', compact('title', 'perjadin', 'barjas', 'barmol', 'pelaporan'));
     }
 
@@ -61,5 +61,26 @@ class DashboardController extends Controller
         }
 
         return response()->json(['success' => false, 'message' => 'Failed to upload image.']);
+    }
+
+    public function ketentuanPerjadin()
+    {
+        return view('pegawai.perjadin.ket-perjadin', [
+            'title' => 'Ketentuan Perjalanan Dinas'
+        ]);
+    }
+
+    public function ketentuanBarMol()
+    {
+        return view('pegawai.belanja-modal.ket-modal', [
+            'title' => 'Ketentuan Belanja Modal'
+        ]);
+    }
+
+    public function ketentuanBarJas()
+    {
+        return view('pegawai.belanja-barjas.ket-barjas', [
+            'title' => 'Ketentuan Belanja Barang Jasa'
+        ]);
     }
 }

@@ -93,13 +93,17 @@ Route::middleware('admin')->group(function () {
 Route::middleware('pegawai')->group(function () {
     Route::get('dashboard', [Dashcontroller::class, 'index'])->name('pegawai');
 
+    // Ketentuan-ketentuan
+    Route::get('/ketentuan-perjalanan-dinas', [Dashcontroller::class, 'ketentuanPerjadin'])->name('ketentuan-perjalanan-dinas');
+    Route::get('/ketentuan-belanja-modal', [Dashcontroller::class, 'ketentuanBarMol'])->name('ketentuan-belanja-modal');
+    Route::get('/ketentuan-belanja-barang-jasa', [Dashcontroller::class, 'ketentuanBarJas'])->name('ketentuan-belanja-barang-jasa');
+
     // Profile
     Route::get('profile/{id}', [Dashcontroller::class, 'profile'])->name('profile');
     Route::get('profile/upload/{id}', [Dashcontroller::class, 'uploadfoto'])->name('uploadfoto');
 
     // Perjalanan Dinas
     Route::get('pengajuan-perjalanan-dinas', [PerjalananDinasController::class, 'index']);
-    Route::get('ketentuan-perjalanan-dinas', [PerjalananDinasController::class, 'ketentuan'])->name('ketentuan-perjalanan-dinas');
     Route::post('pengajuan-perjalanan-dinas', [PerjalananDinasController::class, 'pengajuan'])->name('pengajuan-perjalanan-dinas');
     Route::post('pengajuan-perjalanan-dinas/kota', [PerjalananDinasController::class, 'getkota'])->name('getkota');
     Route::get('pelaporan-perjalanan-dinas/{id}', [PelaporanPerjadinController::class, 'show'])->name('pelaporan-perjalanan-dinas');
@@ -134,23 +138,7 @@ Route::middleware('pegawai')->group(function () {
     });
     Route::get('/pelaporan-belanja-barjas', function () {
         return view('pegawai.belanja-barjas.pelaporan-barjas', ['title' => '']);
-    });
-
-    Route::get('/ketentuan-perjadin', function () {
-        return view('pegawai.perjadin.ket-perjadin', [
-            'title' => 'Ketentuan Perjalanan Dinas'
-        ]);
-    });
-    Route::get('/ketentuan-belanja-modal', function () {
-        return view('pegawai.belanja-modal.ket-modal', [
-            'title' => 'Ketentuan Belanja Modal'
-        ]);
-    });
-    Route::get('/ketentuan-belanja-barang-jasa', function () {
-        return view('pegawai.belanja-barjas.ket-barjas', [
-            'title' => 'Ketentuan Belanja Barang Jasa'
-        ]);
-    });
+    });;
     Route::get('/bantuan', function () {
         return view('pegawai.bantuan', [
             'title' => 'Bantuan Pengguna'

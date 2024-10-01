@@ -3,7 +3,8 @@
 @section('login')
     <div class="login-box">
         <div class="login-logo">
-            <a><img src="{{ asset('assets/img/SIDIKA.png') }}" style="width: 50px"> <b>SIDIKA</b></a>
+            <a href="{{ route('login') }}"><img src="{{ asset('assets/Login/img/SIDIKA.png') }}" style="width: 50px">
+                <b>SIDIKA</b></a>
         </div>
         <div class="card">
             <div class="card-body login-card-body">

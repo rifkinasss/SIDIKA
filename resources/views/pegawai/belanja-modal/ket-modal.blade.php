@@ -5,7 +5,7 @@
     <div class="container-fluid px-4 py-4 bg-transparent">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a  class="text-decoration-none text-dark">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-decoration-none text-dark">Home</a></li>
                 <li class="breadcrumb-item">Belanja Modal</li>
                 <li class="breadcrumb-item active" aria-current="page"><span class="text-first"><u>Ketentuan Belanja
                             Modal</u></span></li>
@@ -162,13 +162,14 @@
             <div class="col-md-4 align-self-start">
                 <div class="card rounded-0">
                     <a href="/">
-                        <img src="{{ asset('assets/Dashboard/img/SIDIKA_Landscape.png') }}" class="card-img-top" alt="Logo SIDIKA">
+                        <img src="{{ asset('assets/Dashboard/img/SIDIKA_Landscape.png') }}" class="card-img-top"
+                            alt="Logo SIDIKA">
                     </a>
                     <div class="card-body bg-third">
                         <h5 class="card-title">Layanan Lainnya</h5>
                         <p class="card-text">Cari tahu ketentuan layanan lainnya melalui akses link-link di bawah ini:</p>
                         <ul class="list-group list-group-flush">
-                            <a href="{{ url('/ketentuan-perjadin') }}" class="text-decoration-none">
+                            <a href="{{ url('/ketentuan-perjalanan-dinas') }}" class="text-decoration-none">
                                 <li class="list-group-item bg-transparent">Ketentuan Perjalanan Dinas <div
                                         class="float-end"><i class="bi bi-chevron-right"></i></div>
                                 </li>

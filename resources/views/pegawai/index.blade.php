@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="container-fluid bg-third">
-        <div class="row">
+        <div class="row ">
             <div class="col align-self-center">
                 <h2 class="text-first m-4"><b>PERJALANAN DINAS LEBIH MUDAH DENGAN SIDIKA</b></h2>
                 <p class="m-4"><span class="text-second inknut-antiqua">SIDIKA</span> adalah website khusus yang dibuat
                     untuk membantu melayani perjalanan dinas, belanja modal, dan belanja barang dan jasa.</p>
             </div>
-            <div class="col-sm-6 align-self-end">
-                <img src="{{ asset('assets/Dashboard/img/perjadin-landscape2.jpeg ') }}" class="img-fluid rounded">
+            <div class="col-sm-6 align-self-end m-3">
+                <img src="{{ asset('assets/Dashboard/img/dashboard.svg ') }}" class="img-fluid rounded">
             </div>
         </div>
     </div>
@@ -38,18 +38,20 @@
                         <hr>
                     </div>
                     <div class="mx-4">
-                        <a href="{{ url('ketentuan-belanja-modal') }}" class="mx-2 my-4 h-5 text-third text-decoration-none">Ketentuan Belanja Modal<div
+                        <a href="{{ url('ketentuan-belanja-modal') }}"
+                            class="mx-2 my-4 h-5 text-third text-decoration-none">Ketentuan Belanja Modal<div
                                 class="float-end"><i class="bi bi-chevron-right"></i></div></a>
                         <hr>
                     </div>
                     <div class="mx-4">
-                        <a href="{{ url('ketentuan-belanja-barang-jasa') }}" class="mx-2 my-4 h-5 text-third text-decoration-none">Ketentuan Belanja Barang
+                        <a href="{{ url('ketentuan-belanja-barang-jasa') }}"
+                            class="mx-2 my-4 h-5 text-third text-decoration-none">Ketentuan Belanja Barang
                             Jasa<div class="float-end"><i class="bi bi-chevron-right"></i></div></a>
                         <hr>
                     </div>
                     <div class="mx-4">
-                        <a href="{{ url('bantuan') }}" class="mx-2 my-4 h-5 text-third text-decoration-none">Bantuan Pengguna<div
-                                class="float-end"><i class="bi bi-chevron-right"></i></div></a>
+                        <a href="{{ url('bantuan') }}" class="mx-2 my-4 h-5 text-third text-decoration-none">Bantuan
+                            Pengguna<div class="float-end"><i class="bi bi-chevron-right"></i></div></a>
                         <hr>
                     </div>
                 </div>
@@ -204,7 +206,7 @@
                                                         <a href="{{ route('pelaporan-belanja-modal', $barmols->id) }}"
                                                             type="submit" class="btn btn-warning btn-sm">
                                                             <i class="bi bi-pencil-square"></i> Pelaporan <span
-                                                            class="badge text-bg-light">{{ $barmols->persentase_lapor }}%</span>
+                                                                class="badge text-bg-light">{{ $barmols->persentase_lapor }}%</span>
                                                         </a>
                                                     @endif
                                                 </td>
@@ -280,19 +282,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        $(document).ready(function() {
-            $('#example2').DataTable({
-                "paging": true,
-                "pageLength": 5,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true
-            });
-        });
-    </script>
 @endsection
