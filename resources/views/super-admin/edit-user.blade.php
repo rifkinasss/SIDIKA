@@ -27,7 +27,7 @@
                             </div>
                             <div class="card-body">
                                 <form id="quickForm" method="POST"
-                                    action="{{ url('dashboard-superadmin/user-management/create') }}">
+                                    action="{{ route('users.update', $user->id) }}">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-6">
@@ -52,7 +52,7 @@
                                                 <div class="input-group">
                                                     <input type="text" class="form-control"
                                                         data-inputmask='"mask": "(+62) 899-9999-9999"' data-mask
-                                                        id="nohp" name="noHp" placeholder="(+62) 899-9999-9999"
+                                                        id="nohp" name="no_handphone" placeholder="(+62) 899-9999-9999"
                                                         value="{{ $user->noHp }}">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
@@ -103,10 +103,11 @@
                                                 <label for="Role">Role</label>
                                                 <select id="Role" class="form-control select2" style="width: 100%;"
                                                     name="role">
-                                                    <option value="{{ $user->role }}" disabled selected>
+                                                    <option value="{{ $user->role }}" readonly selected>
                                                         {{ $user->role }}</option>
                                                     <option value="pegawai">Pegawai</option>
                                                     <option value="admin">Admin</option>
+                                                    <option value="pimpinan">Pimpinan</option>
                                                     <option value="superadmin">Superadmin</option>
                                                 </select>
                                             </div>

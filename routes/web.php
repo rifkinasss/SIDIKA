@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\VerifikasiPerjalananDinasController;
 use App\Http\Controllers\Admin\VerifikasiBelanjaBarangJasaController;
 use App\Http\Controllers\Pegawai\DashboardController as DashController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashController;
+use App\Http\Controllers\Lead\BarangModalController as LeadBarangModalController;
 use App\Http\Controllers\Lead\PerjadinController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashController;
 
@@ -58,9 +59,9 @@ Route::middleware('pimpinan')->group(function () {
     Route::post('dashboard-pimpinan/pengajuan-perjalanan-dinas/{id}', [PerjadinController::class, 'update'])->name('update-perjadinLead');
 
     // Belanja Modal
-    // Route::get('dashboard-pimpinan/pengajuan-perjalanan-dinas', [LeadController::class, 'perjadin'])->name('perjadinLead');
-    // Route::get('dashboard-pimpinan/perencanaan-belanja-modal/{id}', [PerjadinController::class, 'detail'])->name('detail-barmolLead');
-    // Route::post('dashboard-pimpinan/pengajuan-perjalanan-dinas/{id}', [PerjadinController::class, 'update'])->name('update-perjadinLead');
+    Route::get('dashboard-pimpinan/perencanaan-belanja-modal', [LeadController::class, 'perencanaan_barmol'])->name('perencanaan-barmol-lead');
+    Route::get('dashboard-pimpinan/perencanaan-belanja-modal/{id}', [LeadBarangModalController::class, 'perencanaan_detail'])->name('detail-perencanaan-barmol-lead');
+    Route::post('dashboard-pimpinan/perencanaan-belanja-modal/{id}', [LeadBarangModalController::class, 'perencanaan_verif'])->name('update-perencanaan-barmol-lead');
 });
 
 Route::middleware('admin')->group(function () {
@@ -83,11 +84,11 @@ Route::middleware('admin')->group(function () {
     // Belanja Modal
     Route::get('dashboard-admin/perencanaan-belanja-modal', [AdminDashController::class, 'Perencanaanbarmol'])->name('perencanaan-barang-modal');
     Route::get('dashboard-admin/perencanaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'detailPerencanaanbarmol'])->name('detail-perencanaan-barmod');
-    Route::post('dashboard-admin/perencanaan-belanja-modal/{id}/send-notification', [VerifikasiBelanjaModalController::class, 'kirimNotifPimpinan'])->name('perencanaan-belanja-modal.kirimNotifPimpinan');
-    Route::post('dashboard-admin/perencanaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'PerencanaanVerif'])->name('perencanaan-belanja-modal.verif');
-    Route::get('dashboard-admin/pengerjaan-belanja-modal', [AdminDashController::class, 'Pengerjaanbarmol']);
-    Route::post('dashboard-admin/pengerjaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'PengerjaanVerif'])->name('pengerjaan-belanja-modal.verif');
-    Route::get('dashboard-admin/pelaporan-belanja-modal', [AdminDashController::class, 'Pelaporanbarmol']);
+    Route::post('dashboard-admin/perencanaan-beanja-modal/{id}/send-notification', [VerifikasiBelanjaModalController::class, 'perencanaan_kirimNotifPimpinan'])->name('perencanaan-belanja-modal.kirimNotifPimpinan');
+    Route::get('dashboard-admin/pengerjaan-belanja-modal', [AdminDashController::class, 'Pengerjaanbarmol'])->name('pengerjaan-barang-modal');
+    Route::get('dashboard-admin/pengerjaan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'detailPengerjaanbarmol'])->name('detail-pengerjaan-barmod');
+    Route::post('dashboard-admin/pengerjaan-belanja-modal/{id}/send-notification', [VerifikasiBelanjaModalController::class, 'pengerjaan_kirimNotifPimpinan'])->name('pengerjaan-belanja-modal.kirimNotifPimpinan');
+    Route::get('dashboard-admin/pelaporan-belanja-modal', [AdminDashController::class, 'Pelaporanbarmol'])->name('pelaporan-barang-modal');
 });
 
 Route::middleware('pegawai')->group(function () {

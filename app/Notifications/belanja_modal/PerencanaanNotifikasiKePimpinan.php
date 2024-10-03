@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NotifikasiKePimpinan extends Notification
+class PerencanaanNotifikasiKePimpinan extends Notification
 {
     protected $barmol;
 
@@ -27,6 +27,6 @@ class NotifikasiKePimpinan extends Notification
             ->subject('Persetujuan Perencanaan Belanja Modal')
             ->line('Ada pengajuan perencanaan belanja modal yang memerlukan persetujuan.')
             ->action('Lihat Detail', url('dashboard-pimpinan/perencanaan-belanja-modal/' . $this->barmol->id))
-            ->line('Terima kasih telah menggunakan aplikasi kami!');
+            ->line('Terima kasih telah menggunakan Sistem Informasi Dinas Pendidikan!');
     }
 }

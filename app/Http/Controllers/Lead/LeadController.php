@@ -29,4 +29,11 @@ class LeadController extends Controller
         $perjadin = PerjalananDinas::all();
         return view('lead.verifikasi.perjadin.index', compact('perjadin', 'title'));
     }
+
+    public function perencanaan_barmol()
+    {
+        $title = 'Belanja Modal';
+        $barmol = BarangModal::all();
+        return view('lead.verifikasi.belanja-modal.perencanaan', compact('barmol', 'title'));
+    }
 }

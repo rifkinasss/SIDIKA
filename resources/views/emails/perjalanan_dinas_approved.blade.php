@@ -859,10 +859,10 @@
                                                                                 <td class="mcnTextContent" style="mso-line-height-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; word-break: break-word; color: #ffffff; font-family: Helvetica; font-size: 12px; line-height: 150%; text-align: center; padding: 0 18px 9px 18px;" valign="top">
                                                                                     <span style="font-size: 14pt;">SIDIKA Sistem Informasi Sistem Pendidikan</span>
                                                                                     <br>
-                                                                                    <span style="font-size: 14pt;">Dinas Pendidikan dan Kebudayaan Jakarta</span>
+                                                                                    <span style="font-size: 14pt;">Dinas Pendidikan dan Kebudayaan Balikpapan</span>
                                                                                     <div style="text-align: center;">
                                                                                         <div>
-                                                                                            <span style="font-size: 14pt;">Jln. Jendral Gatot Subroto, Kav. 40-41, Jakarta Selatan</span>
+                                                                                            <span style="font-size: 14pt;">Jl. Ruhui Rahayu 1, Sepinggan, Kecamatan Balikpapan Selatan, Kota Balikpapan</span>
                                                                                         </div>
                                                                                         <div>
                                                                                             <br>

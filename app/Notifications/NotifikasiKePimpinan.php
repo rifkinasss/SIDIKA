@@ -25,6 +25,6 @@ class NotifikasiKePimpinan extends Notification
             ->subject('Notifikasi Perjalanan Dinas')
             ->line('Ada pengajuan perjalanan dinas yang memerlukan persetujuan.')
             ->action('Lihat Detail', url('dashboard-pimpinan/pengajuan-perjalanan-dinas/' . $this->perjalanandinas->id))
-            ->line('Terima kasih telah menggunakan aplikasi kami!');
+            ->line('Terima kasih telah menggunakan Sistem Informasi Dinas Pendidikan!');
     }
 }
