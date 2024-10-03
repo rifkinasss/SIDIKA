@@ -35,6 +35,7 @@ class BarangModalController extends Controller
             'tgl_selesai' => $tgl_selesai,
             'durasi' => $request->durasi,
             'deskripsi_spesifikasi' => $request->deskripsi_spesifikasi,
+            'bukti_surat_adendum' => '[]',
         ]);
 
         return redirect()->route('pegawai')->with('belanja-modal', 'Perencanaan belanja modal berhasil dikirim.');
