@@ -6,13 +6,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Pelaporan Belanja Modal</h1>
+                        <h1 class="m-0">Perencanaan Belanja Barang Jasa</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ url('dashboard-admin') }}">Home</a></li>
-                            <li class="breadcrumb-item">Belanja Modal</li>
-                            <li class="breadcrumb-item active">Pelaporan Belanja Modal</li>
+                            <li class="breadcrumb-item">Belanja Barang Jasa</li>
+                            <li class="breadcrumb-item active">Perencanaan Belanja Barang Jasa</li>
                         </ol>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Pelaporan Belanja Modal</h3>
+                                <h3 class="card-title">Perencanaan Belanja Barang Jasa</h3>
                             </div>
                             <div class="card-body">
                                 <table id="user" class="table table-bordered table-hover">
@@ -40,7 +40,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($barmol as $p)
+                                        @foreach ($barjas as $p)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 @if ($p->nomor_surat == '')
@@ -55,9 +55,9 @@
                                                     <td>{{ $p->jns_belanja }}</td>
                                                 @endif
                                                 <td>{{ $p->estimasi_biaya }}</td>
-                                                <td>{{ $p->status_lapor }}</td>
+                                                <td>{{ $p->status }}</td>
                                                 <td>
-                                                    <a href="{{ route('detail-pelaporan-barmod', $p->id) }}"
+                                                    <a href="{{ route('detail-perencanaan-barjas', $p->id) }}"
                                                         class="btn btn-warning btn-sm">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </a>

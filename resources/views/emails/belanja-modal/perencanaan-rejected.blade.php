@@ -602,7 +602,7 @@
                                                                                 <td class="mcnTextContent" style="mso-line-height-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; word-break: break-word; color: #202020; font-family: Helvetica; font-size: 18px; line-height: 150%; text-align: left; padding: 0 18px 9px 18px;" valign="top">
                                                                                     <h1 id="mcetoc_1i0pr895te" style="display: block; margin: 0; padding: 0; color: #202020; font-family: Georgia; font-size: 30px; font-style: normal; font-weight: normal; line-height: 125%; letter-spacing: normal; text-align: left;">
                                                                                         <span style="font-family: open sans,helvetica neue,helvetica,arial,sans-serif;">
-                                                                                            <span style="color: #ee5b5b;">Belanja Modal Anda Ditolak
+                                                                                            <span style="color: #ee5b5b;">Perencanaan Belanja Modal Anda Ditolak
                                                                                             </span>
                                                                                         </span>
                                                                                     </h1>
@@ -826,12 +826,6 @@
                                                                                                             </tr>
                                                                                                         </tbody>
                                                                                                     </table>
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr style="height: 16px;">
-                                                                                                <td style="padding-top: 9px; padding-right: 9px; padding-left: 9px; text-size-adjust: 100%; height: 16px;">
-                                                                                                    <img src="https://share1.cloudhq-mkt3.net/043f2dfb7e3f8f.png" alt="logo dinas pendidikan jakarta" width="525" height="102">
-                                                                                                    <br>
                                                                                                 </td>
                                                                                             </tr>
                                                                                         </tbody>

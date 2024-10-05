@@ -200,7 +200,7 @@
 
                             <ul>
                                 @foreach ($filePaths as $filePath)
-                                    <li><a href="{{ Storage::url($filePath) }}" target="_blank">Lihat File</a></li>
+                                    <li><a href="{{ Storage::url($filePath) }}" target="_blank">Lihat Bukti SPK</a></li>
                                 @endforeach
                             </ul>
                         @else
@@ -285,7 +285,7 @@
 
                                 <ul>
                                     @foreach ($filePaths as $filePath)
-                                        <li><a href="{{ Storage::url($filePath) }}" target="_blank">Lihat File</a></li>
+                                        <li><a href="{{ Storage::url($filePath) }}" target="_blank">Lihat Bukti Surat Adendum</a></li>
                                     @endforeach
                                 </ul>
                             @else
@@ -348,7 +348,7 @@
                             @if ($barmod->bukti_bank_garansi_pelaksanaan != '')
                                 <ul>
                                     <li><a href="{{ Storage::url($barmod->bukti_bank_garansi_pelaksanaan) }}"
-                                            target="_blank">Lihat File</a></li>
+                                            target="_blank">Lihat Bukti Bank Garansi</a></li>
                                 </ul>
                             @elseif ($barmod->bukti_surety_bond_pelaksanaan != '')
                                 <input type="text" class="form-control rounded-0 mb-2" id="bukti-bank-garansi-modal"
@@ -369,7 +369,7 @@
                             @if ($barmod->bukti_surety_bond_pelaksanaan != '')
                                 <ul>
                                     <li><a href="{{ Storage::url($barmod->bukti_surety_bond_pelaksanaan) }}"
-                                            target="_blank">Lihat File</a></li>
+                                            target="_blank">Lihat Bukti Surety Bond</a></li>
                                 </ul>
                             @elseif ($barmod->bukti_bank_garansi_pelaksanaan != '')
                                 <input type="text" class="form-control rounded-0 mb-2" id="bukti-surety-bond-modal"
@@ -437,7 +437,7 @@
                             @if ($barmod->bukti_bank_garansi_pengadaan != '')
                                 <ul>
                                     <li><a href="{{ Storage::url($barmod->bukti_bank_garansi_pengadaan) }}"
-                                            target="_blank">Lihat File</a></li>
+                                            target="_blank">Lihat Bukti Bank Garansi</a></li>
                                 </ul>
                             @elseif ($barmod->bukti_surety_bond_pengadaan != '')
                                 <input type="text" class="form-control rounded-0 mb-2" id="bukti-bank-pengadaan-modal"
@@ -458,7 +458,7 @@
                             @if ($barmod->bukti_surety_bond_pengadaan != '')
                                 <ul>
                                     <li><a href="{{ Storage::url($barmod->bukti_surety_bond_pengadaan) }}"
-                                            target="_blank">Lihat File</a></li>
+                                            target="_blank">Lihat Bukti Surety Bond</a></li>
                                 </ul>
                             @elseif ($barmod->bukti_bank_garansi_pengadaan != '')
                                 <input type="text" class="form-control rounded-0 mb-2" id="bukti-surety_bond-modal"
@@ -565,7 +565,7 @@
 
                                 <ul>
                                     @foreach ($filePaths as $filePath)
-                                        <li><a href="{{ Storage::url($filePath) }}" target="_blank">Lihat File</a></li>
+                                        <li><a href="{{ Storage::url($filePath) }}" target="_blank">Lihat Bukti DPA</a></li>
                                     @endforeach
                                 </ul>
                             @else

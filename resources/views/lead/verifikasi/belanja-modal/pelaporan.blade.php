@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('lead.layouts.app')
 
 @section('content-wrapper')
     <div class="content-wrapper">
@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ url('dashboard-admin') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('pimpinan') }}">Home</a></li>
                             <li class="breadcrumb-item">Belanja Modal</li>
                             <li class="breadcrumb-item active">Pelaporan Belanja Modal</li>
                         </ol>
@@ -35,6 +35,7 @@
                                             <th>Nama</th>
                                             <th>Jenis Belanja</th>
                                             <th>Estimasi Biaya</th>
+                                            <th>Progres</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -55,20 +56,23 @@
                                                     <td>{{ $p->jns_belanja }}</td>
                                                 @endif
                                                 <td>{{ $p->estimasi_biaya }}</td>
+                                                <td class="text-center">{{ $p->persentase_lapor }}%</td>
                                                 <td>{{ $p->status_lapor }}</td>
                                                 <td>
-                                                    <a href="{{ route('detail-pelaporan-barmod', $p->id) }}"
-                                                        class="btn btn-warning btn-sm">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                    </a>
-                                                    <form action="#{{-- route('perjadin.destroy', ['id' => $p->id]) --}}" method="POST"
-                                                        style="display:inline;" id="deleteForm{{ $p->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger deleteUser btn-sm"
-                                                            data-id="{{ $p->id }}">
-                                                            <i class="bi bi-trash"></i></button>
-                                                    </form>
+                                                    @if ($p->persentase_lapor == 100)
+                                                        <a href="{{ route('detail-pelaporan-barmol-lead', $p->id) }}"
+                                                            class="btn btn-warning btn-sm">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </a>
+                                                        <form action="#{{-- route('perjadin.destroy', ['id' => $p->id]) --}}" method="POST"
+                                                            style="display:inline;" id="deleteForm{{ $p->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger deleteUser btn-sm"
+                                                                data-id="{{ $p->id }}">
+                                                                <i class="bi bi-trash"></i></button>
+                                                        </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -80,6 +84,7 @@
                                             <th>Nama</th>
                                             <th>Jenis Belanja</th>
                                             <th>Estimasi Biaya</th>
+                                            <th>Progress</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>

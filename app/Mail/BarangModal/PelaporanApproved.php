@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PerencanaanApprove extends Mailable
+class PelaporanApproved extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -22,8 +22,8 @@ class PerencanaanApprove extends Mailable
 
     public function build()
     {
-        return $this->view('emails.belanja-modal.perencanaan-approve')
-            ->subject('Perencanaan Belanja Modal Disetujui')
+        return $this->view('emails.belanja-modal.pelaporan-approved')
+            ->subject('Pelaporan Belanja Modal Disetujui')
             ->with(['barmod' => $this->barmod]);
     }
 }

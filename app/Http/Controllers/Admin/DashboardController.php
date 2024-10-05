@@ -42,19 +42,20 @@ class DashboardController extends Controller
     {
         $title = 'Perencanaan Barang Jasa';
         $barjas = BarangJasa::all();
-        return view('admin.verifikasi.belanja-barjas.perencanaan', compact('barjas', 'title'));
+        return view('admin.verifikasi.barang-jasa.perencanaan', compact('barjas', 'title'));
     }
+
     public function Pengerjaanbarjas()
     {
         $title = 'Pengerjaan Barang Jasa';
         $barjas = BarangJasa::all();
-        return view('admin.verifikasi.belanja-barjas.pengerjaan', compact('barjas', 'title'));
+        return view('admin.verifikasi.barang-jasa.pengerjaan', compact('barjas', 'title'));
     }
     public function Pelaporanbarjas()
     {
         $title = 'Pelaporan Barang Jasa';
         $barjas = BarangJasa::all();
-        return view('admin.verifikasi.belanja-barjas.pelaporan', compact('barjas', 'title'));
+        return view('admin.verifikasi.barang-jasa.pelaporan', compact('barjas', 'title'));
     }
 
     public function Perencanaanbarmol()

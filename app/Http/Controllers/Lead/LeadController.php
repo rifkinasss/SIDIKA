@@ -36,4 +36,18 @@ class LeadController extends Controller
         $barmol = BarangModal::all();
         return view('lead.verifikasi.belanja-modal.perencanaan', compact('barmol', 'title'));
     }
+    
+    public function pengerjaan_barmol()
+    {
+        $title = 'Belanja Modal';
+        $barmol = BarangModal::all();
+        return view('lead.verifikasi.belanja-modal.pengerjaan', compact('barmol', 'title'));
+    }
+    
+    public function pelaporan_barmol()
+    {
+        $title = 'Belanja Modal';
+        $barmol = BarangModal::all();
+        return view('lead.verifikasi.belanja-modal.pelaporan', compact('barmol', 'title'));
+    }
 }

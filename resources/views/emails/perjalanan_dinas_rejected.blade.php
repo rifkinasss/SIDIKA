@@ -828,12 +828,6 @@
                                                                                                     </table>
                                                                                                 </td>
                                                                                             </tr>
-                                                                                            <tr style="height: 16px;">
-                                                                                                <td style="padding-top: 9px; padding-right: 9px; padding-left: 9px; text-size-adjust: 100%; height: 16px;">
-                                                                                                    <img src="https://share1.cloudhq-mkt3.net/043f2dfb7e3f8f.png" alt="logo dinas pendidikan jakarta" width="525" height="102">
-                                                                                                    <br>
-                                                                                                </td>
-                                                                                            </tr>
                                                                                         </tbody>
                                                                                     </table>
                                                                                 </td>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Perjalanan Dinas Disetujui</title>
+    <title>Pengerjaan Belanja Modal Ditolak</title>
 </head>
 
 <body>
@@ -602,7 +602,7 @@
                                                                                 <td class="mcnTextContent" style="mso-line-height-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; word-break: break-word; color: #202020; font-family: Helvetica; font-size: 18px; line-height: 150%; text-align: left; padding: 0 18px 9px 18px;" valign="top">
                                                                                     <h1 id="mcetoc_1i0pr895te" style="display: block; margin: 0; padding: 0; color: #202020; font-family: Georgia; font-size: 30px; font-style: normal; font-weight: normal; line-height: 125%; letter-spacing: normal; text-align: left;">
                                                                                         <span style="font-family: open sans,helvetica neue,helvetica,arial,sans-serif;">
-                                                                                            <span style="color: #0ddbb9;">Perjalanan Dinas Anda Disetujui
+                                                                                            <span style="color: #ee5b5b;">Pengerjaan Belanja Modal Anda Ditolak
                                                                                             </span>
                                                                                         </span>
                                                                                     </h1>
@@ -633,9 +633,9 @@
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td class="mcnTextContent" style="padding: 0px 18px 9px; line-height: 100%; mso-line-height-rule: exactly; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; word-break: break-word; color: #202020; font-family: Helvetica; font-size: 18px; text-align: left;" valign="top">
-                                                                                    <p style="font-size: 14px;">Nomor Surat: {{ $perjalanandinas->nomor_surat }}
+                                                                                    <p style="font-size: 14px;">Nomor Surat: {{ $barmod->nomor_surat }}
                                                                                     </p>
-                                                                                    <p style="font-size: 14px;">Status: <span style="color: #0ddbb9;">Disetujui</span>
+                                                                                    <p style="font-size: 14px;">Status: <span style="color: #ee5b5b;">Ditolak</span>
                                                                                     </p>
                                                                                 </td>
                                                                             </tr>
