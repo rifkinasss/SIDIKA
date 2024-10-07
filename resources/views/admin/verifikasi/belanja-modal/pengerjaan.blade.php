@@ -35,6 +35,7 @@
                                             <th>Nama</th>
                                             <th>Jenis Belanja</th>
                                             <th>Estimasi Biaya</th>
+                                            <th>Progres</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -55,20 +56,23 @@
                                                     <td>{{ $p->jns_belanja }}</td>
                                                 @endif
                                                 <td>{{ $p->estimasi_biaya }}</td>
+                                                <td class="text-center">{{ $p->persentase }}%</td>
                                                 <td>{{ $p->status_pengerjaan }}</td>
                                                 <td>
-                                                    <a href="{{ route('detail-pengerjaan-barmod', $p->id) }}"
-                                                        class="btn btn-warning btn-sm">
-                                                        <i class="bi bi-pencil-square"></i>
-                                                    </a>
-                                                    <form action="#{{-- route('perjadin.destroy', ['id' => $p->id]) --}}" method="POST"
-                                                        style="display:inline;" id="deleteForm{{ $p->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger deleteUser btn-sm"
-                                                            data-id="{{ $p->id }}">
-                                                            <i class="bi bi-trash"></i></button>
-                                                    </form>
+                                                    @if ($p->persentase == 100)
+                                                        <a href="{{ route('detail-pengerjaan-barmod', $p->id) }}"
+                                                            class="btn btn-warning btn-sm">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </a>
+                                                        <form action="#{{-- route('perjadin.destroy', ['id' => $p->id]) --}}" method="POST"
+                                                            style="display:inline;" id="deleteForm{{ $p->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger deleteUser btn-sm"
+                                                                data-id="{{ $p->id }}">
+                                                                <i class="bi bi-trash"></i></button>
+                                                        </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -80,6 +84,7 @@
                                             <th>Nama</th>
                                             <th>Jenis Belanja</th>
                                             <th>Estimasi Biaya</th>
+                                            <th>Progres</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>

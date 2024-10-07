@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ url('dashboard-admin') }}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url('admin') }}">Home</a></li>
                             <li class="breadcrumb-item">Belanja Barang Jasa</li>
                             <li class="breadcrumb-item active">Pengerjaan Belanja Barang Jasa</li>
                         </ol>
@@ -33,9 +33,9 @@
                                             <th>No</th>
                                             <th>Nomor Surat</th>
                                             <th>Nama</th>
-                                            <th>Keperluan</th>
-                                            <th>Jumlah Biaya</th>
-                                            <th>Tujuan</th>
+                                            <th>Jenis Belanja</th>
+                                            <th>Estimasi Biaya</th>
+                                            <th>Progres</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -44,25 +44,35 @@
                                         @foreach ($barjas as $p)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $p->nomor_surat }}</td>
+                                                @if ($p->nomor_surat == '')
+                                                    <td>-</td>
+                                                @else
+                                                    <td>{{ $p->nomor_surat }}</td>
+                                                @endif
                                                 <td>{{ $p->user->nama }}</td>
-                                                <td>{{ $p->keperluan_perjadin }}</td>
-                                                <td>{{ $p->jumlah_dibayarkan }}</td>
-                                                <td>{{ $p->kota_kab }}</td>
+                                                @if ($p->jns_belanja == 'Belanja Barang Jasa Lainnya')
+                                                    <td>{{ $p->lainnya }}</td>
+                                                @else
+                                                    <td>{{ $p->jns_belanja }}</td>
+                                                @endif
+                                                <td>{{ $p->estimasi_biaya }}</td>
+                                                <td class="text-center">{{ $p->persentase }}%</td>
                                                 <td>{{ $p->status }}</td>
                                                 <td>
-                                                    <a href="{{ route('perjadin.edit', ['id' => $p->id]) }}"
-                                                        class="btn btn-warning btn-sm"><i
-                                                            class="bi bi-pencil-square"></i></a>
-                                                    <form action="{{ route('perjadin.destroy', ['id' => $p->id]) }}"
-                                                        method="POST" style="display:inline;"
-                                                        id="deleteForm{{ $p->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger deleteUser btn-sm"
-                                                            data-id="{{ $p->id }}">
-                                                            <i class="bi bi-trash"></i></button>
-                                                    </form>
+                                                    @if ($p->persentase == 100)
+                                                        <a href="{{ route('detail-pengerjaan-barjas', $p->id) }}"
+                                                            class="btn btn-warning btn-sm">
+                                                            <i class="bi bi-pencil-square"></i>
+                                                        </a>
+                                                        <form action="#{{-- route('perjadin.destroy', ['id' => $p->id]) --}}" method="POST"
+                                                            style="display:inline;" id="deleteForm{{ $p->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger deleteUser btn-sm"
+                                                                data-id="{{ $p->id }}">
+                                                                <i class="bi bi-trash"></i></button>
+                                                        </form>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -72,9 +82,9 @@
                                             <th>No</th>
                                             <th>Nomor Surat</th>
                                             <th>Nama</th>
-                                            <th>Keperluan</th>
-                                            <th>Jumlah Biaya</th>
-                                            <th>Tujuan</th>
+                                            <th>Jenis Belanja</th>
+                                            <th>Estimasi Biaya</th>
+                                            <th>Progres</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
