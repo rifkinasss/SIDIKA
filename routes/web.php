@@ -123,6 +123,7 @@ Route::middleware('pegawai')->group(function () {
     Route::get('/ketentuan-perjalanan-dinas', [Dashcontroller::class, 'ketentuanPerjadin'])->name('ketentuan-perjalanan-dinas');
     Route::get('/ketentuan-belanja-modal', [Dashcontroller::class, 'ketentuanBarMol'])->name('ketentuan-belanja-modal');
     Route::get('/ketentuan-belanja-barang-jasa', [Dashcontroller::class, 'ketentuanBarJas'])->name('ketentuan-belanja-barang-jasa');
+    Route::get('/bantuan', [Dashcontroller::class, 'bantuan'])->name('bantuan');
 
     // Profile
     Route::get('profile/{id}', [Dashcontroller::class, 'profile'])->name('profile');
@@ -148,26 +149,6 @@ Route::middleware('pegawai')->group(function () {
     Route::get('perencanaan-belanja-barjas', [BarangJasaController::class, 'perencanaan']);
     Route::post('perencanaan-belanja-barjas', [BarangJasaController::class, 'store'])->name('perencanaan-belanja-barjas.store');
     Route::get('pengerjaan-belanja-barjas/{id}', [BarangJasaController::class, 'pengerjaan'])->name('pengerjaan-belanja-barjas');
-
-
-    Route::get('/pelaporan-perjadin', function () {
-        return view('pegawai.perjadin.pelaporan-perjadin');
-    });
-
-    Route::get('/pelaporan-belanja-modal', function () {
-        $title = '';
-        return view('pegawai.belanja-modal.pelaporan-modal', compact('title'));
-    });
-
-    Route::get('/pengerjaan-belanja-barjas', function () {
-        return view('pegawai.belanja-barjas.pengerjaan-barjas', ['title' => '']);
-    });
-    Route::get('/pelaporan-belanja-barjas', function () {
-        return view('pegawai.belanja-barjas.pelaporan-barjas', ['title' => '']);
-    });
-    Route::get('/bantuan', function () {
-        return view('pegawai.bantuan', [
-            'title' => 'Bantuan Pengguna'
-        ]);
-    });
+    Route::post('pengerjaan-belanja-barjas/{id}', [BarangJasaController::class, 'PengerjaanUpdate'])->name('pengerjaan-belanja-barjas.update');
+    Route::get('/get-regencies/{province_name}', [BarangJasaController::class, 'getRegenciesByProvinceName'])->name('get-regencies');
 });

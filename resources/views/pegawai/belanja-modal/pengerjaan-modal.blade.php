@@ -10,7 +10,7 @@
         {{-- breadcrumb --}}
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-dark">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('pegawai') }}" class="text-decoration-none text-dark">Home</a></li>
                 <li class="breadcrumb-item">Belanja Modal</li>
                 <li class="breadcrumb-item active" aria-current="page"><span class="text-first"><u>Pengerjaan Belanja
                             Modal</u></span></li>
@@ -232,7 +232,7 @@
                             <button type="button" class="btn bg-third border-primary rounded-0"
                                 onclick="window.location.reload();">Reset</button>
                             <button type="button" class="btn btn-danger rounded-0"
-                                onclick="window.location.href='{{ url('dashboard') }}';">kembali</button>
+                                onclick="window.location.href='{{ url('dashboard') }}';">Kembali</button>
                         </div>
                     @endif
                 </div>
@@ -317,7 +317,7 @@
                             <button type="button" class="btn bg-third border-primary rounded-0"
                                 onclick="window.location.reload();">Reset</button>
                             <button type="button" class="btn btn-danger rounded-0"
-                                onclick="window.location.href='{{ url('dashboard') }}';">kembali</button>
+                                onclick="window.location.href='{{ url('dashboard') }}';">Kembali</button>
                         </div>
                     @endif
                 </div>
@@ -407,7 +407,7 @@
                             <button type="button" class="btn bg-third border-primary rounded-0"
                                 onclick="window.location.reload();">Reset</button>
                             <button type="button" class="btn btn-danger rounded-0"
-                                onclick="window.location.href='{{ url('dashboard') }}';">kembali</button>
+                                onclick="window.location.href='{{ url('dashboard') }}';">Kembali</button>
                         </div>
                     @endif
                 </div>
@@ -496,7 +496,7 @@
                             <button type="button" class="btn bg-third border-primary rounded-0"
                                 onclick="window.location.reload();">Reset</button>
                             <button type="button" class="btn btn-danger rounded-0"
-                                onclick="window.location.href='{{ url('dashboard') }}';">kembali</button>
+                                onclick="window.location.href='{{ url('dashboard') }}';">Kembali</button>
                         </div>
                     @endif
                 </div>
@@ -599,7 +599,7 @@
                             <button type="button" class="btn bg-third border-primary rounded-0"
                                 onclick="window.location.reload();">Reset</button>
                             <button type="button" class="btn btn-danger rounded-0"
-                                onclick="window.location.href='{{ url('dashboard') }}';">kembali</button>
+                                onclick="window.location.href='{{ url('dashboard') }}';">Kembali</button>
                         </div>
                     @endif
                 </div>

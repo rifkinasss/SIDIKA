@@ -10,7 +10,7 @@
     {{-- breadcrumb --}}
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="#" class="text-decoration-none text-dark">Home</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('pegawai') }}" class="text-decoration-none text-dark">Home</a></li>
         <li class="breadcrumb-item">Belanja Barang Jasa</li>
         <li class="breadcrumb-item active" aria-current="page"><span class="text-first"><u>Pelaporan Belanja Barang Jasa</u></span></li>
       </ol>

@@ -76,18 +76,16 @@
 
                                 <div class="row mx-4 my-4">
                                     <div class="col-sm-6">
-                                        <a type="button" href="{{ route('perencanaan-barang-modal') }}"
+                                        <a type="button" href="{{ route('perencanaan-barjas-lead') }}"
                                             class="btn btn-secondary">Kembali</a>
                                     </div>
 
                                     <div class="col-sm-6 d-flex justify-content-end">
                                         @if ($barjas->status == 'Diproses')
-                                            <form
-                                                action="{{ route('perencanaan-belanja-barjas.kirimNotifPimpinan', ['id' => $barjas->id]) }}"
-                                                method="POST" style="display:inline;">
+                                            <form action="{{ route('update-perencanaan-barjas-lead', $barjas->id) }}" method="POST" style="display:inline;">
                                                 @csrf
-                                                <button type="submit" class="btn btn-warning"
-                                                    name="kirim_notif">Kirim Notifikasi</button>
+                                                <button type="submit" class="btn btn-danger" name="ditolak" value="ditolak">Tolak</button>
+                                                <button type="submit" class="btn btn-primary" name="disetujui" value="disetujui">Setujui</button>
                                             </form>
                                         @endif
                                     </div>

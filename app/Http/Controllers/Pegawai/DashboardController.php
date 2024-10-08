@@ -83,4 +83,11 @@ class DashboardController extends Controller
             'title' => 'Ketentuan Belanja Barang Jasa'
         ]);
     }
+
+    public function bantuan()
+    {
+        return view('pegawai.bantuan', [
+            'title' => 'Bantuan Pengguna'
+        ]);
+    }
 }

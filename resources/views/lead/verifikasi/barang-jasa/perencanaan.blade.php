@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('lead.layouts.app')
 
 @section('content-wrapper')
     <div class="content-wrapper">
@@ -6,13 +6,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Pelaporan Belanja Modal</h1>
+                        <h1 class="m-0">Perencanaan Belanja Barang Jasa</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ url('dashboard-admin') }}">Home</a></li>
-                            <li class="breadcrumb-item">Belanja Modal</li>
-                            <li class="breadcrumb-item active">Pelaporan Belanja Modal</li>
+                            <li class="breadcrumb-item"><a href="{{ url('pimpinan') }}">Home</a></li>
+                            <li class="breadcrumb-item">Belanja Barang Jasa</li>
+                            <li class="breadcrumb-item active">Perencanaan Belanja Barang Jasa</li>
                         </ol>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Pelaporan Belanja Modal</h3>
+                                <h3 class="card-title">Perencanaan Belanja Barang Jasa</h3>
                             </div>
                             <div class="card-body">
                                 <table id="user" class="table table-bordered table-hover">
@@ -35,13 +35,12 @@
                                             <th>Nama</th>
                                             <th>Jenis Belanja</th>
                                             <th>Estimasi Biaya</th>
-                                            <th>Progres</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($barmol as $p)
+                                        @foreach ($barjas as $p)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 @if ($p->nomor_surat == '')
@@ -50,29 +49,26 @@
                                                     <td>{{ $p->nomor_surat }}</td>
                                                 @endif
                                                 <td>{{ $p->user->nama }}</td>
-                                                @if ($p->jns_belanja == 'Belanja Modal Lainnya')
+                                                @if ($p->jns_belanja == 'Belanja Barang Jasa Lainnya')
                                                     <td>{{ $p->lainnya }}</td>
                                                 @else
                                                     <td>{{ $p->jns_belanja }}</td>
                                                 @endif
                                                 <td>{{ $p->estimasi_biaya }}</td>
-                                                <td class="text-center">{{ $p->persentase_lapor }}%</td>
-                                                <td>{{ $p->status_lapor }}</td>
+                                                <td>{{ $p->status }}</td>
                                                 <td>
-                                                    @if ($p->persentase_lapor == 100)
-                                                        <a href="{{ route('detail-pelaporan-barmod', $p->id) }}"
-                                                            class="btn btn-warning btn-sm">
-                                                            <i class="bi bi-pencil-square"></i>
-                                                        </a>
-                                                        <form action="#{{-- route('perjadin.destroy', ['id' => $p->id]) --}}" method="POST"
-                                                            style="display:inline;" id="deleteForm{{ $p->id }}">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger deleteUser btn-sm"
-                                                                data-id="{{ $p->id }}">
-                                                                <i class="bi bi-trash"></i></button>
-                                                        </form>
-                                                    @endif
+                                                    <a href="{{ route('detail-perencanaan-barjas-lead', $p->id) }}"
+                                                        class="btn btn-warning btn-sm">
+                                                        <i class="bi bi-pencil-square"></i>
+                                                    </a>
+                                                    <form action="#{{-- route('perjadin.destroy', ['id' => $p->id]) --}}" method="POST"
+                                                        style="display:inline;" id="deleteForm{{ $p->id }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger deleteUser btn-sm"
+                                                            data-id="{{ $p->id }}">
+                                                            <i class="bi bi-trash"></i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -84,7 +80,6 @@
                                             <th>Nama</th>
                                             <th>Jenis Belanja</th>
                                             <th>Estimasi Biaya</th>
-                                            <th>Progres</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>

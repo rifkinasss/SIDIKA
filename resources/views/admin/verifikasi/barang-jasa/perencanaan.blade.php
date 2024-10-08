@@ -49,7 +49,7 @@
                                                     <td>{{ $p->nomor_surat }}</td>
                                                 @endif
                                                 <td>{{ $p->user->nama }}</td>
-                                                @if ($p->jns_belanja == 'Belanja Modal Lainnya')
+                                                @if ($p->jns_belanja == 'Belanja Barang Jasa Lainnya')
                                                     <td>{{ $p->lainnya }}</td>
                                                 @else
                                                     <td>{{ $p->jns_belanja }}</td>
