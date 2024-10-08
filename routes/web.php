@@ -69,7 +69,7 @@ Route::middleware('pimpinan')->group(function () {
     Route::get('dashboard-pimpinan/pelaporan-belanja-modal', [LeadController::class, 'pelaporan_barmol'])->name('pelaporan-barmol-lead');
     Route::get('dashboard-pimpinan/pelaporan-belanja-modal/{id}', [LeadBarangModalController::class, 'pelaporan_detail'])->name('detail-pelaporan-barmol-lead');
     Route::post('dashboard-pimpinan/pelaporan-belanja-modal/{id}', [LeadBarangModalController::class, 'pelaporan_verif'])->name('update-pelaporan-barmol-lead');
-    
+
     // Belanja Barang Jasa
     Route::get('dashboard-pimpinan/perencanaan-belanja-barjas', [LeadController::class, 'perencanaan_barjas'])->name('perencanaan-barjas-lead');
     Route::get('dashboard-pimpinan/perencanaan-belanja-barjas/{id}', [LeadBarangJasaController::class, 'perencanaan_detail'])->name('detail-perencanaan-barjas-lead');
@@ -164,7 +164,7 @@ Route::middleware('pegawai')->group(function () {
     });
     Route::get('/pelaporan-belanja-barjas', function () {
         return view('pegawai.belanja-barjas.pelaporan-barjas', ['title' => '']);
-    });;
+    });
     Route::get('/bantuan', function () {
         return view('pegawai.bantuan', [
             'title' => 'Bantuan Pengguna'
