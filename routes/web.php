@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\RedirectToLogin;
 use App\Http\Controllers\Lead\LeadController;
+use App\Http\Controllers\Lead\PerjadinController;
+use App\Http\Controllers\Admin\AnggaranController;
 use App\Http\Controllers\SuperAdmin\UserController;
 use App\Http\Controllers\Pegawai\BarangJasaController;
 use App\Http\Controllers\Pegawai\BarangModalController;
@@ -17,7 +19,6 @@ use App\Http\Controllers\Pegawai\DashboardController as DashController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashController;
 use App\Http\Controllers\Lead\BarangJasaController as LeadBarangJasaController;
 use App\Http\Controllers\Lead\BarangModalController as LeadBarangModalController;
-use App\Http\Controllers\Lead\PerjadinController;
 use App\Http\Controllers\SuperAdmin\DashboardController as SuperAdminDashController;
 
 /*
@@ -114,6 +115,10 @@ Route::middleware('admin')->group(function () {
     Route::get('dashboard-admin/pelaporan-belanja-modal', [AdminDashController::class, 'Pelaporanbarmol'])->name('pelaporan-barang-modal');
     Route::get('dashboard-admin/pelaporan-belanja-modal/{id}', [VerifikasiBelanjaModalController::class, 'detailPelaporanbarmol'])->name('detail-pelaporan-barmod');
     Route::post('dashboard-admin/pelaporan-belanja-modal/{id}/send-notification', [VerifikasiBelanjaModalController::class, 'pelaporan_kirimNotifPimpinan'])->name('pelaporan-belanja-modal.kirimNotifPimpinan');
+
+    // Anggaran Biaya
+    Route::get('dashboard-admin/anggaran-perjalanan-dinas', [AnggaranController::class, 'PerjalananDinas'])->name('BiayaPerjadin');
+    Route::post('dashboard-admin/anggaran-perjalanan-dinas/store', [AnggaranController::class, 'AjukanPerjadin'])->name('AjukanPerjadin');
 });
 
 Route::middleware('pegawai')->group(function () {

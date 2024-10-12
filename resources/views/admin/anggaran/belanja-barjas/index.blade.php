@@ -6,12 +6,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Dashboard</h1>
+                        <h1 class="m-0">Anggaran Biaya Perjalanan Dinas</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ url('dashboard-admin') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Dashboard</li>
+                            <li class="breadcrumb-item active">Anggaran Perjalanan Dinas</li>
                         </ol>
                     </div>
                 </div>
@@ -19,7 +19,7 @@
         </div>
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-lg-3 col-6">
                         <div class="small-box bg-info">
                             <div class="inner">
@@ -72,66 +72,7 @@
                                 info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
-                </div>
-
-                {{-- Anggaran Biaya --}}
-                <div class="row">
-                    <div class="col-lg-12 col-12">
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>Rp 1.569.235.000</h3>
-                                <p>Total Anggaran</p>
-                            </div>
-                            <div class="icon">
-                                <i class="bi bi-wallet2"></i>
-                            </div>
-                            <a href="{{ url('dashboard-admin/total-anggaran') }}" class="small-box-footer">More
-                                info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-6">
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>Rp 1.569.235.000</h3>
-                                <p>Anggaran Perjalanan Dinas</p>
-                            </div>
-                            <div class="icon">
-                                <i class="bi bi-file-earmark-text"></i>
-                            </div>
-                            <a href="{{ url('dashboard-admin/anggaran-perjalanan-dinas') }}" class="small-box-footer">More
-                                info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-6">
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>Rp 1.569.235.000</h3>
-                                <p>Anggaran Barang Modal</p>
-                            </div>
-                            <div class="icon">
-                                <i class="bi bi-box-seam"></i>
-                            </div>
-                            <a href="{{ url('dashboard-admin/anggaran-belanja-modal') }}" class="small-box-footer">More
-                                info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-6">
-                        <div class="small-box bg-danger">
-
-                            <div class="inner">
-                                <h3>Rp 1.569.235.000</h3>
-                                <p>Anggaran Barang Jasa</p>
-                            </div>
-                            <div class="icon">
-                                <i class="bi bi-bag-check"></i>
-                            </div>
-                            <a href="{{ url('dashboard-admin/anggaran-belanja-barjas') }}" class="small-box-footer">More
-                                info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
+                </div> --}}
             </div>
         </section>
     </div>

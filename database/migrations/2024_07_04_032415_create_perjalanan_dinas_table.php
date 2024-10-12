@@ -42,6 +42,9 @@ return new class extends Migration
             $table->string('uang_representasi');
             $table->string('jumlah_biaya');
 
+            // Anggaran Biaya
+            $table->string('anggaran_perjadin');
+
             // Bukti Surat Tugas Perjalanan Dinas
             $table->string('bukti_surat_tugas', 5120);
 
