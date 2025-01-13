@@ -202,7 +202,7 @@
                                                             <i class="bi bi-pencil-square"></i> Pengerjaan <span
                                                                 class="badge text-bg-light">{{ $barmols->persentase }}%</span>
                                                         </a>
-                                                    @elseif ($barmols->persentase == 100)
+                                                    @elseif ($barmols->status_pengerjaan == 'Disetujui')
                                                         <a href="{{ route('pelaporan-belanja-modal', $barmols->id) }}"
                                                             type="submit" class="btn btn-warning btn-sm">
                                                             <i class="bi bi-pencil-square"></i> Pelaporan <span
@@ -251,11 +251,17 @@
                                                 <td>{{ $barjass->estimasi_biaya }}</td>
                                                 <td>{{ $barjass->status }}</td>
                                                 <td>
-                                                    @if ($barjass->status == 'Disetujui')
+                                                    @if ($barjass->status == 'Disetujui' && $barjass->status_pengerjaan != 'Disetujui')
                                                         <a href="{{ route('pengerjaan-belanja-barjas', $barjass->id) }}"
                                                             type="submit" class="btn btn-warning btn-sm">
                                                             <i class="bi bi-pencil-square"></i> Pengerjaan <span
                                                                 class="badge text-bg-light">{{ $barjass->persentase }}%</span>
+                                                        </a>
+                                                    @elseif ($barjass->status_pengerjaan == 'Disetujui')
+                                                        <a href="{{ route('pelaporan-belanja-barjas', $barjass->id) }}"
+                                                            type="submit" class="btn btn-warning btn-sm">
+                                                            <i class="bi bi-pencil-square"></i> Pelaporan <span
+                                                                class="badge text-bg-light">{{ $barjass->persentase_lapor }}%</span>
                                                         </a>
                                                     @endif
                                                 </td>

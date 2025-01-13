@@ -261,4 +261,11 @@ class BarangJasaController extends Controller
 
         return redirect()->back()->with('peng-belanja-modal', 'Progress dokumen belanja modal berhasil diperbarui.');
     }
+
+    public function pelaporan(string $id)
+    {
+        $title = 'Pelaporan Belanja Barang Jasa';
+        $barjas = BarangJasa::find($id);
+        return view('pegawai.belanja-barjas.pelaporan-barjas', compact('title', 'barjas'));
+    }
 }

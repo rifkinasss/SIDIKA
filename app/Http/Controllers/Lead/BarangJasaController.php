@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Lead;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BarangJasa\PengerjaanApproved;
+use App\Mail\BarangJasa\PengerjaanRejected;
 use App\Mail\BarangJasa\PerencanaanApproved;
 use App\Mail\BarangJasa\PerencanaanRejected;
 use App\Models\Pegawai\BarangJasa;

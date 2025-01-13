@@ -57,7 +57,7 @@
                                                 @endif
                                                 <td>{{ $p->estimasi_biaya }}</td>
                                                 <td class="text-center">{{ $p->persentase }}%</td>
-                                                <td>{{ $p->status }}</td>
+                                                <td>{{ $p->status_pengerjaan }}</td>
                                                 <td>
                                                     @if ($p->persentase == 100)
                                                         <a href="{{ route('detail-pengerjaan-barjas', $p->id) }}"

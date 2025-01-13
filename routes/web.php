@@ -156,4 +156,6 @@ Route::middleware('pegawai')->group(function () {
     Route::get('pengerjaan-belanja-barjas/{id}', [BarangJasaController::class, 'pengerjaan'])->name('pengerjaan-belanja-barjas');
     Route::post('pengerjaan-belanja-barjas/{id}', [BarangJasaController::class, 'PengerjaanUpdate'])->name('pengerjaan-belanja-barjas.update');
     Route::get('/get-regencies/{province_name}', [BarangJasaController::class, 'getRegenciesByProvinceName'])->name('get-regencies');
+    Route::get('pelaporan-belanja-barjas/{id}', [BarangJasaController::class, 'pelaporan'])->name('pelaporan-belanja-barjas');
+    Route::post('pelaporan-belanja-barjas/{id}', [BarangJasaController::class, 'PelaporanUpdate'])->name('pelaporan-belanja-barjas.update');
 });
