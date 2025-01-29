@@ -10,7 +10,7 @@
         {{-- breadcrumb --}}
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-dark">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('pegawai') }}" class="text-decoration-none text-dark">Home</a></li>
                 <li class="breadcrumb-item">Belanja Modal</li>
                 <li class="breadcrumb-item active" aria-current="page"><span class="text-first"><u>Pelaporan Belanja
                             Modal</u></span></li>
@@ -236,7 +236,7 @@
 		</div>
 	</form>
 
-    {{-- Jaminan pelaksanaan --}}
+    {{-- Final Hand Over (FHO) --}}
 	<form action="{{ route('pelaporan-belanja-modal.update', $barmod->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		<div class="container-fluid bg-transparent mb-4">
@@ -299,7 +299,7 @@
 		</div>
 	</form>
 
-    {{-- Jaminan pelaksanaan --}}
+    {{-- Surat Perintah Pencairan Dana (SP2D) --}}
 	<form action="{{ route('pelaporan-belanja-modal.update', $barmod->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
 		<div class="container-fluid bg-transparent mb-4">

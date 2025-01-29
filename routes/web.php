@@ -41,6 +41,7 @@ Route::middleware([RedirectToLogin::class])->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::middleware('superadmin')->group(function () {
     Route::get('dashboard-superadmin', [SuperAdminDashController::class, 'index'])->name('superadmin');
     Route::get('dashboard-superadmin/user-management', [UserController::class, 'index'])->name('user-management');
