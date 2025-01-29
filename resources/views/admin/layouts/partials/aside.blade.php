@@ -96,7 +96,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('dashboard-admin/pelaporann-belanja-barjas') }}" class="nav-link">
+                            <a href="{{ url('dashboard-admin/pelaporan-belanja-barjas') }}" class="nav-link">
                                 <i class="far fa-file-alt nav-icon"></i>
                                 <p>Pelaporan</p>
                             </a>
