@@ -59,7 +59,7 @@
                                                 <td class="text-center">{{ $p->persentase_lapor }}%</td>
                                                 <td>{{ $p->status_lapor }}</td>
                                                 <td>
-                                                    @if ($p->persentasei_lapor == 100)
+                                                    @if ($p->persentase_lapor == 100)
                                                         <a href="{{ route('detail-pelaporan-barjas-lead', $p->id) }}"
                                                             class="btn btn-warning btn-sm">
                                                             <i class="bi bi-pencil-square"></i>

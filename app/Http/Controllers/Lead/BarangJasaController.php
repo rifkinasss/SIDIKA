@@ -7,6 +7,8 @@ use App\Mail\BarangJasa\PengerjaanApproved;
 use App\Mail\BarangJasa\PengerjaanRejected;
 use App\Mail\BarangJasa\PerencanaanApproved;
 use App\Mail\BarangJasa\PerencanaanRejected;
+use App\Mail\BarangModal\PelaporanApproved;
+use App\Mail\BarangModal\PelaporanRejected;
 use App\Models\Pegawai\BarangJasa;
 use App\Models\User;
 use Illuminate\Http\Request;

@@ -25,6 +25,7 @@
 
     {{-- Public --}}
     <link rel="stylesheet" href="{{ asset('assets/Dashboard/css/adminlte.min.css') }}">
+    
     {{-- Data Tables Public --}}
     <link rel="stylesheet"
         href="{{ asset('assets/Dashboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
